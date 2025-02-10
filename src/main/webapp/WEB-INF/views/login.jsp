@@ -5,8 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<h1>Login</h1>
+	
+	<form action="login" method="post">
+	
+		Email:- <input type="text" name="email">
+		<br><br>
+		
+		Password:- <input type="password" name = "password">
+		<br><br>
+		
+		<input type="submit" value="Login">
+	
+	</form>
+	
+	<a href="signup">Signup</a>
+	<a href="forgetpassword">ForgetPassword</a>
+	
 </body>
 </html>
