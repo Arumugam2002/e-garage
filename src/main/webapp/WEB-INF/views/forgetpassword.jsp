@@ -4,19 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forget Password</title>
 </head>
 <body>
 
 <h1>Forget Password</h1>
 
-<form action="forgetPassword" method="post">
+<form action="sendOtp" method="post">
 
 	Email:- <input type="text" name="email">
 	<br><br>
 	
-	<input type="submit">
+	<input type="submit" value="Help">
 
 </form>
+
+<a href="login">Login</a>
 </body>
 </html>

@@ -44,8 +44,14 @@ public class SessionController {
 		return "index";
 	}
 	
-	@PostMapping("forgetPassword")
-	public String redirectLogin()
+	@PostMapping("sendOtp")
+	public String sendOtp()
+	{
+		return "changepassword";
+	}
+	
+	@PostMapping("updatePassword")
+	public String updatePassword()
 	{
 		return "login";
 	}
