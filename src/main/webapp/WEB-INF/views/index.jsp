@@ -9,5 +9,7 @@
 <body>
 <a href="signup">Signup</a>
 <a href ="login">Login</a>
+
+<h1>Home Page</h1>
 </body>
 </html>

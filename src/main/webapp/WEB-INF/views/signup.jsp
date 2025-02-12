@@ -29,7 +29,7 @@
 	Password:- <input type="password" name="password">
 	<br><br>
 	
-	Mobile No:- <input type="number" name="mobileNumber">
+	Mobile No:- <input type="text" name="contactNo">
 	<br><br>
 	
 	Gender:- <input type="radio" name="gender" value="Male">Male
