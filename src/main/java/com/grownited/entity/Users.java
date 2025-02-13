@@ -20,6 +20,7 @@ public class Users {
 	private String password;
 	private String contactNo;
 	
+	
 	private String role;
 	private String gender;
 	
@@ -73,6 +74,7 @@ public class Users {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
 	
 	
 }

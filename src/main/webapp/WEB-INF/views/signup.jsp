@@ -42,6 +42,7 @@
 </form>
 
 <a href="login">Login</a>
+<a href="state">Enter State</a>
 	
 </body>
 </html>
