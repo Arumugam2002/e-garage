@@ -1,5 +1,8 @@
 package com.grownited.entity;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,13 +19,16 @@ public class Users {
 	private Integer id;
 	private String firstName;
 	private String lastName;
+	
+	@Column(unique = true)
 	private String email;
+	
 	private String password;
 	private String contactNo;
-	
-	
 	private String role;
 	private String gender;
+	private Date createAt;
+	private boolean active;
 	
 	
 	//Getters and Setters
@@ -73,6 +79,18 @@ public class Users {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	public Date getCreateAt() {
+		return createAt;
+	}
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	

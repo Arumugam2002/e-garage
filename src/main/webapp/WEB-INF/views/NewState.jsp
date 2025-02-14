@@ -13,7 +13,7 @@
 
 	<form action = "savestate" method="post">
 	
-	State Name:- <input type="text" name="state"><br><br>
+	State Name:- <input type="text" name="stateName"><br><br>
 	
 	<input type="submit" value="GetState">
 	

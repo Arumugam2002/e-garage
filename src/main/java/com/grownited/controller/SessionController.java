@@ -1,5 +1,7 @@
 package com.grownited.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +55,11 @@ public class SessionController {
 		System.out.println(users.getContactNo());
 		System.out.println(users.getGender());
 		
+		users.setRole("USER");
+		users.setActive(true);
+		users.setCreateAt(new Date());
+		
+		
 		
 		userRepository.save(users);
 		return "login";
@@ -63,6 +70,8 @@ public class SessionController {
 	{
 		System.out.println(users.getEmail());
 		System.out.println(users.getPassword());
+		
+		
 		
 		
 		return "index";
