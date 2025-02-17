@@ -14,6 +14,7 @@ public class State {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer stateId;
 	
+	
 	private String stateName;
 	
 	public Integer getStateId() {

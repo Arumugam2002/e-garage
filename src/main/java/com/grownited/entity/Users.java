@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +32,11 @@ public class Users {
 	private String gender;
 	private Date createAt;
 	private boolean active;
+	
+	@OneToOne
+	@JoinColumn(name="stateref_id")
+	private State state;
+	
 	
 	
 	//Getters and Setters
@@ -91,6 +99,12 @@ public class Users {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public State getState() {
+		return state;
+	}
+	public void setState(State state) {
+		this.state = state;
 	}
 	
 	
