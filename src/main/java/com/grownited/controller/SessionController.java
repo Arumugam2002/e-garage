@@ -8,12 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grownited.entity.Users;
 import com.grownited.repository.userRepository;
+import com.grownited.service.MailService;
 
-import jakarta.servlet.http.HttpSession;
+//import jakarta.servlet.http.HttpSession;
 
 //Creation of Controller
 @Controller
@@ -21,6 +22,9 @@ public class SessionController {
 	
 	@Autowired
 	userRepository userRepository;
+	
+	@Autowired
+	MailService serviceMail;
 	
 	
 	
@@ -64,9 +68,11 @@ public class SessionController {
 		users.setActive(true);
 		users.setCreateAt(new Date());
 		
-		
-		
 		userRepository.save(users);
+		
+		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
+		
+		
 		return "login";
 	}
 	
