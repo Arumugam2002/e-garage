@@ -4,15 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grownited.entity.Users;
 import com.grownited.repository.userRepository;
 import com.grownited.service.MailService;
+
+import jakarta.servlet.http.HttpSession;
 
 //import jakarta.servlet.http.HttpSession;
 
@@ -25,6 +29,9 @@ public class SessionController {
 	
 	@Autowired
 	MailService serviceMail;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	
 	
@@ -44,6 +51,12 @@ public class SessionController {
 	public String login()
 	{
 		return "login";
+	}
+	
+	@GetMapping("index")
+	public String homePage()
+	{
+		return "index";
 	}
 	
 	@GetMapping("forgetpassword")
@@ -68,6 +81,10 @@ public class SessionController {
 		users.setActive(true);
 		users.setCreateAt(new Date());
 		
+		String encodePassword = encoder.encode(users.getPassword());
+		
+		users.setPassword(encodePassword);
+		
 		userRepository.save(users);
 		
 		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
@@ -76,29 +93,45 @@ public class SessionController {
 		return "login";
 	}
 	
-	@PostMapping("login")
-	public String loginPage(Users users)
-	{
-		System.out.println(users.getEmail());
-		System.out.println(users.getPassword());
-		
-		
-		
-		
-		return "index";
-	}
-	
 //	@PostMapping("login")
-//    public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
-//            HttpSession session) {
-//        Users user = userRepository.findByEmail(email);
-//        if (user != null && user.getPassword().equals(password)) {
-//            session.setAttribute("loggedInUser", user); // Store user in session
-//            return "index"; // Redirect to home page after login
-//        } else {
-//            return "login"; // Stay on login page if authentication fails
-//        }
-//    }
+//	public String loginPage(Users users)
+//	{
+//		System.out.println(users.getEmail());
+//		System.out.println(users.getPassword());
+//		
+//		
+//		
+//		
+//		return "index";
+//	}
+	
+	@PostMapping("login")
+    public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
+            HttpSession session, Model model) {
+		
+		System.out.println(email);
+		System.out.println(password);
+		
+		
+        Users user = userRepository.findByEmail(email);
+        
+      
+        if(user == null)
+        {
+        	model.addAttribute("errorMessage", "You are not registered");
+        	return "login";
+        }
+        
+        else if (!user.getPassword().equals(password)) {
+        	
+        	model.addAttribute("errorMessage", "Password is Incorrect");
+           
+            return "login"; // Redirect to home page after login
+        } else {
+        	 session.setAttribute("loggedInUser", user); // Store user in session
+            return "index"; // Stay on login page if authentication fails
+        }
+    }
 	
 //	 @GetMapping("state")
 //	    public String statePage(HttpSession session) {

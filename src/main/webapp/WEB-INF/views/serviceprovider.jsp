@@ -3,25 +3,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Service Provider</title>
+    <meta charset="UTF-8">
+    <title>Service Provider</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<h1>Service Provider</h1>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">E-Garage</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup">Signup</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="state">State</a></li>
+                    
+                    <!-- Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            More Pages
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="appointment">Appointment</a></li>
+                            <li><a class="dropdown-item" href="area">Area</a></li>
+                            <li><a class="dropdown-item" href="city">City</a></li>
+                            <li><a class="dropdown-item" href="state">State</a></li>
+                            <li><a class="dropdown-item" href="vehicles">Vehicles</a></li>
+                            <li><a class="dropdown-item" href="services">Services</a></li>
+                            <li><a class="dropdown-item" href="serviceprovider">ServiceProvider</a></li>
+                            <li><a class="dropdown-item" href="payment">Payment</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<form action="saveserviceprovider" method="post">
-
-	Speciality:- <input type="text" name="speciality"><br><br>
-	Garage Title:- <input type="text" name="garageTitle"><br><br>
-	Zipcode:- <input type="text" name="zipCode"><br><br>
-	Contact No:- <input type="text" name="contactNo"><br><br>
-	Experience Year:- <input type="number" name="experienceYear"><br><br>
-	Other Information:- <input type="text" name="otherInformation"><br><br>
-	
-	<input type="submit" value="getServiceProvider">
-
-</form>
-
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4">Service Provider</h2>
+            <form action="saveserviceprovider" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Speciality</label>
+                    <input type="text" class="form-control" name="speciality" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Garage Title</label>
+                    <input type="text" class="form-control" name="garageTitle" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Zipcode</label>
+                    <input type="text" class="form-control" name="zipCode" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Contact No</label>
+                    <input type="text" class="form-control" name="contactNo" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Experience Year</label>
+                    <input type="number" class="form-control" name="experienceYear" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Other Information</label>
+                    <input type="text" class="form-control" name="otherInformation">
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Get Service Provider</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

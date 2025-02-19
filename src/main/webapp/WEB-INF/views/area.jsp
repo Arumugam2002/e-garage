@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Vehicle Details</title>
+    <title>Area</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -47,35 +47,15 @@
 
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
-            <h2 class="text-center mb-4">Vehicle Details</h2>
-            <form action="savevehicles" method="post">
+            <h2 class="text-center mb-4">Add Area</h2>
+            <form action="savearea" method="post">
                 <div class="mb-3">
-                    <label class="form-label">Manufacturer Name</label>
-                    <input type="text" class="form-control" name="manufacturer" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Model Name</label>
-                    <input type="text" class="form-control" name="model" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Manufacture Year</label>
-                    <input type="number" class="form-control" name="year" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">License Plate No</label>
-                    <input type="text" class="form-control" name="licensePlate" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Vehicle Class</label>
-                    <input type="text" class="form-control" name="vehicleClass" required>
+                    <label class="form-label">Area Name</label>
+                    <textarea class="form-control" name="areaName" rows="3" required></textarea>
                 </div>
                 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit Vehicle Details</button>
+                    <button type="submit" class="btn btn-primary">Get Area</button>
                 </div>
             </form>
         </div>

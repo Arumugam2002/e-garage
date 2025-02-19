@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +25,17 @@
 </head>
 <body>
 
+
+
     <div class="container">
         <h2 class="text-center">Login</h2>
+        
+        <c:if test="${not empty errorMessage}">
+        
+        <p style = "color:red;">${errorMessage}</p>
+        
+        </c:if>
+        
         <form action="login" method="post">
             <div class="mb-3">
                 <label class="form-label">Email</label>
