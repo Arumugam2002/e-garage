@@ -22,6 +22,7 @@
                         <th>Email</th>
                         <th>Contact No</th>
                         <th>Gender</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,7 @@
                             <td>${u.email}</td>
                             <td>${u.contactNo}</td>
                             <td>${u.gender}</td>
+                            <td>${u.role}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

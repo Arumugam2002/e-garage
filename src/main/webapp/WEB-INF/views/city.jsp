@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <%@ page import="com.grownited.entity.Users" %>
+<%Users user = (Users) session.getAttribute("loggedInUser");
+if(user == null)
+{
+	response.sendRedirect("login");
+	return;	
+}
+
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +61,7 @@
         <div class="card shadow-lg p-4">
             <h2 class="text-center mb-4">Enter City</h2>
             <form action="savecity" method="post">
+            <input type="hidden" value=<%= user.getId() %>>
                 <div class="mb-3">
                     <label class="form-label">City Name</label>
                     <input type="text" class="form-control" placeholder="Enter city" name="cityName" required>

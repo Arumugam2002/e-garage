@@ -66,9 +66,17 @@ public class SessionController {
 	}
 
 	@PostMapping("saveuser")
-	public String saveuser(Users users)
+	public String saveuser(Users users, Model model)
 	
 	{
+		
+		Users existingUser = userRepository.findByEmail(users.getEmail());
+		
+		if(existingUser!=null)
+		{
+			model.addAttribute("errorMessage", "User has been already registered!");
+			return "signup";
+		}
 		
 		System.out.println(users.getFirstName());
 		System.out.println(users.getLastName());
@@ -89,7 +97,7 @@ public class SessionController {
 		
 		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 		
-		
+		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";
 	}
 	

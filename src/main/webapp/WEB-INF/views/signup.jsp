@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +27,10 @@
 <body>
     <div class="container">
         <h2 class="text-center">Sign Up</h2>
+        <c:if test="${not empty errorMessage}">
+    <div class="alert alert-danger text-center">${errorMessage}</div>
+</c:if>
+        
         <form action="saveuser" method="post">
             <div class="mb-3">
                 <label class="form-label">First Name</label>

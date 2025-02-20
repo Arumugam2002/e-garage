@@ -1,7 +1,10 @@
 package com.grownited.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -38,6 +41,16 @@ public class ServiceProviderController {
 		
 		
 		return "index";
+	}
+	
+	@GetMapping("listserviceproviders")
+	public String getListServiceProvider(Model model)
+	{
+		List<ServiceProvider> serviceProvider = serviceProviderRepository.findAll();
+		
+		model.addAttribute("serviceProvider",serviceProvider);
+		
+		return "listserviceproviders";
 	}
 	
 }

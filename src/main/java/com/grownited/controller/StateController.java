@@ -1,7 +1,10 @@
 package com.grownited.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -19,8 +22,8 @@ public class StateController {
 	@Autowired
 	stateRepository stateRepository;
 	
-//	@Autowired
-//	userRepository userRepository;
+	@Autowired
+	userRepository userRepository;
 	
 	
 	
@@ -35,19 +38,29 @@ public class StateController {
 
 	
 	@PostMapping("savestate")
-	//public String saveState(State state, HttpSession session)
-	public String saveState(State state)
+	public String saveState(State state, HttpSession session)
+	//public String saveState(State state)
 	{
 		System.out.println(state.getStateName());
 		stateRepository.save(state);
-	//State dbState = stateRepository.save(state);
-		//Users user = (Users)session.getAttribute("loggedInUser");
+	State dbState = stateRepository.save(state);
+		Users user = (Users)session.getAttribute("loggedInUser");
 		
-		//System.out.println(user.getFirstName());
+		System.out.println(user.getFirstName());
 		
-		//user.setState(dbState);
-		//userRepository.save(user);
+		user.setState(dbState);
+		userRepository.save(user);
 		
 		return "index";
+	}
+	
+	@GetMapping("liststates")
+	public String getListAllStates(Model model)
+	{
+		List<State> states = stateRepository.findAll();
+		
+		model.addAttribute("states",states);
+		
+		return "liststates";
 	}
 }

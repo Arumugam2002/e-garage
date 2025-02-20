@@ -37,6 +37,10 @@ public class Users {
 	@JoinColumn(name="stateref_id")
 	private State state;
 	
+	@OneToOne
+	@JoinColumn(name="cityref_id")
+	private City city;
+	
 	
 	
 	//Getters and Setters
@@ -105,6 +109,12 @@ public class Users {
 	}
 	public void setState(State state) {
 		this.state = state;
+	}
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
 	}
 	
 	

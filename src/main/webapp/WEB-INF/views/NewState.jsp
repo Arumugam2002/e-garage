@@ -1,10 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ 
+<%@ page import="com.grownited.entity.Users" %>
+<%Users user = (Users) session.getAttribute("loggedInUser");
+if(user == null)
+{
+	response.sendRedirect("login");
+	return;	
+}
+
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>State</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -49,6 +61,7 @@
 
 
 	<form action = "savestate" method="post">
+	<input type="hidden" value=<%= user.getId() %>>
 	
 	State Name:- <input type="text" name="stateName"><br><br>
 	
