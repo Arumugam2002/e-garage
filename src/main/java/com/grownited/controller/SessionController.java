@@ -2,6 +2,7 @@ package com.grownited.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -70,13 +71,13 @@ public class SessionController {
 	
 	{
 		
-		Users existingUser = userRepository.findByEmail(users.getEmail());
+		//Users existingUser = userRepository.findByEmail(users.getEmail());
 		
-		if(existingUser!=null)
-		{
-			model.addAttribute("errorMessage", "User has been already registered!");
-			return "signup";
-		}
+//		if(existingUser!=null)
+//		{
+//			model.addAttribute("errorMessage", "User has been already registered!");
+//			return "signup";
+//		}
 		
 		System.out.println(users.getFirstName());
 		System.out.println(users.getLastName());
@@ -97,7 +98,7 @@ public class SessionController {
 		
 		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 		
-		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
+		//model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";
 	}
 	
@@ -113,32 +114,46 @@ public class SessionController {
 //		return "index";
 //	}
 	
-	@PostMapping("login")
-    public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
-            HttpSession session, Model model) {
+	@PostMapping("authenticate")
+	//public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
+           // HttpSession session, Model model) //Session Used
+    public String loginPage(String email, String password, Model model) {
 		
 		System.out.println(email);
 		System.out.println(password);
 		
-		
-        Users user = userRepository.findByEmail(email);
+		  //Users user = userRepository.findByEmail(email);
+        Optional<Users> op = userRepository.findByEmail(email);
+        
+        if(op.isPresent())
+        {
+        	Users dbUsers = op.get();
+        	
+        	if(encoder.matches(password, dbUsers.getPassword()))
+        	{
+        		return "redirect:/index";
+        	}
+        }
+        
+        model.addAttribute("error", "Invalid Credentials");
+        return "login";
         
       
-        if(user == null)
-        {
-        	model.addAttribute("errorMessage", "You are not registered");
-        	return "login";
-        }
-        
-        else if (!user.getPassword().equals(password)) {
-        	
-        	model.addAttribute("errorMessage", "Password is Incorrect");
-           
-            return "login"; // Redirect to home page after login
-        } else {
-        	 session.setAttribute("loggedInUser", user); // Store user in session
-            return "index"; // Stay on login page if authentication fails
-        }
+//        if(user == null)
+//        {
+//        	model.addAttribute("errorMessage", "You are not registered");
+//        	return "login";
+//        }
+//        
+//        else if (!user.getPassword().equals(password)) {
+//        	
+//        	model.addAttribute("errorMessage", "Password is Incorrect");
+//           
+//            return "login"; // Redirect to home page after login
+//        } else {
+//        	 session.setAttribute("loggedInUser", user); // Store user in session
+//            return "index"; // Stay on login page if authentication fails
+//        }
     }
 	
 //	 @GetMapping("state")
@@ -173,7 +188,34 @@ public class SessionController {
 		return "listusers";
 	}
 	
+	@GetMapping("viewuser")
+	public String getViewUser(Integer id, Model model)
+	{
+		System.out.println("User Id:-----" + id);
+		
+		Optional<Users> op = userRepository.findById(id);
+		
+		if(op.isEmpty())
+		{
+			//user not found
+		}
+		else {
+			Users user = op.get();
+			
+			model.addAttribute("user",user);
+		}
+		
+		return "viewuser";
+	}
 	
+	
+	@GetMapping("deleteuser")
+	public String getDeleteUser(Integer id)
+	{
+		userRepository.deleteById(id);
+		
+		return "redirect:/listusers";
+	}
 	
 	
 

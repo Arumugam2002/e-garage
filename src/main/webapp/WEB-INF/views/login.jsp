@@ -33,7 +33,7 @@ body {
 	<div class="container">
 		<h2 class="text-center">Login</h2>
 
-		<c:if test="${not empty errorMessage}">
+	<!--  <c:if test="${not empty errorMessage}">
 
 			<div class="alert alert-danger text-center">${errorMessage}</div>
 
@@ -41,9 +41,9 @@ body {
 		</c:if>
 		<c:if test="${not empty successMessage}">
 			<div class="alert alert-success text-center">${successMessage}</div>
-		</c:if>
+		</c:if> -->	
 
-		<form action="login" method="post">
+		<form action="authenticate" method="post">
 			<div class="mb-3">
 				<label class="form-label">Email</label> <input type="text"
 					name="email" class="form-control" placeholder="Enter your email"
@@ -58,11 +58,13 @@ body {
 
 			<button type="submit" class="btn btn-primary w-100">Login</button>
 		</form>
-
+		${error}
 		<div class="mt-3 text-center">
 			<a href="signup" class="btn btn-link">Signup</a> <a
 				href="forgetpassword" class="btn btn-link">Forget Password?</a>
 		</div>
+		
+		
 	</div>
 
 	<!-- Bootstrap JS -->

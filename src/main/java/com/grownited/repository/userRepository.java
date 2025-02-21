@@ -5,10 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.grownited.entity.Users;
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public interface userRepository extends JpaRepository<Users, Integer> {
 
-	Users findByEmail(String email);
+	Optional<Users> findByEmail(String email);
 }

@@ -8,8 +8,7 @@
 </head>
 <body>
 
-
-<%@ page import ="com.grownited.entity.Users" %>
+<%-- <%@ page import ="com.grownited.entity.Users" %>
 
 <%Users user = (Users) session.getAttribute("loggedInUser");
 if(user == null)
@@ -18,9 +17,9 @@ if(user == null)
 	return;	
 }
 
-%>
+%>  
 
-<input type="hidden" value= <%=user.getId() %>> 
+<input type="hidden" value= <%=user.getId() %>>  --%> 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -34,7 +33,8 @@ if(user == null)
                     <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="signup">Signup</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login"><%=user.getFirstName() %></a></li>
+                 <%--   <li class="nav-item"><a class="nav-link" href="login"><%=user.getFirstName() %></a></li> --%> 
+                    <li class="nav-item"><a class="nav-link" href="state">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="state">State</a></li>
                     
                     <!-- Dropdown Menu -->

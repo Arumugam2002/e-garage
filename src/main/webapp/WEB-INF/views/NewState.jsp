@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+ <%-- 
 <%@ page import="com.grownited.entity.Users" %>
 <%Users user = (Users) session.getAttribute("loggedInUser");
 if(user == null)
@@ -11,7 +11,7 @@ if(user == null)
 
 
 
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +61,7 @@ if(user == null)
 
 
 	<form action = "savestate" method="post">
-	<input type="hidden" value=<%= user.getId() %>>
+	<%-- <input type="hidden" value=<%= user.getId() %>> --%>
 	
 	State Name:- <input type="text" name="stateName"><br><br>
 	
