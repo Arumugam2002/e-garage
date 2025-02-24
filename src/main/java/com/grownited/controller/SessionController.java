@@ -19,7 +19,7 @@ import com.grownited.service.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
-//import jakarta.servlet.http.HttpSession;
+
 
 //Creation of Controller
 @Controller
@@ -71,13 +71,13 @@ public class SessionController {
 	
 	{
 		
-		//Users existingUser = userRepository.findByEmail(users.getEmail());
+		Optional<Users> existingUser = userRepository.findByEmail(users.getEmail());
 		
-//		if(existingUser!=null)
-//		{
-//			model.addAttribute("errorMessage", "User has been already registered!");
-//			return "signup";
-//		}
+		if(existingUser.isPresent())
+		{
+			model.addAttribute("errorMessage", "User has been already registered!");
+			return "signup";
+	}
 		
 		System.out.println(users.getFirstName());
 		System.out.println(users.getLastName());
@@ -98,7 +98,7 @@ public class SessionController {
 		
 		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 		
-		//model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
+		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";
 	}
 	
@@ -117,7 +117,7 @@ public class SessionController {
 	@PostMapping("authenticate")
 	//public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
            // HttpSession session, Model model) //Session Used
-    public String loginPage(String email, String password, Model model) {
+    public String loginPage(String email, String password, Model model, HttpSession session) {
 		
 		System.out.println(email);
 		System.out.println(password);
@@ -129,9 +129,26 @@ public class SessionController {
         {
         	Users dbUsers = op.get();
         	
-        	if(encoder.matches(password, dbUsers.getPassword()))
+        	boolean ans = encoder.matches(password, dbUsers.getPassword());
+        	
+        	if(ans == true)
         	{
-        		return "redirect:/index";
+        		session.setAttribute("user", dbUsers);
+        		
+        		if(dbUsers.getRole().equals("ADMIN"))
+        		{
+        			return "redirect:/admindashboard";
+        		}
+        		
+        		else if(dbUsers.getRole().equals("USER"))
+        		{
+        			return "redirect:/index";
+        		}
+        		
+        		else {
+        			model.addAttribute("error", "Please contact with Admin as your role is not defined");
+        			return "login";	
+				}
         	}
         }
         
@@ -164,6 +181,13 @@ public class SessionController {
 //	        }
 //	        return "NewState"; // Load state page if user is logged in
 //	    }
+	
+	@GetMapping("logout")
+	public String getLogoutPage(HttpSession session)
+	{
+		session.invalidate();
+		return "login";
+	}
 	
 	@PostMapping("sendOtp")
 	public String sendOtp()

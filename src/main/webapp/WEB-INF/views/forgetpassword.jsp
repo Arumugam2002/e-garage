@@ -1,46 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Forget Password</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forgot Password | E-Garage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            background-color: orange;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .container {
-            max-width: 400px;
-            margin-top: 100px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .input-group-text {
+            background: #6a11cb;
+            color: white;
+            border: none;
+        }
+        .btn-primary {
+            background: #6a11cb;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #2575fc;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h2 class="text-center">Forget Password</h2>
-        <form action="sendOtp" method="post">
-            <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" placeholder="Enter your email" required>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Forgot Password</h3>
+                        <p class="text-center">Enter your email to receive a reset link.</p>
+                        <form action="sendOtp" method="post">
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Request New Password</button>
+                            </div>
+                        </form>
+                        <p class="text-center mt-3">
+                            <a href="login">Back to Login</a>
+                        </p>
+                        <p class="text-center">
+                            Not a user? <a href="signup">Register here</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <button type="submit" class="btn btn-primary w-100">Help</button>
-        </form>
-        
-        <div class="mt-3 text-center">
-            <a href="login" class="btn btn-link">Back to Login</a>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

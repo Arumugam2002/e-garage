@@ -51,14 +51,17 @@ if(user == null)
                             <li><a class="dropdown-item" href="services">Services</a></li>
                             <li><a class="dropdown-item" href="serviceprovider">ServiceProvider</a></li>
                             <li><a class="dropdown-item" href="payment">Payment</a></li>
+                            
                         </ul>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
+                   
                 </ul>
             </div>
         </div>
     </nav>
     
-    
+    <h2>Welcome, ${user.firstName}</h2>
     
     
     <section id="hero" class="text-center py-5 bg-light">

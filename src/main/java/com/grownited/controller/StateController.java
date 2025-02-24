@@ -44,7 +44,7 @@ public class StateController {
 		System.out.println(state.getStateName());
 		stateRepository.save(state);
 	State dbState = stateRepository.save(state);
-		Users user = (Users)session.getAttribute("loggedInUser");
+		Users user = (Users)session.getAttribute("user");
 		
 		System.out.println(user.getFirstName());
 		

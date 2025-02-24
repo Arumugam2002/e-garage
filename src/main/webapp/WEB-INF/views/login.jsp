@@ -2,7 +2,121 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login | E-Garage</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+body {
+	background: linear-gradient(to right, #6a11cb, #2575fc);
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	border-radius: 15px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.input-group-text {
+	background: #6a11cb;
+	color: white;
+	border: none;
+}
+
+.btn-primary {
+	background: #6a11cb;
+	border: none;
+}
+
+.btn-primary:hover {
+	background: #2575fc;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card p-4">
+					<div class="card-body">
+						<h2 class="text-center mb-4">
+							E-Garage
+							</h3>
+							<h3 class="text-center mb-4">Login</h3>
+							<c:if test="${not empty error}">
+
+								<div class="alert alert-danger text-center">${error}</div>
+
+
+							</c:if>
+							<c:if test="${not empty successMessage}">
+								<div class="alert alert-success text-center">${successMessage}</div>
+							</c:if>
+
+							<form action="authenticate" method="post">
+
+								<div class="mb-3">
+									<div class="input-group">
+										<span class="input-group-text"><i
+											class="fas fa-envelope"></i></span> <input type="email"
+											class="form-control" name="email" placeholder="Email"
+											required>
+									</div>
+								</div>
+								<div class="mb-3">
+									<div class="input-group">
+										<!--  <span class="input-group-text"><i class="fas fa-lock"></i></span> -->
+										<span class="input-group-text" onclick="togglePassword()"
+											style="cursor: pointer;"> <i class="fas fa-eye"
+											id="toggleIcon"></i>
+										</span> <input type="password" class="form-control" id="password"
+											name="password" placeholder="Password" required>
+
+									</div>
+								</div>
+								<!-- <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                </div>
+                            </div> -->
+
+								<div class="d-grid">
+									<button type="submit" class="btn btn-primary">Sign In</button>
+								</div>
+							</form>
+							<p class="text-center mt-3">
+								<a href="forgetpassword">Forgot password?</a>
+							</p>
+							<p class="text-center">
+								Not a user? <a href="signup">Register here</a>
+							</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="/dist/js/signup.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -72,4 +186,4 @@ body {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-</html>
+</html> --%>
