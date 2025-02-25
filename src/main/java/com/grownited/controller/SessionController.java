@@ -125,16 +125,24 @@ public class SessionController {
 		  //Users user = userRepository.findByEmail(email);
         Optional<Users> op = userRepository.findByEmail(email);
         
-        if(op.isPresent())
+        if(op.isEmpty())
         {
-        	Users dbUsers = op.get();
-        	
-        	boolean ans = encoder.matches(password, dbUsers.getPassword());
-        	
-        	if(ans == true)
-        	{
-        		session.setAttribute("user", dbUsers);
-        		
+        	model.addAttribute("error", "User is not registered");
+        	return "login";
+        }
+        
+        Users dbUsers = op.get();
+        
+        boolean ans = encoder.matches(password, dbUsers.getPassword());
+        
+        if(ans == false)
+        {
+        	model.addAttribute("error", "Incorrect Password");
+        	return "login";
+        }
+        
+        session.setAttribute("user", dbUsers);
+                		
         		if(dbUsers.getRole().equals("ADMIN"))
         		{
         			return "redirect:/admindashboard";
@@ -149,13 +157,8 @@ public class SessionController {
         			model.addAttribute("error", "Please contact with Admin as your role is not defined");
         			return "login";	
 				}
-        	}
-        }
+        	
         
-        model.addAttribute("error", "Invalid Credentials");
-        return "login";
-        
-      
 //        if(user == null)
 //        {
 //        	model.addAttribute("errorMessage", "You are not registered");

@@ -33,6 +33,7 @@ public class Users {
 	private Date createAt;
 	private boolean active;
 	
+	
 	@OneToOne
 	@JoinColumn(name="stateref_id")
 	private State state;

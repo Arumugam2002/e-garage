@@ -25,6 +25,7 @@
     </style>
 </head>
 <body>
+<%@include file="adminheader.jsp" %>
     <div class="container mt-5">
         <h1 class="text-center mb-4 text-primary">Users List</h1>
         <div class="table-responsive">
@@ -50,8 +51,9 @@
                             <td>${u.gender}</td>
                             <td>${u.role}</td>
                             <td>
-                                <a href="viewuser?id=${u.id}" class="btn btn-sm btn-primary">View</a>
+                                <a href="viewuser?id=${u.id}" class="btn btn-sm btn-success">View</a>
                                 <a href="deleteuser?id=${u.id}" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="#" class="btn btn-sm btn-primary">Edit</a>
                             </td>
                         </tr>
                     </c:forEach>
