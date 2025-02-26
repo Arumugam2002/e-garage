@@ -22,8 +22,13 @@
                     </c:forEach>
                 </tbody>
             </table>
-        </div>
+        </div class="d-flex justify-content-left">
+        <a href="state" class="btn btn-primary">Add States</a>
     </div>
+    
+    
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>

@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.City;
+import com.grownited.entity.State;
 import com.grownited.entity.Users;
 import com.grownited.repository.cityRepository;
+import com.grownited.repository.stateRepository;
 import com.grownited.repository.userRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,9 +27,16 @@ public class CityController {
 	@Autowired
 	userRepository userRepository;
 	
+	@Autowired
+	stateRepository stateRepository;
+	
 	@GetMapping("city")
-	public String getCityPage()
+	public String getCityPage(Model model)
 	{
+		
+		List<State> listStates = stateRepository.findAll();
+		model.addAttribute("listStates", listStates);
+		
 		return "city";
 	}
 	
@@ -39,14 +48,14 @@ public class CityController {
 		
 	City dbCity = cityRepository.save(city);
 	
-	Users user = (Users) session.getAttribute("loggedInUser");
+	Users user = (Users) session.getAttribute("user");
 	
 	System.out.println(user.getFirstName());
 	
 		user.setCity(dbCity);
 		
 		userRepository.save(user);
-		return "index";
+		return "redirect:/listcity";
 	}
 	
 	@GetMapping("listcity")

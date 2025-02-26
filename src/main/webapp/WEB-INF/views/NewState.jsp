@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   
 <%@ page import="com.grownited.entity.Users" %>
 <%Users user = (Users) session.getAttribute("user");
@@ -12,15 +14,18 @@ if(user == null)
 
 
 %> 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>State</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body> -->
 
+<%@include file="adminheader.jsp" %>
+
+<!-- 
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">E-Garage</a>
@@ -36,7 +41,7 @@ if(user == null)
                     <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="state">State</a></li>
                     
-                    <!-- Dropdown Menu -->
+                    Dropdown Menu
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             More Pages
@@ -55,19 +60,35 @@ if(user == null)
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
+    <div class="container mt-5">
+<div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">State Page</h2>
 
-<h1>State Page</h1>
+            <!-- Error Message Alert -->
+            <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger text-center">${errorMessage}</div>
+            </c:if>
 
+            <div class="card shadow p-4">
+                <form action="savestate" method="post">
+                    <input type="hidden" value="<%= user.getId() %>">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">State Name:</label>
+                        <input type="text" name="stateName" class="form-control" placeholder="Enter state name" required>
+                    </div>
 
-	<form action = "savestate" method="post">
-	<input type="hidden" value="<%= user.getId() %>"> 
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Save State</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>	
+    </div>
 	
-	State Name:- <input type="text" name="stateName"><br><br>
-	
-	<input type="submit" value="GetState">
-	
-	</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

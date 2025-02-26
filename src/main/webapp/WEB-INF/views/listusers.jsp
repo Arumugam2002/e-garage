@@ -38,6 +38,7 @@
                         <th>Contact No</th>
                         <th>Gender</th>
                         <th>Role</th>
+                        <th>Created On</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -50,6 +51,7 @@
                             <td>${u.contactNo}</td>
                             <td>${u.gender}</td>
                             <td>${u.role}</td>
+                            <td>${u.createAt }</td>
                             <td>
                                 <a href="viewuser?id=${u.id}" class="btn btn-sm btn-success">View</a>
                                 <a href="deleteuser?id=${u.id}" class="btn btn-sm btn-danger">Delete</a>

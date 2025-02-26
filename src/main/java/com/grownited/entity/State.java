@@ -17,6 +17,7 @@ public class State {
 	
 	private String stateName;
 	
+	
 	public Integer getStateId() {
 		return stateId;
 	}

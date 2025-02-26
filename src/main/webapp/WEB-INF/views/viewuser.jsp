@@ -25,6 +25,9 @@
     </style>
 </head>
 <body>
+
+<%@include file="adminheader.jsp" %>
+
     <div class="container">
         <h2 class="text-center text-primary mb-4">View User</h2>
         <div class="user-info">

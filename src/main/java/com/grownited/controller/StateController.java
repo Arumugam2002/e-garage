@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,11 +39,21 @@ public class StateController {
 
 	
 	@PostMapping("savestate")
-	public String saveState(State state, HttpSession session)
+	public String saveState(State state, HttpSession session, Model model)
 	//public String saveState(State state)
 	{
 		System.out.println(state.getStateName());
-		stateRepository.save(state);
+		
+		Optional<State> existingState = stateRepository.findByStateName(state.getStateName());
+		
+		if(existingState.isPresent())
+		{
+			model.addAttribute("errorMessage", "State already exists");
+			return "NewState";
+		}
+		
+		
+		
 	State dbState = stateRepository.save(state);
 		Users user = (Users)session.getAttribute("user");
 		
@@ -51,7 +62,7 @@ public class StateController {
 		user.setState(dbState);
 		userRepository.save(user);
 		
-		return "index";
+		return "redirect:/liststates";
 	}
 	
 	@GetMapping("liststates")

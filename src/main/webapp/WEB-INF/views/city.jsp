@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%--    
  <%@ page import="com.grownited.entity.Users" %>
 <%Users user = (Users) session.getAttribute("loggedInUser");
@@ -21,7 +23,7 @@ if(user == null)
 </head>
 <body>
 
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="#">E-Garage</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -36,7 +38,7 @@ if(user == null)
                     <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="state">State</a></li>
                     
-                    <!-- Dropdown Menu -->
+                    Dropdown Menu
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             More Pages
@@ -55,7 +57,7 @@ if(user == null)
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
@@ -66,6 +68,15 @@ if(user == null)
                     <label class="form-label">City Name</label>
                     <input type="text" class="form-control" placeholder="Enter city" name="cityName" required>
                 </div>
+                
+            State:-     <select name="stateId">
+                <option>Select State </option>
+                
+                <c:forEach items="${listStates }" var="s">
+                
+                <option value="${s.stateId }">${s.stateName}</option>
+                </c:forEach>
+                </select>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Get City</button>
                 </div>
