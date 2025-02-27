@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="admincss.jsp" %>
     <meta charset="UTF-8">
     <title>List All Users</title>
     <!-- Bootstrap CSS -->
@@ -26,6 +27,7 @@
 </head>
 <body>
 <%@include file="adminheader.jsp" %>
+<%@include file="adminsidebar.jsp" %>
     <div class="container mt-5">
         <h1 class="text-center mb-4 text-primary">Users List</h1>
         <div class="table-responsive">
@@ -63,6 +65,7 @@
             </table>
         </div>
     </div>
+    <%@include file="adminfooter.jsp" %>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

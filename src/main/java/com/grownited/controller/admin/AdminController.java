@@ -13,6 +13,10 @@ public class AdminController {
 		return "admindashboard";
 	}
 	
-	
+	@GetMapping("adminprofile")
+	public String getAdminProfile()
+	{
+		return "adminprofile";
+	}
 	
 }

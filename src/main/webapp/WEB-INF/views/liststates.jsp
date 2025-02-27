@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="admincss.jsp" %>
 <%@include file="adminheader.jsp" %>
-
+<%@include file="adminsidebar.jsp" %>
 
 
     <div class="container mt-4">
@@ -27,7 +28,7 @@
     </div>
     
     
-   
+   <%@include file="adminfooter.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
 </body>

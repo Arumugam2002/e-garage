@@ -22,8 +22,9 @@ if(user == null)
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body> -->
-
+<%@include file="admincss.jsp" %>
 <%@include file="adminheader.jsp" %>
+<%@include file="adminsidebar.jsp" %>
 
 <!-- 
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,6 +65,7 @@ if(user == null)
     <div class="container mt-5">
 <div class="row justify-content-center">
         <div class="col-md-6">
+        <br>
             <h2 class="text-center mb-4">State Page</h2>
 
             <!-- Error Message Alert -->
@@ -88,7 +90,7 @@ if(user == null)
         </div>
     </div>	
     </div>
-	
+	<%@include file="adminfooter.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
