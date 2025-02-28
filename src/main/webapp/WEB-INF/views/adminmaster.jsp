@@ -1,26 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
-<%--
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard</title>
-</head>
-<body>
-<h2>Welcome to Admin Dashboard, ${user.firstName}</h2><br><br>
-
-<a href="logout">Logout</a>
-</body>
-</html> --%>
+<title>Dashboard</title>
 
 <%@include file="admincss.jsp" %>
 
+</head>
+<body>
 <%@include file="adminheader.jsp" %>
-
 <%@include file="adminsidebar.jsp" %>
-
-
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -80,21 +71,6 @@
     </section>
 
   </main>
-
-
-
 <%@include file="adminfooter.jsp" %>
-
-
-    <%-- <div class="content flex-grow-1 p-3">
-       
-<h2>Welcome to Admin Dashboard, ${user.firstName}</h2>
-        <p>Manage the E-Garage system efficiently.</p>
-    </div> --%>
-    
-    
-    
-    
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

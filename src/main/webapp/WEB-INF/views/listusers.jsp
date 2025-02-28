@@ -1,37 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
 <%@include file="admincss.jsp" %>
-    <meta charset="UTF-8">
-    <title>List All Users</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+
 </head>
 <body>
 <%@include file="adminheader.jsp" %>
 <%@include file="adminsidebar.jsp" %>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4 text-primary">Users List</h1>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+           
+
+          
+
+           
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">Users <span>/ListUsers</span></h5>
+
+						 <div class="container mt-5">
+        
         <div class="table-responsive">
-            <table class="table table-hover table-striped table-bordered text-center">
+            <table class="table table-hover table-striped table-bordered text-center datatable datatable-table" id="myTable">
                 <thead class="table-dark">
                     <tr>
                         <th>First Name</th>
@@ -65,8 +84,45 @@
             </table>
         </div>
     </div>
-    <%@include file="adminfooter.jsp" %>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                  <!-- Line Chart -->
+                  
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+
+            <!-- Recent Sales -->
+            <!-- End Recent Sales -->
+
+            <!-- Top Selling -->
+            
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main>
+<%@include file="adminfooter.jsp" %>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	$( document ).ready(function() {
+		let table = new DataTable('#myTable');
+	});
+	
+	
+	</script>
 </body>
 </html>
