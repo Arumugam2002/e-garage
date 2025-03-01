@@ -14,7 +14,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg p-4">
         <h2 class="text-center">Update Profile</h2>
-        <form class="row g-3 needs-validation" novalidate action="updateUser" method="post">
+        <form class="row g-3 needs-validation" novalidate action="updateadmin" method="post">
             
             <!-- User ID (Hidden) -->
             <input type="hidden" name="id" value="${user.id}">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- Password -->
+           <%--  <!-- Password -->
             <div class="col-12">
                 <label for="password" class="form-label">Password</label>
                 <div class="input-group">
@@ -59,7 +59,7 @@
                     <input type="password" class="form-control" id="password" name="password" value="${user.password}" required>
                     <div class="invalid-feedback">Please enter your password!</div>
                 </div>
-            </div>
+            </div> --%>
 
             <!-- Contact No -->
             <div class="col-12">

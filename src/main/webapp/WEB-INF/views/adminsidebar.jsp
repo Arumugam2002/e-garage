@@ -114,10 +114,10 @@
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#cities-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Cities</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="cities-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="listcity">
               <i class="bi bi-circle"></i><span>List Cities</span>
@@ -130,6 +130,24 @@
           </li>
         </ul>
       </li><!-- End Tables Nav -->
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="listservices">
+              <i class="bi bi-circle"></i><span>List Services</span>
+            </a>
+          </li>
+          <li>
+            <a href="services">
+              <i class="bi bi-circle"></i><span>Add Services</span>
+            </a>
+          </li>
+        </ul>
+      </li>
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
