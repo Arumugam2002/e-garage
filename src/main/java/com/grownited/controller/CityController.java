@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,10 +42,20 @@ public class CityController {
 	}
 	
 	@PostMapping("savecity")
-	public String getCity(City city, HttpSession session)
+	public String getCity(City city, HttpSession session, Model model)
 	{
 		
 		System.out.println(city.getCityName());
+		
+		Optional<City> existingCity = cityRepository.findByCityName(city.getCityName());
+		
+		if(existingCity.isPresent())
+		{
+			model.addAttribute("errorMessage", "City already exists");
+			return "city";
+		}
+		
+		
 		
 	City dbCity = cityRepository.save(city);
 	
@@ -61,9 +72,9 @@ public class CityController {
 	@GetMapping("listcity")
 	public String getAllCity(Model model)
 	{
-		List<City> city = cityRepository.findAll();
+		//List<City> city = cityRepository.findAll();
 		
-		model.addAttribute("city",city);
+		model.addAttribute("city",cityRepository.getAll());
 		
 		
 		return "listcity";

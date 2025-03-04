@@ -193,15 +193,91 @@ public class SessionController {
 	}
 	
 	@PostMapping("sendOtp")
-	public String sendOtp()
+	public String sendOtp(String email, HttpSession session, Model model)
 	{
-		return "changepassword";
+		
+		String otp = serviceMail.generateOtp();
+		session.setAttribute("otp", otp);
+		session.setAttribute("email", email); 
+		
+		Optional<Users> op = userRepository.findByEmail(email);
+		
+		if(op.isPresent())
+		{
+			serviceMail.sendOtpMail(email, otp);
+			
+			model.addAttribute("message", "OTP has been sent to your email");
+			return "verifyotp";
+		}
+		else {
+			model.addAttribute("error", "Email not registered");
+			return "forgetpassword";
+		}
+	
+		/* return "changepassword"; */
 	}
 	
-	@PostMapping("updatePassword")
-	public String updatePassword()
+	@GetMapping("verifyotp")
+	public String getVerifyOtp()
+	
 	{
-		return "login";
+		return "verifyotp";
+	}
+	
+	@GetMapping("resetpassword")
+	public String getResetPassword()
+	{
+		return "resetpassword";
+	}
+	
+	@PostMapping("verifyotp")
+	public String verifyOtp(String otp, HttpSession session, Model model)
+	{
+		String sessionOtp = (String) session.getAttribute("otp");
+		String email = (String) session.getAttribute("email");
+		
+		if(sessionOtp != null && sessionOtp.equals(otp))
+		{
+			model.addAttribute("email", email);
+			return "resetpassword";
+		}
+		else {
+			model.addAttribute("error", "Invalid Otp please try again");
+			return "verifyotp";
+		}
+	}
+	
+	@PostMapping("updatepassword")
+	public String updatePassword(String email, String password, HttpSession session, Model model)
+	{
+		if(email == null)
+		{
+			email = (String) session.getAttribute("email");
+		}
+		
+		 
+		
+		Optional<Users> op = userRepository.findByEmail(email);
+		
+		String encodePassword = encoder.encode(password);
+		
+		if(op.isPresent())
+		{
+			Users user = op.get();
+			user.setPassword(encodePassword);
+			userRepository.save(user);
+			session.invalidate();
+			
+			return "login";
+			
+		}
+		else {
+			
+			model.addAttribute("error", "Error updating password");
+			return "resetpassword";
+		}
+		
+		
 	}
 	
 	@GetMapping("listusers")

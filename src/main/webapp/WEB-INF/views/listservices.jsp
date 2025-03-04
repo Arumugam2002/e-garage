@@ -69,7 +69,11 @@
                     </c:forEach>
                 </tbody>
             </table>
+            
         </div>
+        </div class="d-flex justify-content-left">
+        <a href="services" class="btn btn-primary">Add Services</a>
+    </div>
     </div>
                   <!-- Line Chart -->
                   

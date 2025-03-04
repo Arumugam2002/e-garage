@@ -56,12 +56,14 @@
                 <thead class="table-dark">
                     <tr>
                         <th>City Name</th>
+                        <th>State Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${city}" var="c">
                         <tr>
                             <td>${c.cityName}</td>
+                            <td>${c.stateName}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

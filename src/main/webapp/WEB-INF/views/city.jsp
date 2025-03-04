@@ -1,70 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%--    
- <%@ page import="com.grownited.entity.Users" %>
-<%Users user = (Users) session.getAttribute("loggedInUser");
-if(user == null)
-{
-	response.sendRedirect("login");
-	return;	
-}
-
-
-
-%> --%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>City Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Add City</title>
+
+<%@include file="admincss.jsp" %>
+
 </head>
 <body>
+<%@include file="adminheader.jsp" %>
+<%@include file="adminsidebar.jsp" %>
+<main id="main" class="main">
 
- <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">E-Garage</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup">Signup</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="state">State</a></li>
-                    
-                    Dropdown Menu
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            More Pages
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="appointment">Appointment</a></li>
-                            <li><a class="dropdown-item" href="area">Area</a></li>
-                            <li><a class="dropdown-item" href="city">City</a></li>
-                            <li><a class="dropdown-item" href="state">State</a></li>
-                            <li><a class="dropdown-item" href="vehicles">Vehicles</a></li>
-                            <li><a class="dropdown-item" href="services">Services</a></li>
-                            <li><a class="dropdown-item" href="serviceprovider">ServiceProvider</a></li>
-                            <li><a class="dropdown-item" href="payment">Payment</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
+    <div class="pagetitle">
+     
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+           
+
+          
+
+           
+
+            <!-- Reports -->
+            <div class="col-12">
+              <div class="card">
+
+               
+
+                <div class="card-body">
+                  <h5 class="card-title">Cities<span>/Add Cities</span></h5>
+
+
+					
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
-            <h2 class="text-center mb-4">Enter City</h2>
+        <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger text-center">${errorMessage}</div>
+            </c:if>
+           
             <form action="savecity" method="post">
-       <%--      <input type="hidden" value=<%= user.getId() %>> --%>
-                <div class="mb-3">
+             <input type="hidden" value="${user.id}">
+                <div class="mb-3">	
                     <label class="form-label">City Name</label>
                     <input type="text" class="form-control" placeholder="Enter city" name="cityName" required>
                 </div>
@@ -74,7 +67,7 @@ if(user == null)
                 
                 <c:forEach items="${listStates }" var="s">
                 
-                <option value="${s.stateId }">${s.stateName}</option>
+                <option value="${s.stateId}">${s.stateName}</option>
                 </c:forEach>
                 </select>
                 <div class="text-center">
@@ -83,7 +76,31 @@ if(user == null)
             </form>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                  <!-- Line Chart -->
+                  
+                  <!-- End Line Chart -->
+
+                </div>
+
+              </div>
+            </div><!-- End Reports -->
+
+            <!-- Recent Sales -->
+            <!-- End Recent Sales -->
+
+            <!-- Top Selling -->
+            
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main>
+<%@include file="adminfooter.jsp" %>
 </body>
 </html>
