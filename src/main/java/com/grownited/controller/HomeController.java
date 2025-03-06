@@ -1,10 +1,13 @@
-package com.grownited.controller.admin;
+package com.grownited.controller;
+
+
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,31 +18,28 @@ import com.grownited.repository.userRepository;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class AdminController {
+public class HomeController {
 
 	@Autowired
 	userRepository userRepository;
 	
-	
-	@GetMapping("admindashboard")
-	public String getAdminDashboard()
+	@GetMapping("userprofile")
+	public String getUserProfile(HttpSession session, Model model)
 	{
-		return "admindashboard";
+		
+		Users user = (Users) session.getAttribute("user");
+		
+		model.addAttribute("user",user);
+		
+		
+		return "userprofile";
+		
+		
 	}
 	
-	@GetMapping("adminprofile")
-	public String getAdminProfile(HttpSession session, Model model)
-	{
-		Users user = (Users)session.getAttribute("user");
-		
-		model.addAttribute("user", user);
-		
-		
-		return "adminprofile";
-	}
+	@PostMapping("updateuser")
+	public String getUpdateUser(Users user, HttpSession session, RedirectAttributes redirectAttributes)
 	
-	@PostMapping("updateadmin")
-	public String getUpdateProfile(Users user, HttpSession session, RedirectAttributes redirectAttributes)
 	{
 		Optional<Users> optionalUser = userRepository.findById(user.getId());
 		
@@ -47,7 +47,7 @@ public class AdminController {
 		{
 			Users existingUser = optionalUser.get();
 			
-			existingUser.setFirstName(user.getFirstName());
+			  existingUser.setFirstName(user.getFirstName());
 			  existingUser.setLastName(user.getLastName());
 			  existingUser.setEmail(user.getEmail());
 			  
@@ -61,34 +61,14 @@ public class AdminController {
 			 
 			 redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully");
 			 
-			 
-			 return "redirect:/adminprofile?success=true";
-			
+			 return "redirect:/userprofile?success=true";
 		}
 		
 		else {
 			redirectAttributes.addFlashAttribute("error", "User not found");
 			return "adminprofile";
 		}
-		
-		
-		/*
-		 * optionalUser.ifPresent(existingUser -> {
-		 * 
-		 * existingUser.setFirstName(user.getFirstName());
-		 * existingUser.setLastName(user.getLastName());
-		 * existingUser.setEmail(user.getEmail());
-		 * 
-		 * 
-		 * existingUser.setContactNo(user.getContactNo());
-		 * existingUser.setGender(user.getGender());
-		 * 
-		 * userRepository.save(user); session.setAttribute("user", existingUser);
-		 * 
-		 * 
-		 * });
-		 */
-		/* return "redirect:/user/adminprofile?success=true"; */
 	}
+	
 	
 }

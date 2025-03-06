@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Profile</title>
+<title>User Profile</title>
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<%@include file="admincss.jsp" %>
-<%@include file="adminheader.jsp" %>
-<%@include file="adminsidebar.jsp" %>
 
 <div class="container mt-5">
     <div class="card shadow-lg p-4">
@@ -24,7 +24,7 @@
 							<c:if test="${not empty successMessage}">
 								<div class="alert alert-success text-center">${successMessage}</div>
 							</c:if>
-        <form class="row g-3 needs-validation" novalidate action="updateadmin" method="post">
+        <form class="row g-3 needs-validation" novalidate action="updateuser" method="post">
             
             <!-- User ID (Hidden) -->
             <input type="hidden" name="id" value="${user.id}">
@@ -107,6 +107,7 @@
         </form>
     </div>
 </div>
-<%@include file="adminfooter.jsp" %>
+
+
 </body>
 </html>

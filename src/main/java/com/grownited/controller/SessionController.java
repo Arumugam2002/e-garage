@@ -19,89 +19,80 @@ import com.grownited.service.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
-
-
 //Creation of Controller
 @Controller
 public class SessionController {
-	
+
 	@Autowired
 	userRepository userRepository;
-	
+
 	@Autowired
 	MailService serviceMail;
-	
+
 	@Autowired
 	PasswordEncoder encoder;
-	
-	
-	
-	@GetMapping(value={"/","signup"})
-	public String signup()
-	{
+
+	@GetMapping(value = { "/", "signup" })
+	public String signup() {
 		return "signup";
 	}
-	
+
 //	@GetMapping("/")
 //	public String home()
 //	{
 //		return "index";
 //	}
-	
+
 	@GetMapping("login")
-	public String login()
-	{
+	public String login() {
 		return "login";
 	}
-	
+
 	@GetMapping("index")
-	public String homePage()
-	{
+	public String homePage() {
 		return "index";
 	}
-	
+
 	@GetMapping("forgetpassword")
-	public String forgetPasswordPage()
-	{
+	public String forgetPasswordPage() {
 		return "forgetpassword";
 	}
 
 	@PostMapping("saveuser")
 	public String saveuser(Users users, Model model)
-	
+
 	{
-		
+
 		Optional<Users> existingUser = userRepository.findByEmail(users.getEmail());
-		
-		if(existingUser.isPresent())
-		{
+
+		if (existingUser.isPresent()) {
 			model.addAttribute("errorMessage", "User has been already registered!");
 			return "signup";
-	}
-		
+		}
+
 		System.out.println(users.getFirstName());
 		System.out.println(users.getLastName());
 		System.out.println(users.getEmail());
 		System.out.println(users.getPassword());
 		System.out.println(users.getContactNo());
 		System.out.println(users.getGender());
-		
+
 		users.setRole("USER");
 		users.setActive(true);
 		users.setCreateAt(new Date());
-		
+
 		String encodePassword = encoder.encode(users.getPassword());
-		
+
 		users.setPassword(encodePassword);
-		
+
 		userRepository.save(users);
-		
+
 		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
-		
+
 		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";
 	}
-	
+
 //	@PostMapping("login")
 //	public String loginPage(Users users)
 //	{
@@ -113,52 +104,48 @@ public class SessionController {
 //		
 //		return "index";
 //	}
-	
+
 	@PostMapping("authenticate")
-	//public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,
-           // HttpSession session, Model model) //Session Used
-    public String loginPage(String email, String password, Model model, HttpSession session) {
-		
+	// public String loginPage(@RequestParam("email") String email,
+	// @RequestParam("password") String password,
+	// HttpSession session, Model model) //Session Used
+	public String loginPage(String email, String password, Model model, HttpSession session) {
+
 		System.out.println(email);
 		System.out.println(password);
-		
-		  //Users user = userRepository.findByEmail(email);
-        Optional<Users> op = userRepository.findByEmail(email);
-        
-        if(op.isEmpty())
-        {
-        	model.addAttribute("error", "User is not registered");
-        	return "login";
-        }
-        
-        Users dbUsers = op.get();
-        
-        boolean ans = encoder.matches(password, dbUsers.getPassword());
-        
-        if(ans == false)
-        {
-        	model.addAttribute("error", "Incorrect Password");
-        	return "login";
-        }
-        
-        session.setAttribute("user", dbUsers);
-                		
-        		if(dbUsers.getRole().equals("ADMIN"))
-        		{
-        			return "redirect:/admindashboard";
-        		}
-        		
-        		else if(dbUsers.getRole().equals("USER"))
-        		{
-        			return "redirect:/index";
-        		}
-        		
-        		else {
-        			model.addAttribute("error", "Please contact with Admin as your role is not defined");
-        			return "login";	
-				}
-        	
-        
+
+		// Users user = userRepository.findByEmail(email);
+		Optional<Users> op = userRepository.findByEmail(email);
+
+		if (op.isEmpty()) {
+			model.addAttribute("error", "User is not registered");
+			return "login";
+		}
+
+		Users dbUsers = op.get();
+
+		boolean ans = encoder.matches(password, dbUsers.getPassword());
+
+		if (ans == false) {
+			model.addAttribute("error", "Incorrect Password");
+			return "login";
+		}
+
+		session.setAttribute("user", dbUsers);
+
+		if (dbUsers.getRole().equals("ADMIN")) {
+			return "redirect:/admindashboard";
+		}
+
+		else if (dbUsers.getRole().equals("USER")) {
+			return "redirect:/index";
+		}
+
+		else {
+			model.addAttribute("error", "Please contact with Admin as your role is not defined");
+			return "login";
+		}
+
 //        if(user == null)
 //        {
 //        	model.addAttribute("errorMessage", "You are not registered");
@@ -174,8 +161,8 @@ public class SessionController {
 //        	 session.setAttribute("loggedInUser", user); // Store user in session
 //            return "index"; // Stay on login page if authentication fails
 //        }
-    }
-	
+	}
+
 //	 @GetMapping("state")
 //	    public String statePage(HttpSession session) {
 //	        Users user = (Users) session.getAttribute("loggedInUser");
@@ -184,142 +171,140 @@ public class SessionController {
 //	        }
 //	        return "NewState"; // Load state page if user is logged in
 //	    }
-	
+
 	@GetMapping("logout")
-	public String getLogoutPage(HttpSession session)
-	{
+	public String getLogoutPage(HttpSession session) {
 		session.invalidate();
 		return "login";
 	}
-	
+
 	@PostMapping("sendOtp")
-	public String sendOtp(String email, HttpSession session, Model model)
-	{
-		
+	public String sendOtp(String email, HttpSession session, Model model) {
+
 		String otp = serviceMail.generateOtp();
 		session.setAttribute("otp", otp);
-		session.setAttribute("email", email); 
-		
+		session.setAttribute("email", email);
+
 		Optional<Users> op = userRepository.findByEmail(email);
-		
-		if(op.isPresent())
-		{
+
+		if (op.isPresent()) {
 			serviceMail.sendOtpMail(email, otp);
-			
+
 			model.addAttribute("message", "OTP has been sent to your email");
-			return "verifyotp";
-		}
-		else {
+			return "changepassword";
+		} else {
 			model.addAttribute("error", "Email not registered");
 			return "forgetpassword";
 		}
-	
+
 		/* return "changepassword"; */
 	}
-	
+
 	@GetMapping("verifyotp")
 	public String getVerifyOtp()
-	
+
 	{
 		return "verifyotp";
 	}
-	
+
 	@GetMapping("resetpassword")
-	public String getResetPassword()
-	{
+	public String getResetPassword() {
 		return "resetpassword";
 	}
-	
-	@PostMapping("verifyotp")
-	public String verifyOtp(String otp, HttpSession session, Model model)
-	{
+
+	// @PostMapping("verifyotp")
+	@PostMapping("changepassword")
+	public String verifyOtp(String otp, String password, String confirmpassword, HttpSession session, Model model) {
 		String sessionOtp = (String) session.getAttribute("otp");
 		String email = (String) session.getAttribute("email");
 		
-		if(sessionOtp != null && sessionOtp.equals(otp))
+		
+		if(sessionOtp == null || !sessionOtp.equals(otp))
 		{
-			model.addAttribute("email", email);
-			return "resetpassword";
-		}
-		else {
-			model.addAttribute("error", "Invalid Otp please try again");
-			return "verifyotp";
-		}
-	}
-	
-	@PostMapping("updatepassword")
-	public String updatePassword(String email, String password, HttpSession session, Model model)
-	{
-		if(email == null)
-		{
-			email = (String) session.getAttribute("email");
+			 model.addAttribute("error", "Invalid Otp please try again"); 
+			 return "changepassword";
 		}
 		
-		 
+		if(!password.equals(confirmpassword))
+		{
+			 model.addAttribute("error", "Passwords do not match.");
+		     return "changepassword";
+		}
 		
 		Optional<Users> op = userRepository.findByEmail(email);
 		
 		String encodePassword = encoder.encode(password);
 		
-		if(op.isPresent())
-		{
-			Users user = op.get();
+		if(op.isPresent()) 
+		{ 
+			Users user = op.get(); 
 			user.setPassword(encodePassword);
-			userRepository.save(user);
-			session.invalidate();
-			
-			return "login";
-			
+		
+		  userRepository.save(user); 
+		  session.invalidate();
+		  
+		  return "login";
+		  
 		}
+
 		else {
-			
 			model.addAttribute("error", "Error updating password");
-			return "resetpassword";
+			return "changepassword";
 		}
-		
-		
+		/*
+		 * String encodePassword = encoder.encode(password);
+		 * 
+		 * if(sessionOtp != null && sessionOtp.equals(otp)) { Optional<Users> op =
+		 * userRepository.findByEmail(email);
+		 * 
+		 * if(op.isPresent()) { Users user = op.get(); user.setPassword(encodePassword);
+		 * userRepository.save(user); session.invalidate();
+		 * 
+		 * return "login";
+		 * 
+		 * }else { model.addAttribute("error", "Error updating password"); return
+		 * "changepassword"; }
+		 * 
+		 * 
+		 * model.addAttribute("email", email); return "resetpassword";
+		 * 
+		 * } else { model.addAttribute("error", "Invalid Otp please try again"); return
+		 * "changepassword"; }
+		 */
 	}
-	
+
 	@GetMapping("listusers")
-	public String listUsers(Model model)
-	{
-		
+	public String listUsers(Model model) {
+
 		List<Users> userList = userRepository.findAll();
-		
+
 		model.addAttribute("userList", userList);
-		
+
 		return "listusers";
 	}
-	
+
 	@GetMapping("viewuser")
-	public String getViewUser(Integer id, Model model)
-	{
+	public String getViewUser(Integer id, Model model) {
 		System.out.println("User Id:-----" + id);
-		
+
 		Optional<Users> op = userRepository.findById(id);
-		
-		if(op.isEmpty())
-		{
-			//user not found
-		}
-		else {
+
+		if (op.isEmpty()) {
+			// user not found
+		} else {
 			Users user = op.get();
-			
-			model.addAttribute("user",user);
+
+			model.addAttribute("user", user);
 		}
-		
+
 		return "viewuser";
 	}
-	
-	
+
 	@GetMapping("deleteuser")
-	public String getDeleteUser(Integer id)
-	{
+	public String getDeleteUser(Integer id) {
 		userRepository.deleteById(id);
-		
+
 		return "redirect:/listusers";
 	}
-	
-	
 
 }
