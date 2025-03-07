@@ -5,6 +5,7 @@ package com.grownited.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,6 +23,9 @@ public class HomeController {
 
 	@Autowired
 	userRepository userRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	@GetMapping("userprofile")
 	public String getUserProfile(HttpSession session, Model model)
@@ -70,5 +74,49 @@ public class HomeController {
 		}
 	}
 	
+	@GetMapping("userchangepassword")
+	public String getUserChangePassword()
+	{
+		return "userchangepassword";
+	}
+	
+	@PostMapping("updateuserpassword")
+	public String getUpdateUserPassword(String oldpassword, String newpassword, String confirmpassword, HttpSession session, Model model)
+	{
+		Users user = (Users) session.getAttribute("user");
+		
+		Optional<Users> optionalUser = userRepository.findById(user.getId());
+		
+		if(optionalUser.isEmpty())
+		{
+			model.addAttribute("error", "user not found");
+			return "userchangepassword";
+		}
+		
+		Users existingUser = optionalUser.get();
+		
+		if(!encoder.matches(oldpassword, existingUser.getPassword()))
+		{
+			model.addAttribute("error", "Old Password is incorrect");
+			return "userchangepassword";
+		}
+		
+		
+		if(!newpassword.equals(confirmpassword))
+		{
+			model.addAttribute("error", "New password does not match with confirm password");
+			
+			return "userchangepassword";
+		}
+		
+		existingUser.setPassword(encoder.encode(newpassword));
+		
+		userRepository.save(existingUser);
+		
+		session.setAttribute("user", existingUser);
+		
+		model.addAttribute("successMessage", "Password changed successfully");
+		return "userchangepassword";
+	}
 	
 }
