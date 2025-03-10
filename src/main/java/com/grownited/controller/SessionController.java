@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grownited.entity.Users;
 import com.grownited.repository.userRepository;
@@ -298,6 +299,62 @@ public class SessionController {
 		}
 
 		return "viewuser";
+	}
+	
+	@GetMapping("edituser")
+	public String getEditUser(Integer id, Model model)
+	{
+		System.out.println("User Id:-----" + id);
+		
+		Optional<Users> optionalUser = userRepository.findById(id);
+	    
+	    if (optionalUser.isPresent()) {
+	        model.addAttribute("user", optionalUser.get()); // Add user to the model
+	        return "edituser";
+	    } else {
+	        model.addAttribute("error", "User not found");
+	        return "listusers"; // Redirect to user list page if user not found
+	    }
+	
+		
+		
+	}
+	
+	@PostMapping("edituser")
+	public String editUser(Users user, Integer id, RedirectAttributes redirectAttributes, HttpSession session)
+	{
+		
+		Optional<Users> optionalUser = userRepository.findById(id);
+		
+		if(optionalUser.isPresent())
+		{
+			Users existingUser = optionalUser.get();
+			
+			  existingUser.setFirstName(user.getFirstName());
+			  existingUser.setLastName(user.getLastName());
+			  existingUser.setEmail(user.getEmail());
+			  
+			  
+			  existingUser.setContactNo(user.getContactNo());
+			  existingUser.setGender(user.getGender());
+			  existingUser.setRole(user.getRole());
+			 
+			 userRepository.save(existingUser); 
+			 
+			 session.setAttribute("user", existingUser);
+			 
+			 redirectAttributes.addFlashAttribute("successMessage", "User Updated Successfully");
+			 
+			
+			 return "redirect:/listusers";
+		}
+		else
+		{
+			redirectAttributes.addFlashAttribute("error", "User not updated");
+			
+			return "edituser";
+		}
+		
 	}
 
 	@GetMapping("deleteuser")
