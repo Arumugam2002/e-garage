@@ -32,6 +32,7 @@ public class Users {
 	private String gender;
 	private Date createAt;
 	private boolean active;
+	private String profilePicPath;
 	
 	
 	@OneToOne
@@ -116,6 +117,13 @@ public class Users {
 	}
 	public void setCity(City city) {
 		this.city = city;
+	}
+	
+	public String getProfilePicPath() {
+		return profilePicPath;
+	}
+	public void setProfilePicPath(String profilePicPath) {
+		this.profilePicPath = profilePicPath;
 	}
 	
 	

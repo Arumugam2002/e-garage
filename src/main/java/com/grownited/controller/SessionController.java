@@ -1,7 +1,9 @@
 package com.grownited.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.Users;
 import com.grownited.repository.userRepository;
 import com.grownited.service.MailService;
@@ -32,6 +36,9 @@ public class SessionController {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	Cloudinary cloudinary;
 
 	@GetMapping(value = { "/", "signup" })
 	public String signup() {
@@ -60,9 +67,23 @@ public class SessionController {
 	}
 
 	@PostMapping("saveuser")
-	public String saveuser(Users users, Model model)
+	public String saveuser(Users users, Model model, MultipartFile profilePic)
 
 	{
+		System.out.println(profilePic.getOriginalFilename());
+		
+		try {
+			
+			Map result = cloudinary.uploader().upload(profilePic.getBytes(), ObjectUtils.emptyMap());
+			
+			users.setProfilePicPath(result.get("url").toString());
+		} catch (IOException e) {
+			// TODO: handle exception
+			
+			e.printStackTrace();
+			model.addAttribute("errorMessage", "Error uploading file.");
+	        return "signup";
+		}
 
 		Optional<Users> existingUser = userRepository.findByEmail(users.getEmail());
 
@@ -88,7 +109,7 @@ public class SessionController {
 
 		userRepository.save(users);
 
-		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
+		//serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 
 		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";

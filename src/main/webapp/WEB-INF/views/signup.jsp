@@ -85,7 +85,7 @@
    						 <div class="alert alert-danger text-center">${errorMessage}</div> 
 						</c:if>
 
-									<form class="row g-3 needs-validation" novalidate action="saveuser" method="post">
+									<form class="row g-3 needs-validation" novalidate action="saveuser" method="post"  enctype="multipart/form-data">
 										<div class="col-12">
 											<label for="yourName" class="form-label"> First
 												Name</label>
@@ -184,6 +184,18 @@
 													<input class="form-check-input" type="radio" name="gender"
 														value="Other"> <label class="form-check-label">Other</label>
 												</div>
+											</div>
+										</div>
+										
+										<div class="col-12">
+
+											<label for="yourName" class="form-label">Profile Photo</label>
+											<div class="input-group">
+												 <input type="file"
+													name="profilePic" class="form-control" id="yourContact"
+													required>
+												<div class="invalid-feedback">Please, enter your
+													contact number!</div>
 											</div>
 										</div>
 

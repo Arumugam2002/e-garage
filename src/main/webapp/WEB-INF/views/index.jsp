@@ -77,6 +77,10 @@ if(user == null)
 
 	<h2>Welcome, ${user.firstName}</h2>
 
+<br>
+ 		<img src="${user.profilePicPath}"  height="200px" width="200px"/>
+ 
+ 	<br>
 
 	<section id="hero" class="text-center py-5 bg-light">
 		<div class="container">
