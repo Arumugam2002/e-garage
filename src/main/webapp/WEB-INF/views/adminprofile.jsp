@@ -12,6 +12,27 @@
 <%@include file="adminheader.jsp" %>
 <%@include file="adminsidebar.jsp" %>
 
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+           
+
 <div class="container mt-5">
     <div class="card shadow-lg p-4">
         <h2 class="text-center">Update Profile</h2>
@@ -107,6 +128,31 @@
         </form>
     </div>
 </div>
+          
+
+           
+
+            <!-- Reports -->
+          
+
+            <!-- Recent Sales -->
+            <!-- End Recent Sales -->
+
+            <!-- Top Selling -->
+            
+
+          </div>
+        </div><!-- End Left side columns -->
+
+        <!-- Right side columns -->
+        <!-- End Right side columns -->
+
+      </div>
+    </section>
+
+  </main>
+
+
 <%@include file="adminfooter.jsp" %>
 </body>
 </html>

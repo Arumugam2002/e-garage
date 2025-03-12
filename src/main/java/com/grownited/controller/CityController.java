@@ -52,6 +52,9 @@ public class CityController {
 		if(existingCity.isPresent())
 		{
 			model.addAttribute("errorMessage", "City already exists");
+			
+			List<State> listStates = stateRepository.findAll();
+			model.addAttribute("listStates", listStates);
 			return "city";
 		}
 		

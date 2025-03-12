@@ -109,7 +109,7 @@ public class SessionController {
 
 		userRepository.save(users);
 
-		//serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
+		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 
 		model.addAttribute("successMessage", "User is being successfully registered! ,Please Log in.");
 		return "login";

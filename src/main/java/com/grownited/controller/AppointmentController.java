@@ -61,5 +61,14 @@ public class AppointmentController {
 	}
 	
 	
+	@GetMapping("listappointments")
+	public String getListAppointments(Model model)
+	{
+		List<Appointment> allAppointments = appointmentRepository.findAll();
+		
+		model.addAttribute("allAppointments",allAppointments);
+		
+		return "listappointments";
+	}
 	
 }
