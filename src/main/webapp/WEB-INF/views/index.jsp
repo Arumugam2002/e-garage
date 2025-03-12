@@ -41,7 +41,7 @@ if(user == null)
 					<li class="nav-item"><a class="nav-link" href="state">State</a></li>
 
 					<!-- Dropdown Menu -->
-					<li class="nav-item dropdown"><a
+					<!-- <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							More Pages </a>
@@ -56,7 +56,7 @@ if(user == null)
 							<li><a class="dropdown-item" href="serviceprovider">ServiceProvider</a></li>
 							<li><a class="dropdown-item" href="payment">Payment</a></li>
 
-						</ul></li>
+						</ul></li> -->
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">

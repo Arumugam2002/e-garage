@@ -112,6 +112,25 @@
           </li> -->
         </ul>
       </li><!-- End Forms Nav -->
+      
+            <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#vehicles-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Vehicles</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="vehicles-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="listvehicles">
+              <i class="bi bi-circle"></i><span>List Vehicles</span>
+            </a>
+          </li>
+          <li>
+            <a href="vehicles">
+              <i class="bi bi-circle"></i><span>Add Vehicles</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#cities-nav" data-bs-toggle="collapse" href="#">
@@ -148,6 +167,25 @@
           </li>
         </ul>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#appointments-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Appointments</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="appointments-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="listappointments">
+              <i class="bi bi-circle"></i><span>List Appointments</span>
+            </a>
+          </li>
+          <li>
+            <a href="appointment">
+              <i class="bi bi-circle"></i><span>Add Appointments</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">

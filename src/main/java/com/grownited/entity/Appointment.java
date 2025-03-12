@@ -17,11 +17,15 @@ public class Appointment {
 	private Integer appointmentId;
 	private Integer basePrice;
 	
+	
 	private Integer price;
 	private LocalDateTime appointmentDateTime;
 	
 	private String status;
 	private String reason;
+	
+	private Integer servicesId;
+	private Integer serviceProviderId;
 	public Integer getAppointmentId() {
 		return appointmentId;
 	}
@@ -58,6 +62,20 @@ public class Appointment {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public Integer getServicesId() {
+		return servicesId;
+	}
+	public void setServicesId(Integer servicesId) {
+		this.servicesId = servicesId;
+	}
+	public Integer getServiceProviderId() {
+		return serviceProviderId;
+	}
+	public void setServiceProviderId(Integer serviceProviderId) {
+		this.serviceProviderId = serviceProviderId;
+	}
+	
+	
 	
 	
 }
