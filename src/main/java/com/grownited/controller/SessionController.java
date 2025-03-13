@@ -98,8 +98,9 @@ public class SessionController {
 		System.out.println(users.getPassword());
 		System.out.println(users.getContactNo());
 		System.out.println(users.getGender());
+		System.out.println(users.getRole());
 
-		users.setRole("USER");
+		//users.setRole("USER");
 		users.setActive(true);
 		users.setCreateAt(new Date());
 
@@ -160,6 +161,11 @@ public class SessionController {
 		}
 
 		else if (dbUsers.getRole().equals("USER")) {
+			return "redirect:/index";
+		}
+		
+		else if(dbUsers.getRole().equals("SERVICE PROVIDER"))
+		{
 			return "redirect:/index";
 		}
 

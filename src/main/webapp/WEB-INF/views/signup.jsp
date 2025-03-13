@@ -109,6 +109,19 @@
 													name!</div>
 											</div>
 										</div>
+										
+										<div class="col-12">
+    <label for="role" class="form-label">Select Role</label>
+    <div class="input-group">
+        <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+        <select name="role" class="form-control" id="role" required>
+            <option value="" selected disabled>Choose your role</option>
+            <option value="USER">User</option>
+            <option value="SERVICE PROVIDER">Service Provider</option>
+        </select>
+        <div class="invalid-feedback">Please select a role!</div>
+    </div>
+</div>
 
 										<div class="col-12">
 											<label for="yourEmail" class="form-label">Email</label>

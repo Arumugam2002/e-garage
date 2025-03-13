@@ -1,4 +1,4 @@
-package com.grownited.controller;
+package com.grownited.controller.user;
 
 import java.util.List;
 
@@ -16,21 +16,19 @@ import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
 
 @Controller
-public class AppointmentController {
+public class BookServiceController {
 
-	
 	@Autowired
-	appointmentRepository appointmentRepository;
+	serviceRepository serviceRepository;
 	
 	@Autowired
 	serviceProviderRepository serviceProviderRepository;
 	
 	@Autowired
-	serviceRepository serviceRepository;
+	appointmentRepository appointmentRepository;
 	
-	
-	@GetMapping("appointment")
-	public String getAppointment(Model model)
+	@GetMapping("bookservice")
+	public String getBookService(Model model)
 	{
 		
 		List<Services> allServices = serviceRepository.findAll();
@@ -41,34 +39,16 @@ public class AppointmentController {
 		
 		model.addAttribute("allServiceProviders",allServiceProviders);
 		
-		return "appointment";
+		return "userbookservice";
 	}
 	
-	
-	@PostMapping("saveappointment")
-	public String getSaveAppointment(Appointment appointment)
+	@PostMapping("bookappointment")
+	public String bookAppointment(Appointment appointment)
 	{
-		
-		System.out.println(appointment.getReason());
-		System.out.println(appointment.getBasePrice());
-		System.out.println(appointment.getPrice());
-		System.out.println(appointment.getAppointmentDateTime());
-		System.out.println(appointment.getStatus());
-		
 		appointmentRepository.save(appointment);
+			
 		
-		return "redirect:/listappointments";
-	}
-	
-	
-	@GetMapping("listappointments")
-	public String getListAppointments(Model model)
-	{
-		List<Object[]> allAppointments = appointmentRepository.getAll();
-		
-		model.addAttribute("allAppointments",allAppointments);
-		
-		return "listappointments";
+		return "redirect:/index";
 	}
 	
 }

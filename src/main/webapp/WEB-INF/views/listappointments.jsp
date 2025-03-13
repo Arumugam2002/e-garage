@@ -15,7 +15,7 @@
 <%@include file="adminsidebar.jsp" %>
 <main id="main" class="main">
 
-    <
+    
 
     <section class="section dashboard">
       <div class="row">
@@ -48,19 +48,27 @@
                         <th>Base Price</th>
                         <th>Price</th>
                         <th>Reason</th>
-                        <th>Service Provider Name</th>
+                        
                         <th>Service Name</th>
+                        <th>Service Provider Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${allAppointments}" var="a">
                         <tr>
-                            <td>${a.appointmentDateTime}</td>
-                            <td>${a.basePrice}</td>
+                            <td>${a[1]}</td>
+                            <td>${a[2]}</td>
+                            <td>${a[3]}</td>
+                            
+                            <td>${a[4]}</td>
+                            <td>${a[8]}</td>
+                            <td>${a[9]}</td>
+                            
+                            <%-- <td>${a.basePrice}</td>
                             <td>${a.price}</td>
                             <td>${a.reason}</td>
                             <td>${a.servicesId}</td>
-                            <td>${a.serviceProviderId}</td>
+                            <td>${a.serviceProviderId}</td> --%>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -86,6 +94,7 @@
         <!-- Right side columns -->
         <!-- End Right side columns -->
 
+      </div>
       </div>
     </section>
 

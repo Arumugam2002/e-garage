@@ -169,6 +169,24 @@
       </li>
       
       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#serviceprovider-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Service Provider</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="serviceprovider-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="listserviceproviders">
+              <i class="bi bi-circle"></i><span>List ServiceProviders</span>
+            </a>
+          </li>
+          <li>
+            <a href="serviceprovider">
+              <i class="bi bi-circle"></i><span>Add ServiceProviders</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#appointments-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Appointments</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
