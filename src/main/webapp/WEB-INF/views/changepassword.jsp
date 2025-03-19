@@ -50,132 +50,77 @@
 <body>
 
  <main>
-    <div class="container">
-
+  
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
+    <div class="container"> <!-- Use container instead of container-fluid -->
+        <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
+             <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block">E Garage</span>
                 </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3">
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Change Password</h5>
-                    
-                  </div>
-                  
-                  <c:if test="${not empty error}">
-
-								<div class="alert alert-danger text-center">${error}</div>
-
-
-							</c:if>
-        <form action="changepassword" method="post">
-            
-            <div class="col-12">
-
-											<label for="yourName" class="form-label">Email:- </label>
-											<div class="input-group">
-												<span class="input-group-text"><i
-													class="fas fa-envelope"></i></span> <input type="text"
-													name="email" class="form-control" id="yourContact"
-													required>
-												<div class="invalid-feedback">Please, enter your
-													email!</div>
-											</div>
-										</div>
-										
-										<div class="col-12">
-
-											<label for="yourName" class="form-label">OTP:-</label>
-											<div class="input-group">
-												<span class="input-group-text"><i
-													class="fas fa-phone"></i></span> <input type="text"
-													name="otp" class="form-control" id="yourContact"
-													required>
-												<div class="invalid-feedback">Please, enter your
-													otp!</div>
-											</div>
-										</div>
-										
-										<div class="col-12">
-											<label for="yourPassword" class="form-label">New Password</label>
-											<div class="input-group">
-
-												<span class="input-group-text" onclick="togglePassword()"
-													style="cursor: pointer;"> <i class="fas fa-eye"
-													id="toggleIcon"></i>
-												</span> <input type="password" class="form-control" 
-													name="password" required>
-												<div class="invalid-feedback">Please enter your
-													password!</div>
-
-											</div>
-										</div>
-										
-										<div class="col-12">
-											<label for="yourPassword" class="form-label">Confirm Password</label>
-											<div class="input-group">
-
-												<span class="input-group-text" onclick="togglePassword()"
-													style="cursor: pointer;"> <i class="fas fa-eye"
-													id="toggleIcon"></i>
-												</span> <input type="password" class="form-control" 
-													name="confirmpassword" required>
-												<div class="invalid-feedback">Please enter your
-													password!</div>
-
-											</div>
-										</div>
-										
-										 <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Update</button>
-                    </div>
-            
-            <!-- <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" placeholder="Enter your email" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">OTP</label>
-                <input type="text" name="otp" class="form-control" placeholder="Enter OTP" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">New Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter new password" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Confirm Password</label>
-                <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm new password" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">Update</button> -->
-        </form>
-        
-        </div>
               </div>
-
-              
-
+             <!-- Reduce size -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Change Password</h5>
+                        </div>
+                        
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger text-center">${error}</div>
+                        </c:if>
+                        <form action="changepassword" method="post">
+                            <div class="mb-3">
+                                <label for="yourEmail" class="form-label">Email:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="text" name="email" class="form-control" id="yourEmail" required>
+                                    <div class="invalid-feedback">Please enter your email!</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="yourOTP" class="form-label">OTP:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input type="text" name="otp" class="form-control" id="yourOTP" required>
+                                    <div class="invalid-feedback">Please enter your OTP!</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="yourPassword" class="form-label">New Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;">
+                                        <i class="fas fa-eye" id="toggleIcon"></i>
+                                    </span>
+                                    <input type="password" class="form-control" name="password" required>
+                                    <div class="invalid-feedback">Please enter your password!</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;">
+                                        <i class="fas fa-eye" id="toggleIcon"></i>
+                                    </span>
+                                    <input type="password" class="form-control" name="confirmpassword" required>
+                                    <div class="invalid-feedback">Please confirm your password!</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-      </section>
-
     </div>
+</section>
+
+
+    
   </main>
 
    

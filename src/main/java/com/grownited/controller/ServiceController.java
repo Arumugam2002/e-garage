@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,5 +47,26 @@ public class ServiceController {
 		model.addAttribute("services", services);
 		
 		return "listservices";
+	}
+	
+	
+	@GetMapping("viewservices")
+	public String getViewServices(Integer servicesId, Model model)
+	{
+		Optional<Services> optionalServices = serviceRepository.findById(servicesId);
+		
+		if(optionalServices.isEmpty())
+		{
+			
+		}
+		else {
+			
+			Services services = optionalServices.get();
+			
+			model.addAttribute("services",services);
+		}
+		
+		
+		return "viewservices";
 	}
 }

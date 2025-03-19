@@ -61,6 +61,7 @@
                         <th>Contact No</th>
                         <th>Experience Year</th>
                         <th>Other Information</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +74,15 @@
                             <td>${sp.contactNo}</td>
                             <td>${sp.experienceYear}</td>
                             <td>${sp.otherInformation}</td>
+                             <td>
+																<div class="d-flex flex-row gap-2">
+																	<a href="viewuser?id=${u.id}"
+																		class="btn btn-sm btn-success">View</a> <a
+																		href="deleteuser?id=${u.id}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${u.id}"
+																		class="btn btn-sm btn-primary">Edit</a>
+																</div>
+															</td>
                         </tr>
                     </c:forEach>
                 </tbody>

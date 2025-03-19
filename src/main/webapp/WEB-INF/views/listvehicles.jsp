@@ -59,6 +59,7 @@
                         <th>Year</th>
                         <th>License Plate</th>
                         <th>Vehicle Class</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +70,15 @@
                             <td>${v.year}</td>
                             <td>${v.licensePlate}</td>
                             <td>${v.vehicleClass}</td>
+                            <td>
+																<div class="d-flex flex-row gap-2">
+																	<a href="viewuser?id=${u.id}"
+																		class="btn btn-sm btn-success">View</a> <a
+																		href="deleteuser?id=${u.id}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${u.id}"
+																		class="btn btn-sm btn-primary">Edit</a>
+																</div>
+															</td>
                         </tr>
                     </c:forEach>
                 </tbody>

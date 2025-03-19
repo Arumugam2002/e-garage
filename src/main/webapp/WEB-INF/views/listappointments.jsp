@@ -51,6 +51,7 @@
                         
                         <th>Service Name</th>
                         <th>Service Provider Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,12 +64,17 @@
                             <td>${a[4]}</td>
                             <td>${a[8]}</td>
                             <td>${a[9]}</td>
+                            <td>
+																<div class="d-flex flex-row gap-2">
+																	<a href="viewuser?id=${u.id}"
+																		class="btn btn-sm btn-success">View</a> <a
+																		href="deleteuser?id=${u.id}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${u.id}"
+																		class="btn btn-sm btn-primary">Edit</a>
+																</div>
+															</td>
                             
-                            <%-- <td>${a.basePrice}</td>
-                            <td>${a.price}</td>
-                            <td>${a.reason}</td>
-                            <td>${a.servicesId}</td>
-                            <td>${a.serviceProviderId}</td> --%>
+                           
                         </tr>
                     </c:forEach>
                 </tbody>

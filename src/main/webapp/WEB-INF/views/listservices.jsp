@@ -57,6 +57,7 @@
                         <th>Service Name</th>
                         <th>Service Description</th>
                         <th>All Inclusive Price</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,13 +66,23 @@
                             <td>${s.serviceName}</td>
                             <td>${s.serviceDescription}</td>
                             <td>${s.allInclusivePrice}</td>
+                            <td>
+																<div class="d-flex flex-row gap-2">
+																	<a href="viewservices?servicesId=${s.servicesId}"
+																		class="btn btn-sm btn-success">View</a> <a
+																		href="deleteservices?servicesId=${s.servicesId}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="editservices?servicesId=${s.servicesId}"
+																		class="btn btn-sm btn-primary">Edit</a>
+																</div>
+															</td>
+                            
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
             
         </div>
-        </div class="d-flex justify-content-left">
+        <div class="d-flex justify-content-left">
         <a href="services" class="btn btn-primary">Add Services</a>
     </div>
     </div>
