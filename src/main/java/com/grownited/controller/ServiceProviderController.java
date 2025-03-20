@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.ServiceProvider;
+import com.grownited.entity.Users;
 import com.grownited.repository.serviceProviderRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ServiceProviderController {
@@ -26,21 +29,38 @@ public class ServiceProviderController {
 	}
 	
 	@PostMapping("saveserviceprovider")
-	public String getSaveServiceProvider(ServiceProvider serviceProvider)
+	public String getSaveServiceProvider(ServiceProvider serviceProvider, HttpSession session, Model model)
 	{
 		
-		System.out.println(serviceProvider.getContactNo());
-		System.out.println(serviceProvider.getGarageTitle());
-		System.out.println(serviceProvider.getOtherInformation());
-		System.out.println(serviceProvider.getSpeciality());
-		System.out.println(serviceProvider.getZipCode());
-		System.out.println(serviceProvider.getExperienceYear());
+		Users user = (Users) session.getAttribute("user");
 		
-		serviceProviderRepository.save(serviceProvider);
+		if(user != null)
+		{
+			System.out.println(serviceProvider.getContactNo());
+			System.out.println(serviceProvider.getGarageTitle());
+			System.out.println(serviceProvider.getOtherInformation());
+			System.out.println(serviceProvider.getSpeciality());
+			System.out.println(serviceProvider.getZipCode());
+			System.out.println(serviceProvider.getExperienceYear());
+			serviceProvider.setUser(user);
+			
+			
+			
+			serviceProviderRepository.save(serviceProvider);
+			model.addAttribute("successMessage", "Service Provider added successfully");
+			return "redirect:/listserviceproviders";
+		}
+		else {
+			
+			model.addAttribute("error", "user id not found");
+			return "serviceprovider";
+		}
 		
 		
 		
-		return "index";
+		
+		
+		
 	}
 	
 	@GetMapping("listserviceproviders")

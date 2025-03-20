@@ -46,6 +46,10 @@
 
                 <div class="card-body">
                   <h5 class="card-title">Service Providers <span>/List Service Providers</span></h5>
+                  
+                  <c:if test="${not empty successMessage}">
+								<div class="alert alert-success text-center">${successMessage}</div>
+							</c:if>
 
 
 						<div class="container mt-4">

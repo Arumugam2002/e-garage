@@ -18,6 +18,13 @@
     z-index: 99;
 }
 
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%; /* Ensures the image is perfectly round */
+}
+
 
 /*** Spinner ***/
 #spinner {
