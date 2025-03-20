@@ -45,7 +45,7 @@
 							<c:if test="${not empty successMessage}">
 								<div class="alert alert-success text-center">${successMessage}</div>
 							</c:if>
-        <form class="row g-3 needs-validation" novalidate action="updateadmin" method="post">
+        <form class="row g-3 needs-validation" novalidate action="updateadmin" method="post" enctype="multipart/form-data">
             
             <!-- User ID (Hidden) -->
             <input type="hidden" name="id" value="${user.id}">
@@ -101,6 +101,18 @@
                     <div class="invalid-feedback">Please enter your contact number!</div>
                 </div>
             </div>
+            
+            <div class="col-12">
+
+											<label for="yourName" class="form-label">Profile Photo</label>
+											<div class="input-group">
+												 <input type="file"
+													name="profilePic" class="form-control" id="yourPhoto"
+													required>
+												<div class="invalid-feedback">Please, upload your
+													 profile photo!</div>
+											</div>
+										</div>
 
             <!-- Gender -->
             <div class="col-12">

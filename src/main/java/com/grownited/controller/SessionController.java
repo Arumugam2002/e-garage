@@ -78,7 +78,7 @@ public class SessionController {
 			
 			users.setProfilePicPath(result.get("url").toString());
 		} catch (IOException e) {
-			// TODO: handle exception
+			
 			
 			e.printStackTrace();
 			model.addAttribute("errorMessage", "Error uploading file.");

@@ -205,10 +205,10 @@
 											<label for="yourName" class="form-label">Profile Photo</label>
 											<div class="input-group">
 												 <input type="file"
-													name="profilePic" class="form-control" id="yourContact"
+													name="profilePic" class="form-control" id="yourPhoto"
 													required>
-												<div class="invalid-feedback">Please, enter your
-													contact number!</div>
+												<div class="invalid-feedback">Please, upload your
+													 profile photo!</div>
 											</div>
 										</div>
 
