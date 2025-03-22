@@ -51,6 +51,7 @@
                         
                         <th>Service Name</th>
                         <th>Service Provider Name</th>
+                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -64,6 +65,7 @@
                             <td>${a[4]}</td>
                             <td>${a[8]}</td>
                             <td>${a[9]}</td>
+                            <td>${a[5]}</td>
                             <td>
 																<div class="d-flex flex-row gap-2">
 																	<a href="viewuser?id=${u.id}"

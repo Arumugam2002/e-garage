@@ -2,6 +2,8 @@ package com.grownited.controller;
 
 
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.Users;
 import com.grownited.repository.userRepository;
 
@@ -26,6 +31,9 @@ public class HomeController {
 	
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	Cloudinary cloudinary;
 	
 	@GetMapping("userprofile")
 	public String getUserProfile(HttpSession session, Model model)
@@ -42,9 +50,28 @@ public class HomeController {
 	}
 	
 	@PostMapping("updateuser")
-	public String getUpdateUser(Users user, HttpSession session, RedirectAttributes redirectAttributes)
+	public String getUpdateUser(Users user, HttpSession session, RedirectAttributes redirectAttributes, MultipartFile profilePic)
 	
 	{
+		
+		if(profilePic!=null && !profilePic.isEmpty())
+		{
+			System.out.println(profilePic.getOriginalFilename());
+			
+			try {
+				
+				Map result = cloudinary.uploader().upload(profilePic.getBytes(), ObjectUtils.emptyMap());
+				
+				user.setProfilePicPath(result.get("url").toString());
+			} catch (IOException e) {
+				
+				
+				e.printStackTrace();
+				redirectAttributes.addFlashAttribute("errorMessage", "Error uploading file.");
+		        return "adminprofile";
+			}
+		}
+		
 		Optional<Users> optionalUser = userRepository.findById(user.getId());
 		
 		if(optionalUser.isPresent())
@@ -58,6 +85,11 @@ public class HomeController {
 			  
 			  existingUser.setContactNo(user.getContactNo());
 			  existingUser.setGender(user.getGender());
+			  
+			  if(profilePic!=null && !profilePic.isEmpty())
+			  {
+				  existingUser.setProfilePicPath(user.getProfilePicPath());
+			  }
 			 
 			 userRepository.save(existingUser); 
 			 

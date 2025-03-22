@@ -69,4 +69,22 @@ public class ServiceController {
 		
 		return "viewservices";
 	}
+	
+	@GetMapping("editservices")
+	public String getEditServicesPage(Integer servicesId, Model model)
+	{
+		Optional<Services> services = serviceRepository.findById(servicesId);
+		
+		if(services.isPresent())
+		{
+			model.addAttribute("services", services.get());
+			return "editservices";
+		}
+		
+		else {
+			model.addAttribute("error", "Service id not found");
+			return "listservices";
+		}
+		
+	}
 }
