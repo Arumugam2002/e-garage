@@ -16,7 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.Users;
+import com.grownited.repository.serviceProviderRepository;
+import com.grownited.repository.serviceRepository;
 import com.grownited.repository.userRepository;
+import com.grownited.repository.vehicleRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +30,12 @@ public class AdminController {
 	userRepository userRepository;
 	
 	@Autowired
+	serviceProviderRepository serviceProviderRepository;
+	
+	@Autowired
+	vehicleRepository vehicleRepository;
+	
+	@Autowired
 	Cloudinary cloudinary;
 	
 	
@@ -34,6 +43,14 @@ public class AdminController {
 	public String getAdminDashboard(Model model)
 	{
 		long userCount =userRepository.count();
+		
+		long serviceProviderCount = serviceProviderRepository.count();
+		
+		long vehiclesCount = vehicleRepository.count();
+		
+		model.addAttribute("serviceProviderCount", serviceProviderCount);
+		
+		model.addAttribute("vehiclesCount", vehiclesCount);
 		
 		model.addAttribute("userCount", userCount);
 		

@@ -52,7 +52,10 @@
                         <th>Service Name</th>
                         <th>Service Provider Name</th>
                          <th>Status</th>
-                        <th>Action</th>
+                        <th>Action</th> 
+                        <th>Update Status</th>
+                        
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -65,16 +68,44 @@
                             <td>${a[4]}</td>
                             <td>${a[8]}</td>
                             <td>${a[9]}</td>
-                            <td>${a[5]}</td>
                             <td>
-																<div class="d-flex flex-row gap-2">
-																	<a href="viewuser?id=${u.id}"
-																		class="btn btn-sm btn-success">View</a> <a
-																		href="deleteuser?id=${u.id}"
-																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${u.id}"
-																		class="btn btn-sm btn-primary">Edit</a>
-																</div>
-															</td>
+    <span class="badge" style="background-color: 
+        ${a[5] == 'Pending' ? '#ffc107' : 
+         a[5] == 'Booked' ? '#28a745' : 
+         a[5] == 'Rejected' ? '#dc3545' : 
+         a[5] == 'Cancelled' ? '#6c757d' : 
+         a[5] == 'Rescheduled' ? '#17a2b8' : 
+         '#007bff'}">
+        ${a[5]}
+    </span>
+</td>
+                            <td>
+    <div class="d-flex flex-row gap-2">
+        <a href="viewappointment?id=${a[0]}" class="btn btn-sm btn-success">View</a>
+        
+        <a href="editappointment?id=${a[0]}" class="btn btn-sm btn-primary">Edit</a>
+        <a href="deleteappointment?id=${a[0]}" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+</td>
+
+<td><form action="updateappointmentstatus" method="post" class="d-inline" id="statusForm-${a[0]}">
+            <input type="hidden" name="appointmentId" value="${a[0]}">
+            <select name="status" class="form-select form-select-sm d-inline" style="width: auto;"
+                onchange="if(confirm('Are you sure you want to change the status to ' + this.value + '?')) { 
+                    document.getElementById('statusForm-${a[0]}').submit(); 
+                } else { 
+                    this.value = '${a[5]}'; 
+                }">
+                <option value="Pending" ${a[5] == 'Pending' ? 'selected' : ''}>Pending</option>
+                <option value="Booked" ${a[5] == 'Booked' ? 'selected' : ''}>Booked</option>
+                <option value="Rejected" ${a[5] == 'Rejected' ? 'selected' : ''}>Rejected</option>
+                <option value="Cancelled" ${a[5] == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                <option value="Rescheduled" ${a[5] == 'Rescheduled' ? 'selected' : ''}>Rescheduled</option>
+                <option value="InProgress" ${a[5] == 'InProgress' ? 'selected' : ''}>InProgress</option>
+            </select>
+        </form></td>
+															
+							
                             
                            
                         </tr>
@@ -86,6 +117,10 @@
                   <!-- End Line Chart -->
 
                 </div>
+                
+                <div class="d-flex justify-content-left">
+        <a href="appointment" class="btn btn-primary">Add Appointment</a>
+    </div>
 
               </div>
             </div><!-- End Reports -->

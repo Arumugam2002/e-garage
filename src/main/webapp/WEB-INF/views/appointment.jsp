@@ -90,11 +90,6 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <input type="text" class="form-control" name="status" required>
-                </div>
-                
-                <div class="mb-3">
                     <label class="form-label">Reason</label>
                     <textarea class="form-control" name="reason" rows="3" required></textarea>
                 </div>
