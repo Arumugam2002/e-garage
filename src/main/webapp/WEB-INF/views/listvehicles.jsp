@@ -54,8 +54,9 @@
             <table class="table table-bordered table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
+                        
+                        <th>Manufacturer</th>
                         <th>Model</th>
-                        <th>Manufacture</th>
                         <th>Year</th>
                         <th>License Plate</th>
                         <th>Vehicle Class</th>
@@ -65,17 +66,18 @@
                 <tbody>
                     <c:forEach items="${vehicles}" var="v">
                         <tr>
-                            <td>${v.model}</td>
+                            
                             <td>${v.manufacturer}</td>
+                            <td>${v.model}</td>
                             <td>${v.year}</td>
                             <td>${v.licensePlate}</td>
                             <td>${v.vehicleClass}</td>
                             <td>
 																<div class="d-flex flex-row gap-2">
-																	<a href="viewuser?id=${u.id}"
+																	<a href="viewvehicle?id=${v.vehiclesId}"
 																		class="btn btn-sm btn-success">View</a> <a
-																		href="deleteuser?id=${u.id}"
-																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${u.id}"
+																		href="deletevehicle?id=${v.vehiclesId}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="editvehicle?id=${v.vehiclesId}"
 																		class="btn btn-sm btn-primary">Edit</a>
 																</div>
 															</td>

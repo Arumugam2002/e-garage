@@ -80,10 +80,10 @@
                             <td>${sp.otherInformation}</td>
                              <td>
 																<div class="d-flex flex-row gap-2">
-																	<a href="viewuser?id=${sp.serviceProviderId}"
+																	<a href="viewserviceprovider?id=${sp.serviceProviderId}"
 																		class="btn btn-sm btn-success">View</a> <a
-																		href="deleteuser?id=${sp.serviceProviderId}"
-																		class="btn btn-sm btn-danger">Delete</a> <a href="edituser?id=${sp.serviceProviderId}"
+																		href="deleteserviceprovider?id=${sp.serviceProviderId}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="editserviceprovider?id=${sp.serviceProviderId}"
 																		class="btn btn-sm btn-primary">Edit</a>
 																</div>
 															</td>

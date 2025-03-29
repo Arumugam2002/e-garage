@@ -54,12 +54,16 @@
                 <thead class="table-dark">
                     <tr>
                         <th>State Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${states}" var="s">
                         <tr>
                             <td>${s.stateName}</td>
+                            <td> <a
+																		href="deleteserviceprovider?id=${s.stateId}"
+																		class="btn btn-sm btn-danger">Delete</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

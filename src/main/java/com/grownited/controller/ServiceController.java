@@ -35,7 +35,7 @@ public class ServiceController {
 		
 		serviceRepository.save(services);
 		
-		return "index";
+		return "redirect:/listservices";
 	}
 	
 	@GetMapping("listservices")
@@ -86,5 +86,39 @@ public class ServiceController {
 			return "listservices";
 		}
 		
+	}
+	
+	@PostMapping("editservices")
+	public String getUpdateServicesPage(Integer servicesId, Model model, Services services)
+	{
+		
+		Optional<Services> optionalServices = serviceRepository.findById(servicesId);
+		
+		if(optionalServices.isPresent())
+		{
+			Services existingServices = optionalServices.get();
+			
+			existingServices.setServiceName(services.getServiceName());
+			existingServices.setServiceDescription(services.getServiceDescription());
+			existingServices.setAllInclusivePrice(services.getAllInclusivePrice());
+			
+			serviceRepository.save(existingServices);
+			
+			
+			
+			return "redirect:/listservices";
+		}
+		else {
+			model.addAttribute("error", "Services not updated");
+			return "editservices";
+		}
+	}
+	
+	@GetMapping("deleteservices")
+	public String getDeleteServices(Integer servicesId)
+	{
+		serviceRepository.deleteById(servicesId);
+		
+		return "redirect:/listservices";
 	}
 }

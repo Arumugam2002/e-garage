@@ -97,4 +97,88 @@ public class AppointmentController {
 		return "redirect:/listappointments";
 	}
 	
+	@GetMapping("viewappointment")
+	public String getViewAppointment(Integer id, Model model)
+	{
+		
+Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+		
+		if(optionalAppointment.isEmpty())
+		{
+			
+		}
+		else {
+			
+			Appointment appointment = optionalAppointment.get();
+			
+			model.addAttribute("appointment",appointment);
+		}
+		
+		
+	
+		
+	
+		
+		return "viewappointment";
+	}
+	
+	@GetMapping("editappointment")
+	public String getEditAppointment(Integer id, Model model)
+	{
+		
+Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+		
+		if(optionalAppointment.isPresent())
+		{
+			model.addAttribute("appointment", optionalAppointment.get());
+			return "editappointment";
+		}
+		else {
+			
+			model.addAttribute("error", "Vehicle not found");
+			return "listappointments";
+		}
+		
+	}
+	
+	
+	@PostMapping("editappointment")
+	public String getUpdateServiceProvider(Integer id, Model model, Appointment appointment)
+	{
+		Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+		
+		if(optionalAppointment.isPresent())
+		{
+			Appointment existingAppointment = optionalAppointment.get();
+			
+			existingAppointment.setAppointmentDateTime(appointment.getAppointmentDateTime());
+			existingAppointment.setBasePrice(appointment.getBasePrice());
+			
+			existingAppointment.setPrice(appointment.getPrice());
+			existingAppointment.setReason(appointment.getReason());
+			
+			appointmentRepository.save(existingAppointment);
+			
+			
+			
+			
+			
+			
+			
+			return "redirect:/listappointments";
+		}
+		else {
+			model.addAttribute("error", "Appointments not updated");
+			return "editappointment";
+		}
+	}
+	
+	@GetMapping("deleteappointment")
+	public String getDeleteAppointment(Integer id)
+	{
+		appointmentRepository.deleteById(id);
+		
+		return "redirect:/listappointments";
+	}
+	
 }

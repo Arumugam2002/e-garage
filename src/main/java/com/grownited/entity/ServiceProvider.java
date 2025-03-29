@@ -1,10 +1,14 @@
 package com.grownited.entity;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,9 +19,11 @@ public class ServiceProvider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer serviceProviderId;
-	@OneToOne
-	@JoinColumn(name="userid", referencedColumnName = "id")
-	private Users user;
+	/*
+	 * @ManyToMany
+	 * 
+	 * @JoinColumn(name="userid", referencedColumnName = "id") private Users user;
+	 */
 	private String speciality;
 	private String garageTitle;
 	private String zipCode;
@@ -26,12 +32,10 @@ public class ServiceProvider {
 	private String otherInformation;
 	
 	
-	public Users getUser() {
-		return user;
-	}
-	public void setUser(Users user) {
-		this.user = user;
-	}
+	/*
+	 * public Users getUser() { return user; } public void setUser(Users user) {
+	 * this.user = user; }
+	 */
 	public Integer getServiceProviderId() {
 		return serviceProviderId;
 	}

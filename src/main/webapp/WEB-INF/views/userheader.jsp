@@ -39,9 +39,12 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-car me-3"></i>E Garage</h2>
-        </a>
+       <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5 logo d-flex align-items-center">
+    <h2 class="m-0 text-primary">
+        <img src="assets/img/garage.png" alt="" style="width: 40px; height: 40px; margin-right: 10px;">
+        E Garage
+    </h2>
+</a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>

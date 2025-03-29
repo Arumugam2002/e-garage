@@ -20,6 +20,12 @@ public class AreaController {
 		return "area";
 	}
 	
+	@GetMapping("listarea")
+	public String getListArea()
+	{
+		return "listarea";
+	}
+	
 	@PostMapping("savearea")
 	public String getSaveArea(Area area)
 	{
@@ -27,6 +33,6 @@ public class AreaController {
 		
 		areaRepository.save(area);
 		
-		return "index";
+		return "list:/areas";
 	}
 }
