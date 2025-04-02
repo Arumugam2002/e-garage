@@ -101,18 +101,19 @@ public class AppointmentController {
 	public String getViewAppointment(Integer id, Model model)
 	{
 		
-Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+   List<Object[]> appointment = appointmentRepository.getByAppointmentId(id);
+   
+   model.addAttribute("appointment",appointment);
 		
-		if(optionalAppointment.isEmpty())
-		{
-			
-		}
-		else {
-			
-			Appointment appointment = optionalAppointment.get();
-			
-			model.addAttribute("appointment",appointment);
-		}
+	/*
+	 * if(optionalAppointment.isEmpty()) { return "redirect:/listappointments"; }
+	 * else {
+	 * 
+	 * Object[] appointment = optionalAppointment.get(0);
+	 * 
+	 * 
+	 * }
+	 */
 		
 		
 	

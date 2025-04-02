@@ -31,10 +31,12 @@
     <div class="container">
         <h2 class="text-center text-primary mb-4">View Appointments</h2>
         <div class="user-info">
-            <p><strong>Appointment Reason</strong> ${appointment.reason}</p>
-            <p><strong>Appointment Base Price</strong> ${appointment.basePrice}</p>
-            <p><strong>Appointment Price</strong> ${appointment.price}</p>
-            <p><strong>Appointment Date and Time</strong> ${appointment.appointmentDateTime}</p>
+            <p><strong>Appointment Reason:- </strong> ${appointment[0][4]}</p>
+            <p><strong>Appointment Base Price:- </strong> ${appointment[0][2]}</p>
+            <p><strong>Appointment Price:- </strong> ${appointment[0][3]}</p>
+            <p><strong>Appointment Date and Time:- </strong> ${appointment[0][1]}</p>
+            <p><strong>Service Name:- </strong> ${appointment[0][8]}</p>
+            <p><strong>Garage Title:- </strong> ${appointment[0][9]}</p>
            
             
         </div>

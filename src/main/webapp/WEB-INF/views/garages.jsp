@@ -53,7 +53,7 @@
                         
                         <p><strong>Since:</strong> ${g.experienceYear} </p>
                         <p><strong>Contact:</strong> ${g.contactNo}</p>
-                        <a href="/bookService/${g.serviceProviderId}" class="btn btn-book w-100">Book Service</a>
+                        <a href="viewgarage?id=${g.serviceProviderId}" class="btn btn-book w-100">View Garage</a>
                     </div>
                 </div>
             </c:forEach>
