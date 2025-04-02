@@ -58,9 +58,9 @@
                   
             <!-- Sales Card -->
            <div class="row">
-    <div class="col-xxl-4 col-md-6">
+    <div class="col-xxl-3 col-md-6">
         <div class="card info-card sales-card">
-            <div class="filter">
+           <!--  <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -70,7 +70,7 @@
                     <li><a class="dropdown-item" href="#">This Month</a></li>
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                 </ul>
-            </div>
+            </div> -->
 
             <div class="card-body">
                 <h5 class="card-title">Service Providers</h5>
@@ -87,9 +87,9 @@
         </div>
     </div>
 
-    <div class="col-xxl-4 col-md-6">
+    <div class="col-xxl-3 col-md-6">
         <div class="card info-card sales-card">
-            <div class="filter">
+            <!-- <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -100,15 +100,15 @@
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                 </ul>
             </div>
-
+ -->
             <div class="card-body">
-                <h5 class="card-title">Users</h5>
+                <h5 class="card-title">Total Customer</h5>
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                         <i class="bi bi-person"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>${userCount}</h6>
+                        <h6>${totalCustomer}</h6>
                         <!-- <span class="text-muted small pt-2 ps-1">Users</span> -->
                     </div>
                 </div>
@@ -116,9 +116,9 @@
         </div>
     </div>
     
-     <div class="col-xxl-4 col-md-6">
+     <div class="col-xxl-3 col-md-6">
         <div class="card info-card sales-card">
-            <div class="filter">
+            <!-- <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
@@ -128,7 +128,36 @@
                     <li><a class="dropdown-item" href="#">This Month</a></li>
                     <li><a class="dropdown-item" href="#">This Year</a></li>
                 </ul>
+            </div> -->
+
+            <div class="card-body">
+                <h5 class="card-title">Total Admins</h5>
+                <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person"></i>
+                    </div>
+                    <div class="ps-3">
+                        <h6>${totalAdmin}</h6>
+                        <!-- <span class="text-muted small pt-2 ps-1">Users</span> -->
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+    
+     <div class="col-xxl-3 col-md-6">
+        <div class="card info-card sales-card">
+            <!-- <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+            </div> -->
 
             <div class="card-body">
                 <h5 class="card-title">Vehicles</h5>
@@ -145,7 +174,78 @@
         </div>
     </div>
 </div><!-- End Sales Card -->
+ <!-- Revenue Card -->
+ 
+ <div class="row">
+            <div class="col-xxl-3 col-md-6">
+              <div class="card info-card revenue-card">
 
+                <!-- <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div> -->
+
+                <div class="card-body">
+                  <h5 class="card-title">Customers <span>| ${currentMonth}</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>${thisMonthCustomerCount}</h6>
+                      <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+<div class="col-xxl-3 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <!-- <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div> -->
+
+                <div class="card-body">
+                  <h5 class="card-title">Appointments <span>| InProgress</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-currency-dollar"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>${inProgressAppointment}</h6>
+                      <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+            </div>
  
 
                   <!-- Line Chart -->

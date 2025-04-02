@@ -17,4 +17,7 @@ public interface appointmentRepository extends JpaRepository<Appointment, Intege
 			+ "JOIN service_providers se ON a.service_provider_id = se.service_provider_id;\r\n", nativeQuery = true)
 	List<Object[]> getAll(); 
 	
+	
+	List<Appointment> findByStatus(String status);
+	
 }

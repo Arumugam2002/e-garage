@@ -111,12 +111,12 @@
 										</div>
 										
 										<div class="col-12">
-    <label for="role" class="form-label">Select Role</label>
+    <label for="role" class="form-label">Register as</label>
     <div class="input-group">
         <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
         <select name="role" class="form-control" id="role" required>
             <option value="" selected disabled>Choose your role</option>
-            <option value="USER">User</option>
+            <option value="USER">Customer</option>
             <option value="SERVICE PROVIDER">Service Provider</option>
         </select>
         <div class="invalid-feedback">Please select a role!</div>

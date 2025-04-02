@@ -1,6 +1,7 @@
 package com.grownited.controller.admin;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.Users;
+import com.grownited.repository.appointmentRepository;
 import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
 import com.grownited.repository.userRepository;
@@ -36,6 +38,9 @@ public class AdminController {
 	vehicleRepository vehicleRepository;
 	
 	@Autowired
+	appointmentRepository appointmentRepository;
+	
+	@Autowired
 	Cloudinary cloudinary;
 	
 	
@@ -44,9 +49,32 @@ public class AdminController {
 	{
 		long userCount =userRepository.count();
 		
+		Integer totalCustomer = userRepository.findByRole("USER").size();
+		
+		Integer totalAdmin = userRepository.findByRole("ADMIN").size();
+		
 		long serviceProviderCount = serviceProviderRepository.count();
 		
 		long vehiclesCount = vehicleRepository.count();
+		
+		Integer inProgressAppointment = appointmentRepository.findByStatus("InProgress").size();
+		
+		LocalDate today = LocalDate.now();
+		int month = today.getMonthValue();
+		
+		
+		
+		Integer thisMonthCustomerCount = userRepository.countThisUserMonth(month);	
+		
+		model.addAttribute("totalAdmin", totalAdmin);
+		
+		model.addAttribute("totalCustomer",totalCustomer);
+		
+		model.addAttribute("thisMonthCustomerCount", thisMonthCustomerCount);
+		
+		model.addAttribute("currentMonth", LocalDate.now().getMonth());
+		
+		model.addAttribute("inProgressAppointment",inProgressAppointment);
 		
 		model.addAttribute("serviceProviderCount", serviceProviderCount);
 		
