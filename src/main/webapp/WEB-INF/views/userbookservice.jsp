@@ -1,43 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
-
-<jsp:include page="usercss.jsp"></jsp:include>
-
+<head>
+    <meta charset="UTF-8">
+    <title>Book Service</title>
+    <jsp:include page="usercss.jsp"></jsp:include>
+    <style>
+        .booking-card {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .btn-back {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+</head>
 <body>
     <jsp:include page="userheader.jsp"></jsp:include>
 
+    <div class="container">
+        <div class="booking-card">
+            <h2 class="text-center mb-4">Book Service at ${allServiceProviders.garageTitle}</h2>
+            <c:if test="${not empty error}">
 
-    <div class="container mt-5">
-        <div class="card shadow-lg p-4">
-            <!-- <h2 class="text-center mb-4">Book an Appointment</h2> -->
-            <form action="bookappointment" method="post">
+								<div class="alert alert-danger text-center">${error}</div>
+
+
+							</c:if>
+            <form action="/bookappointment" method="post">
+                <input type="hidden" name="serviceProviderId" value="${allServiceProviders.serviceProviderId}">
                 
-                     
-            Services:-     <select name="servicesId">
-                <option>Select Services </option>
+                <%--  <input type="hidden" name="servicesId" value="${allServices.servicesId}"> --%>
                 
-                <c:forEach items="${allServices }" var="s">
-                
-                <option value="${s.servicesId}">${s.serviceName}</option>
-                </c:forEach>
-                </select>
-                <br><br>
-                
-              
-                  ServiceProvider:-     <select name="serviceProviderId">
-                <option>Select Service Providers </option>
-                
-                <c:forEach items="${allServiceProviders }" var="sp">
-                
-                <option value="${sp.serviceProviderId}">${sp.garageTitle}</option>
-                </c:forEach> 
-                </select> 
-                 <br><br>
-                 <div class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label">Select Service</label>
+                    <select name="servicesId" class="form-control" required>
+                        <option value="">Select a Service</option>
+                        <c:forEach items="${allServices}" var="s">
+                            <option value="${s.servicesId}">${s.serviceName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label">Appointment Base Price</label>
                     <input type="number" class="form-control" name="basePrice" required>
                 </div>
@@ -47,19 +59,12 @@
                     <input type="number" class="form-control" name="price" required>
                 </div>
                 
-                <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <input type="text" class="form-control" name="status" required>
-                </div>
-                
                 
                 
                 <div class="mb-3">
-                    <label class="form-label">Appointment Date</label>
+                    <label class="form-label">Appointment Date & Time</label>
                     <input type="datetime-local" class="form-control" name="appointmentDateTime" required>
                 </div>
-                
-                
                 
                 <div class="mb-3">
                     <label class="form-label">Reason</label>
@@ -67,17 +72,13 @@
                 </div>
                 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Get Appointment</button>
+                    <button type="submit" class="btn btn-primary">Book Appointment</button>
+                    <a href="/viewgarage?id=${allServiceProviders.serviceProviderId}" class="btn btn-back ml-2">Back to Garage</a>
                 </div>
             </form>
         </div>
     </div>
 
-
-
-		<jsp:include page="userfooter.jsp"></jsp:include>
-
-  
+    <jsp:include page="userfooter.jsp"></jsp:include>
 </body>
-
 </html>

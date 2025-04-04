@@ -1,6 +1,7 @@
 package com.grownited.controller.user;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,27 +29,44 @@ public class BookServiceController {
 	appointmentRepository appointmentRepository;
 	
 	@GetMapping("bookservice")
-	public String getBookService(Model model)
+	public String getBookService(Model model, Integer id)
 	{
 		
 		List<Services> allServices = serviceRepository.findAll();
 		
-		List<ServiceProvider> allServiceProviders = serviceProviderRepository.findAll();
+		Optional<ServiceProvider> allServiceProviders = serviceProviderRepository.findById(id);
 		
-		model.addAttribute("allServices",allServices);
 		
-		model.addAttribute("allServiceProviders",allServiceProviders);
+		if(allServiceProviders.isPresent())
+		{
+			model.addAttribute("allServices", allServices);
+			model.addAttribute("allServiceProviders",allServiceProviders.get());
+			
+			return "userbookservice";
+		}
+		else {
+			model.addAttribute("error", "Service not there");
+			
+			return "viewgarage";
+		}
 		
-		return "userbookservice";
+		
+		
+		
+		
+		
+		
 	}
 	
 	@PostMapping("bookappointment")
-	public String bookAppointment(Appointment appointment)
+	public String bookAppointment(Appointment appointment, Model model)
 	{
+		
+		appointment.setStatus("Pending");
 		appointmentRepository.save(appointment);
 			
 		
-		return "redirect:/index";
+		return "redirect:/garages";
 	}
 	
 }

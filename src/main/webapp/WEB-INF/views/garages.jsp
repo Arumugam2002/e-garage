@@ -43,6 +43,12 @@
 <body>
     <div class="container mt-4">
         <h2 class="text-center mb-4">Find the Best Garages Near You</h2>
+        <c:if test="${not empty error}">
+
+								<div class="alert alert-danger text-center">${error}</div>
+
+
+							</c:if>
         
         <div class="row">
             <c:forEach var="g" items="${allGarages}">
