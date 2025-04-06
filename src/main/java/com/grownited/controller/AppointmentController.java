@@ -51,11 +51,20 @@ public class AppointmentController {
 	public String getSaveAppointment(Appointment appointment)
 	{
 		
+		Services service = serviceRepository.findById(appointment.getServicesId()).orElse(null);
+		
+		
 		System.out.println(appointment.getReason());
 		System.out.println(appointment.getBasePrice());
 		System.out.println(appointment.getPrice());
 		System.out.println(appointment.getAppointmentDateTime());
 		System.out.println(appointment.getStatus());
+		
+		if(service!=null)
+		{
+			appointment.setBasePrice(service.getAllInclusivePrice());
+			appointment.setPrice(service.getAllInclusivePrice());
+		}
 		
 		appointment.setStatus("Pending");
 		

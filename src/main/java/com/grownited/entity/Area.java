@@ -16,10 +16,23 @@ public class Area {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer areaId;
 	private String areaName;
+	private Integer cityId;
 	
-	@OneToOne
-	@JoinColumn(name="city_ref_id")
-	private City cityRefId;
+	
+	
+	/*
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name="city_ref_id") private City cityRefId;
+	 */
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
 	public Integer getAreaId() {
 		return areaId;
@@ -37,13 +50,7 @@ public class Area {
 		this.areaName = areaName;
 	}
 
-	public City getCityRefId() {
-		return cityRefId;
-	}
-
-	public void setCityRefId(City cityRefId) {
-		this.cityRefId = cityRefId;
-	}
+	
 
 	
 	

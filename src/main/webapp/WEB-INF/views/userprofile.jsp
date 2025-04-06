@@ -1,132 +1,152 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
-
-<jsp:include page="usercss.jsp"></jsp:include>
+<jsp:include page="usercss.jsp" />
 
 <body>
-    <jsp:include page="userheader.jsp"></jsp:include>
+    <jsp:include page="userheader.jsp" />
 
+    <div class="container mt-5 mb-5">
+        <div class="card shadow p-4 rounded-4">
+            <h2 class="text-center mb-4">Update Profile</h2>
 
-    
-<div class="container mt-5">
-    <div class="card shadow-lg p-4">
-        <h2 class="text-center">Update Profile</h2>
-        <c:if test="${not empty error}">
+            <!-- Success & Error Messages -->
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger text-center">${error}</div>
+            </c:if>
+            <c:if test="${not empty successMessage}">
+                <div class="alert alert-success text-center">${successMessage}</div>
+            </c:if>
 
-								<div class="alert alert-danger text-center">${error}</div>
+            <!-- Profile Update Form -->
+            <form class="row g-4 needs-validation" novalidate action="updateuser" method="post" enctype="multipart/form-data">
 
+                <!-- Hidden User ID -->
+                <input type="hidden" name="id" value="${user.id}" />
 
-							</c:if>
-							<c:if test="${not empty successMessage}">
-								<div class="alert alert-success text-center">${successMessage}</div>
-							</c:if>
-        <form class="row g-3 needs-validation" novalidate action="updateuser" method="post" enctype="multipart/form-data">
-            
-            <!-- User ID (Hidden) -->
-            <input type="hidden" name="id" value="${user.id}">
-
-            <!-- First Name -->
-            <div class="col-12">
-                <label for="firstName" class="form-label">First Name</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="firstName" class="form-control" id="firstName" value="${user.firstName}" required>
-                    <div class="invalid-feedback">Please enter your first name!</div>
+                <!-- First Name -->
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" name="firstName" value="${user.firstName}" required />
+                        <div class="invalid-feedback">Enter your first name!</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Last Name -->
-            <div class="col-12">
-                <label for="lastName" class="form-label">Last Name</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="lastName" class="form-control" id="lastName" value="${user.lastName}" required>
-                    <div class="invalid-feedback">Please enter your last name!</div>
+                <!-- Last Name -->
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" name="lastName" value="${user.lastName}" required />
+                        <div class="invalid-feedback">Enter your last name!</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Email -->
-            <div class="col-12">
-                <label for="email" class="form-label">Email</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" name="email" class="form-control" id="email" value="${user.email}" required>
-                    <div class="invalid-feedback">Please enter a valid email address!</div>
+                <!-- Email -->
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" name="email" value="${user.email}" required />
+                        <div class="invalid-feedback">Enter a valid email!</div>
+                    </div>
                 </div>
-            </div>
 
-           <%--  <!-- Password -->
-            <div class="col-12">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;"> 
-                        <i class="fas fa-eye" id="toggleIcon"></i>
-                    </span>
-                    <input type="password" class="form-control" id="password" name="password" value="${user.password}" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                <!-- Contact No -->
+                <div class="col-md-6">
+                    <label class="form-label">Contact Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        <input type="text" class="form-control" name="contactNo" value="${user.contactNo}" required />
+                        <div class="invalid-feedback">Enter your contact number!</div>
+                    </div>
                 </div>
-            </div> --%>
 
-            <!-- Contact No -->
-            <div class="col-12">
-                <label for="contactNo" class="form-label">Contact No</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" name="contactNo" class="form-control" id="contactNo" value="${user.contactNo}" required>
-                    <div class="invalid-feedback">Please enter your contact number!</div>
-                </div>
-            </div>
-
-            <!-- Gender -->
-            <div class="col-12">
-                <label class="form-label">Gender</label>
-                <div class="d-flex gap-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Male" ${user.gender == 'Male' ? 'checked' : ''} required>
+                <!-- Gender -->
+                <div class="col-md-12">
+                    <label class="form-label d-block">Gender</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="Male" ${user.gender == 'Male' ? 'checked' : ''} required />
                         <label class="form-check-label">Male</label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Female" ${user.gender == 'Female' ? 'checked' : ''}>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="Female" ${user.gender == 'Female' ? 'checked' : ''} />
                         <label class="form-check-label">Female</label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Other" ${user.gender == 'Other' ? 'checked' : ''}>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" value="Other" ${user.gender == 'Other' ? 'checked' : ''} />
                         <label class="form-check-label">Other</label>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-12">
 
-											<label for="yourName" class="form-label">Profile Photo</label>
-											<div class="input-group">
-												 <input type="file"
-													name="profilePic" class="form-control" id="yourPhoto"
-													required>
-												<div class="invalid-feedback">Please, upload your
-													 profile photo!</div>
-											</div>
-										</div>
+                <!-- Profile Photo -->
+                <div class="col-md-12">
+                    <label class="form-label">Profile Photo</label>
+                    <input type="file" class="form-control" name="profilePic"  />
+                    
+                </div>
 
-            <!-- Submit Button -->
-            <div class="col-12 text-center">
-                <button class="btn btn-primary" type="submit">Update Profile</button>
-            </div>
-        </form>
+                <!-- Location Selects -->
+                <div class="col-md-4">
+                    <label class="form-label">State</label>
+                    <select name="stateId" class="form-select" required>
+                        <option value="" disabled>Select State</option>
+                        <c:forEach items="${allStates}" var="s">
+                            <option value="${s.stateId}" ${s.stateId == user.state.stateId ? 'selected' : ''}>${s.stateName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">City</label>
+                    <select name="cityId" class="form-select" required>
+                        <option value="" disabled>Select City</option>
+                        <c:forEach items="${allCities}" var="c">
+                            <option value="${c.cityId}" ${c.cityId == user.city.cityId ? 'selected' : ''}>${c.cityName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Area</label>
+                    <select name="areaId" class="form-select" required>
+                        <option value="" disabled>Select Area</option>
+                        <c:forEach items="${allAreas}" var="a">
+                            <option value="${a.areaId}" ${a.areaId == user.area.areaId ? 'selected' : ''}>${a.areaName}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary px-4 py-2">Update Profile</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
+    <jsp:include page="userfooter.jsp" />
 
-		<jsp:include page="userfooter.jsp"></jsp:include>
+    <!-- Bootstrap form validation script -->
+    <script>
+        (function () {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
 
-  
 </body>
-
 </html>
-
-
-

@@ -56,6 +56,16 @@
             
             
             <input type="hidden" name="servicesId" value="${services.servicesId }">
+            
+            Service Provider:-      <select name="serviceProviderId">
+                <option>Select Service Provider </option>
+                
+                <c:forEach items="${allServiceProviders }" var="s">
+                
+                <option value="${s.serviceProviderId}">${s.garageTitle}</option>
+                </c:forEach>
+                </select>
+            
                 <div class="mb-3">
                     <label class="form-label">Service Name</label>
                     <input type="text" class="form-control" name="serviceName" value="${services.serviceName}" required>

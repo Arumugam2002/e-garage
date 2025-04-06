@@ -61,10 +61,11 @@
                        
                         <th>Speciality</th>
                         <th>Garage Title</th>
-                        <th>Zip Code</th>
                         <th>Contact No</th>
-                        <th>Experience Year</th>
-                        <th>Other Information</th>
+                         <th>State</th>
+                          <th>City</th>
+                           <th>Area</th>
+                       
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -74,10 +75,13 @@
                            
                             <td>${sp.speciality}</td>
                             <td>${sp.garageTitle}</td>
-                            <td>${sp.zipCode}</td>
+                            
                             <td>${sp.contactNo}</td>
-                            <td>${sp.experienceYear}</td>
-                            <td>${sp.otherInformation}</td>
+                            <td>${sp.stateName}</td>
+                            <td>${sp.cityName}</td>
+                            <td>${sp.areaName}</td>
+                           
+                           
                              <td>
 																<div class="d-flex flex-row gap-2">
 																	<a href="viewserviceprovider?id=${sp.serviceProviderId}"

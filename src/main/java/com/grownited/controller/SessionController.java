@@ -166,7 +166,7 @@ public class SessionController {
 		
 		else if(dbUsers.getRole().equals("SERVICE PROVIDER"))
 		{
-			return "redirect:/index";
+			return "redirect:/serviceproviderhome";
 		}
 
 		else {

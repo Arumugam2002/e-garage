@@ -43,6 +43,10 @@ public class Users {
 	@JoinColumn(name="cityref_id")
 	private City city;
 	
+	@OneToOne
+	@JoinColumn(name="area_id")
+	private Area area;
+	
 	
 	
 	//Getters and Setters
@@ -124,6 +128,12 @@ public class Users {
 	}
 	public void setProfilePicPath(String profilePicPath) {
 		this.profilePicPath = profilePicPath;
+	}
+	public Area getArea() {
+		return area;
+	}
+	public void setArea(Area area) {
+		this.area = area;
 	}
 	
 	

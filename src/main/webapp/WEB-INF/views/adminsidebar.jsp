@@ -148,7 +148,27 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Tables Nav -->
+      </li>
+      
+       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#areas-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Areas</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="areas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="listarea">
+              <i class="bi bi-circle"></i><span>List Areas</span>
+            </a>
+          </li>
+          <li>
+            <a href="area">
+              <i class="bi bi-circle"></i><span>Add Area</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <!-- End Tables Nav -->
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">

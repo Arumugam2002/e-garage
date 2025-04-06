@@ -52,15 +52,9 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="garages" class="nav-item nav-link">Garages</a>
+                <!-- <a href="garages" class="nav-item nav-link">Garages</a> -->
                 
-                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="bookservice" class="dropdown-item">Book Service</a>
-                       
-                    </div>
-                </div>
+                 
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-up m-0">
@@ -78,8 +72,8 @@
 							<img src="${not empty user.profilePicPath ? user.profilePicPath : 'assets/img/profile-img.jpg'}" alt="Profile" class="profile-pic">${user.firstName}
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
-							<li><a class="dropdown-item" href="userprofile">Profile</a></li>
-							<li><a class="dropdown-item" href="userchangepassword">Change Password</a></li>
+							<li><a class="dropdown-item" href="serviceproviderprofile">Profile</a></li>
+							<li><a class="dropdown-item" href="serviceproviderchangepassword">Change Password</a></li>
 							<li><a class="dropdown-item" href="settings">Settings</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item text-danger" href="logout">Logout</a></li>

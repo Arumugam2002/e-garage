@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.dto.ServiceProviderDto;
 import com.grownited.entity.ServiceProvider;
 import com.grownited.entity.Services;
 import com.grownited.entity.Vehicles;
@@ -29,7 +30,7 @@ public class GarageController {
 	@GetMapping("garages")
 	public String getListGarages(Model model)
 	{
-		List<ServiceProvider> allGarages = serviceProviderRepository.findAll();
+		List<ServiceProviderDto> allGarages = serviceProviderRepository.getGarages();
 		
 		model.addAttribute("allGarages",allGarages);
 		
@@ -40,11 +41,11 @@ public class GarageController {
 	public String getViewGarage(Integer id, Model model)
 	{
 		
-		List<Services> services = serviceRepository.findAll();
+		
 		
 Optional<ServiceProvider> opServiceProvider = serviceProviderRepository.findById(id);
 
-	
+List<Services> services = serviceRepository.findByServiceProviderId(id);
 		
 		if(opServiceProvider.isPresent())
 		{

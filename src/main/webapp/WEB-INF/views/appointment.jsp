@@ -56,15 +56,13 @@
             <form action="saveappointment" method="post">
                 
                      
-            Services:-     <select name="servicesId">
-                <option>Select Services </option>
-                
-                <c:forEach items="${allServices }" var="s">
-                
-                <option value="${s.servicesId}">${s.serviceName}</option>
-                </c:forEach>
-                </select>
-                <br><br>
+            <label>Services:</label>
+<select name="servicesId" id="serviceSelect" onchange="updateBasePrice()">
+    <option value="">Select Service</option>
+    <c:forEach items="${allServices}" var="s">
+        <option value="${s.servicesId}">${s.serviceName}</option>
+    </c:forEach>
+</select>
                  ServiceProvider:-     <select name="serviceProviderId">
                 <option>Select Service Providers </option>
                 
@@ -74,15 +72,14 @@
                 </c:forEach>
                 </select>
                  <br><br>
-                <div class="mb-3">
-                    <label class="form-label">Appointment Base Price</label>
-                    <input type="number" class="form-control" name="basePrice" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Appointment Price</label>
-                    <input type="number" class="form-control" name="price" required>
-                </div>
+                <!-- Base Price Field (Read-Only) -->
+<div class="mb-3">
+    <label class="form-label">Base Price</label>
+    <input type="number" class="form-control" id="basePrice" name="basePrice" readonly>
+</div>
+
+<!-- Hidden Price Field -->
+<input type="hidden" id="price" name="price">
                 
                 <div class="mb-3">
                     <label class="form-label">Appointment Date</label>
@@ -128,6 +125,30 @@
 
   </main>
 <%@include file="adminfooter.jsp" %>
+
+<script>
+    var services = [];
+
+    // Populate the services array with data from the backend
+    <c:forEach var="s" items="${allServices}">
+        services.push({ servicesId: "${s.servicesId}", basePrice: "${s.allInclusivePrice}" });
+    </c:forEach>;
+
+    function updateBasePrice() {
+        var selectedServiceId = document.getElementById("serviceSelect").value;
+
+        // Find the selected service from the array
+        var selectedService = services.find(service => service.servicesId == selectedServiceId);
+
+        if (selectedService) {
+            document.getElementById("basePrice").value = selectedService.basePrice;
+            document.getElementById("price").value = selectedService.basePrice; // Auto-fill price
+        } else {
+            document.getElementById("basePrice").value = "";
+            document.getElementById("price").value = "";
+        }
+    }
+</script>
 </body>
 </html>
 

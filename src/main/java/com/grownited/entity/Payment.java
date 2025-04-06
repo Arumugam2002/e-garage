@@ -24,6 +24,8 @@ public class Payment {
 	private Integer amountPaid;
 	private LocalDateTime paymentDate;
 	private String paymentStatus;
+	
+	
 	public Integer getPaymentId() {
 		return paymentId;
 	}

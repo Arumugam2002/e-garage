@@ -31,11 +31,22 @@
     <div class="container">
         <h2 class="text-center text-primary mb-4">View ServiceProvider</h2>
         <div class="user-info">
-            <p><strong>Garage Title</strong> ${serviceProvider.garageTitle}</p>
-            <p><strong>Speciality</strong> ${serviceProvider.speciality}</p>
-            <p><strong>Year</strong> ${serviceProvider.experienceYear}</p>
-            <p><strong>Other Information</strong> ${serviceProvider.otherInformation}</p>
-            <p><strong>Zip Code</strong> ${serviceProvider.zipCode}</p>
+             <p><strong>Garage Title</strong> ${serviceProvider.garageTitle}</p>
+            <p><strong>ContactNo:- </strong> ${serviceProvider.contactNo}</p>
+             <p><strong>Year</strong> ${serviceProvider.experienceYear}</p>
+             
+               <p><strong>Other Information</strong> ${serviceProvider.otherInformation}</p>   
+            <p><strong>Speciality:- </strong> ${serviceProvider.speciality}</p>
+            
+           
+            
+           <p><strong>ZipCode:- </strong> ${serviceProvider.zipCode}</p>
+            <p><strong>Address:- </strong> ${serviceProvider.address}</p>
+        	<p><strong>Area:- </strong> ${serviceProvider.areaName}</p>
+            <p><strong>State:- </strong> ${serviceProvider.stateName}</p>
+            <p><strong>City:- </strong> ${serviceProvider.cityName}</p>
+            
+            
             
         </div>
         <div class="text-center mt-4">

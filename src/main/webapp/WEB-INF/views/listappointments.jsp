@@ -45,7 +45,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Appointment DateTime</th>
-                        <th>Base Price</th>
+                        
                         <th>Price</th>
                         <th>Reason</th>
                         
@@ -62,21 +62,21 @@
                     <c:forEach items="${allAppointments}" var="a">
                         <tr>
                             <td>${a[1]}</td>
-                            <td>${a[2]}</td>
+                            <td>${a[4]}</td>
                             <td>${a[3]}</td>
                             
-                            <td>${a[4]}</td>
-                            <td>${a[8]}</td>
-                            <td>${a[9]}</td>
+                            <td>${a[6]}</td>
+                            <td>${a[5]}</td>
+                            
                             <td>
     <span class="badge" style="background-color: 
-        ${a[5] == 'Pending' ? '#ffc107' : 
-         a[5] == 'Booked' ? '#28a745' : 
-         a[5] == 'Rejected' ? '#dc3545' : 
-         a[5] == 'Cancelled' ? '#6c757d' : 
-         a[5] == 'Rescheduled' ? '#17a2b8' : 
+        ${a[2] == 'Pending' ? '#ffc107' : 
+         a[2] == 'Booked' ? '#28a745' : 
+         a[2] == 'Rejected' ? '#dc3545' : 
+         a[2] == 'Cancelled' ? '#6c757d' : 
+         a[2] == 'Rescheduled' ? '#17a2b8' : 
          '#007bff'}">
-        ${a[5]}
+        ${a[2]}
     </span>
 </td>
                             <td>
@@ -94,14 +94,14 @@
                 onchange="if(confirm('Are you sure you want to change the status to ' + this.value + '?')) { 
                     document.getElementById('statusForm-${a[0]}').submit(); 
                 } else { 
-                    this.value = '${a[5]}'; 
+                    this.value = '${a[2]}'; 
                 }">
-                <option value="Pending" ${a[5] == 'Pending' ? 'selected' : ''}>Pending</option>
-                <option value="Booked" ${a[5] == 'Booked' ? 'selected' : ''}>Booked</option>
-                <option value="Rejected" ${a[5] == 'Rejected' ? 'selected' : ''}>Rejected</option>
-                <option value="Cancelled" ${a[5] == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
-                <option value="Rescheduled" ${a[5] == 'Rescheduled' ? 'selected' : ''}>Rescheduled</option>
-                <option value="InProgress" ${a[5] == 'InProgress' ? 'selected' : ''}>InProgress</option>
+                <option value="Pending" ${a[2] == 'Pending' ? 'selected' : ''}>Pending</option>
+                <option value="Booked" ${a[2] == 'Booked' ? 'selected' : ''}>Booked</option>
+                <option value="Rejected" ${a[2] == 'Rejected' ? 'selected' : ''}>Rejected</option>
+                <option value="Cancelled" ${a[2] == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                <option value="Rescheduled" ${a[2] == 'Rescheduled' ? 'selected' : ''}>Rescheduled</option>
+                <option value="InProgress" ${a[2] == 'InProgress' ? 'selected' : ''}>InProgress</option>
             </select>
         </form></td>
 															

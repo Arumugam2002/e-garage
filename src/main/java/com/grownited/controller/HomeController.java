@@ -3,6 +3,7 @@ package com.grownited.controller;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -18,7 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.grownited.entity.Area;
+import com.grownited.entity.City;
+import com.grownited.entity.State;
 import com.grownited.entity.Users;
+import com.grownited.repository.areaRepository;
+import com.grownited.repository.cityRepository;
+import com.grownited.repository.stateRepository;
 import com.grownited.repository.userRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,6 +35,17 @@ public class HomeController {
 
 	@Autowired
 	userRepository userRepository;
+	
+	@Autowired
+	areaRepository areaRepository;
+	
+	
+	@Autowired
+	stateRepository stateRepository;
+	
+	
+	@Autowired
+	cityRepository cityRepository;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -41,6 +59,19 @@ public class HomeController {
 		
 		Users user = (Users) session.getAttribute("user");
 		
+		List<State> allStates = stateRepository.findAll();
+        List<City> allCities = cityRepository.findAll();
+        List<Area> allAreas = areaRepository.findAll();
+        
+        model.addAttribute("allStates", allStates);
+        model.addAttribute("allCities", allCities);
+        model.addAttribute("allAreas", allAreas);
+        
+        
+        model.addAttribute("selectedStateId", user.getState());
+        model.addAttribute("selectedCityId", user.getCity());
+        model.addAttribute("selectedAreaId", user.getArea());
+		
 		model.addAttribute("user",user);
 		
 		
@@ -50,9 +81,14 @@ public class HomeController {
 	}
 	
 	@PostMapping("updateuser")
-	public String getUpdateUser(Users user, HttpSession session, RedirectAttributes redirectAttributes, MultipartFile profilePic)
+	public String getUpdateUser(Users user, HttpSession session, RedirectAttributes redirectAttributes, MultipartFile profilePic, Integer stateId, Integer areaId, Integer cityId)
 	
 	{
+		
+		State selectedState = stateRepository.findById(stateId).orElse(null);
+		City selectedCity = cityRepository.findById(cityId).orElse(null);
+		Area selectedArea = areaRepository.findById(areaId).orElse(null);
+		
 		
 		if(profilePic!=null && !profilePic.isEmpty())
 		{
@@ -85,6 +121,9 @@ public class HomeController {
 			  
 			  existingUser.setContactNo(user.getContactNo());
 			  existingUser.setGender(user.getGender());
+			  existingUser.setArea(selectedArea);
+			  existingUser.setCity(selectedCity);
+			  existingUser.setState(selectedState);
 			  
 			  if(profilePic!=null && !profilePic.isEmpty())
 			  {

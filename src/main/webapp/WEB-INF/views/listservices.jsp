@@ -57,21 +57,23 @@
                         <th>Service Name</th>
                         <th>Service Description</th>
                         <th>All Inclusive Price</th>
+                        <th>Service Provider Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${services}" var="s">
                         <tr>
-                            <td>${s.serviceName}</td>
-                            <td>${s.serviceDescription}</td>
-                            <td>${s.allInclusivePrice}</td>
+                            <td>${s[3]}</td>
+                            <td>${s[2]}</td>
+                            <td>${s[1]}</td>
+                            <td>${s[5]}</td>
                             <td>
 																<div class="d-flex flex-row gap-2">
-																	<a href="viewservices?servicesId=${s.servicesId}"
+																	<a href="viewservices?servicesId=${s[0]}"
 																		class="btn btn-sm btn-success">View</a> <a
-																		href="deleteservices?servicesId=${s.servicesId}"
-																		class="btn btn-sm btn-danger">Delete</a> <a href="editservices?servicesId=${s.servicesId}"
+																		href="deleteservices?servicesId=${s[0]}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="editservices?servicesId=${s[0]}"
 																		class="btn btn-sm btn-primary">Edit</a>
 																</div>
 															</td>

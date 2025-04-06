@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.entity.ServiceProvider;
 import com.grownited.entity.Services;
+import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
 
 @Controller
@@ -18,10 +20,19 @@ public class ServiceController {
 	@Autowired
 	serviceRepository serviceRepository;
 	
+	@Autowired
+	serviceProviderRepository serviceProviderRepository;
+	
 	
 	@GetMapping("services")
-	public String getServices()
+	public String getServices(Model model)
 	{
+		
+		List<ServiceProvider> allServiceProviders = serviceProviderRepository.findAll();
+		
+		model.addAttribute("allServiceProviders",allServiceProviders);
+		
+		
 		return "services";
 	}
 	
@@ -42,7 +53,7 @@ public class ServiceController {
 	public String getListServices(Model model)
 	{
 		
-		List<Services> services = serviceRepository.findAll();
+		List<Object[]> services = serviceRepository.getAll();
 		
 		model.addAttribute("services", services);
 		
@@ -73,11 +84,15 @@ public class ServiceController {
 	@GetMapping("editservices")
 	public String getEditServicesPage(Integer servicesId, Model model)
 	{
+		
+		List<ServiceProvider> serviceProviders = serviceProviderRepository.findAll();
+		
 		Optional<Services> services = serviceRepository.findById(servicesId);
 		
 		if(services.isPresent())
 		{
 			model.addAttribute("services", services.get());
+			model.addAttribute("allServiceProviders", serviceProviders);
 			return "editservices";
 		}
 		
@@ -101,6 +116,7 @@ public class ServiceController {
 			existingServices.setServiceName(services.getServiceName());
 			existingServices.setServiceDescription(services.getServiceDescription());
 			existingServices.setAllInclusivePrice(services.getAllInclusivePrice());
+			existingServices.setServiceProviderId(services.getServiceProviderId());
 			
 			serviceRepository.save(existingServices);
 			

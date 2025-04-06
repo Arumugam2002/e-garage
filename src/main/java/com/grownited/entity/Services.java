@@ -17,6 +17,10 @@
 		private String serviceName;
 		private String serviceDescription;
 		private Integer allInclusivePrice;
+		
+		private Integer serviceProviderId;
+		
+		
 		public Integer getServicesId() {
 			return servicesId;
 		}
@@ -40,6 +44,12 @@
 		}
 		public void setAllInclusivePrice(Integer allInclusivePrice) {
 			this.allInclusivePrice = allInclusivePrice;
+		}
+		public Integer getServiceProviderId() {
+			return serviceProviderId;
+		}
+		public void setServiceProviderId(Integer serviceProviderId) {
+			this.serviceProviderId = serviceProviderId;
 		}
 		
 		

@@ -23,15 +23,55 @@ public class ServiceProvider {
 	 * @ManyToMany
 	 * 
 	 * @JoinColumn(name="userid", referencedColumnName = "id") private Users user;
+	 * 
+	 * 
 	 */
+	
+	private Integer userId;
 	private String speciality;
 	private String garageTitle;
 	private String zipCode;
 	private String contactNo;
 	private Integer experienceYear;
 	private String otherInformation;
+	private Integer stateId;
+	private Integer cityId;
+	private String address;
+	private Integer areaId;
+	private String imagePicPath;
 	
 	
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getStateId() {
+		return stateId;
+	}
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+	public Integer getCityId() {
+		return cityId;
+	}
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public Integer getAreaId() {
+		return areaId;
+	}
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
 	/*
 	 * public Users getUser() { return user; } public void setUser(Users user) {
 	 * this.user = user; }
@@ -77,6 +117,12 @@ public class ServiceProvider {
 	}
 	public void setOtherInformation(String otherInformation) {
 		this.otherInformation = otherInformation;
+	}
+	public String getImagePicPath() {
+		return imagePicPath;
+	}
+	public void setImagePicPath(String imagePicPath) {
+		this.imagePicPath = imagePicPath;
 	}
 	
 	
