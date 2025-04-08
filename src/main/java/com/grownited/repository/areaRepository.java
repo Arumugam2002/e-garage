@@ -15,6 +15,8 @@ public interface areaRepository extends JpaRepository<Area, Integer>{
 	
 	@Query(value = "select a.*, c.city_name from areas a, cities c where a.city_id = c.city_id;", nativeQuery = true)
 	List<AreaDto> getAll();
+
+	List<Area> findByCityId(Integer cityId);
 	
 	
 }

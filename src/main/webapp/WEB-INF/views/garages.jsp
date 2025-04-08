@@ -116,44 +116,42 @@
             <div class="alert alert-danger text-center mb-4">${error}</div>
         </c:if>
         
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <c:forEach var="g" items="${allGarages}">
-                <div class="col">
-                    <div class="garage-card shadow">
-                        <img src="${g.imagePicPath}" alt="${g.garageTitle}" class="garage-img" 
-                             onerror="this.src='path/to/fallback-image.jpg'">
-                        <div class="card-body">
-                            <h4 class="garage-title">${g.garageTitle}</h4>
-                            <div class="garage-info">
-                                <p><strong>Since:</strong> ${g.experienceYear}</p>
-                                <p><strong>Speciality:</strong> ${g.speciality}</p>
-                                <p><strong>Contact:</strong> ${g.contactNo}</p>
-                                <p><strong>Address:</strong> ${g.address}</p>
-                                <p><strong>State:</strong> ${g.stateName}</p>
-                                <p><strong>City:</strong> ${g.cityName}</p>
-                                <p><strong>Area:</strong> ${g.areaName}</p>
-                            </div>
-                            <a href="viewgarage?id=${g.serviceProviderId}" class="btn btn-book w-100">View Garage</a>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
+        <div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label>State</label>
+            <select id="stateDropdown" class="form-select">
+                <option value="">-- Select State --</option>
+                <c:forEach var="s" items="${states}">
+                    <option value="${s.stateId}">${s.stateName}</option>
+                </c:forEach>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>City</label>
+            <select id="cityDropdown" class="form-select" disabled>
+                <option value="">-- Select City --</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Area</label>
+            <select id="areaDropdown" class="form-select" disabled>
+                <option value="">-- Select Area --</option>
+            </select>
         </div>
     </div>
-
+</div>
+        
+        <div id="garageContainer">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        
+    </div>
+</div>
+    </div>
+   
+	<script src="assets/js/garagefilter.js"></script>
     <jsp:include page="userfooter.jsp"></jsp:include>
 </body>
 </html>
 
 
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Find a Garage - eGarage</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    
-</body>
-</html> --%>

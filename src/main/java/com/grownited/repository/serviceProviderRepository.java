@@ -1,10 +1,12 @@
 package com.grownited.repository;
 
+import java.text.AttributedString;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.grownited.dto.ServiceProviderDto;
@@ -28,4 +30,10 @@ public interface serviceProviderRepository extends JpaRepository<ServiceProvider
 			+ "JOIN cities c ON sp.city_id = c.city_id\r\n"
 			+ "WHERE sp.service_provider_id = :serviceProviderId;", nativeQuery = true)
 	ServiceProviderDto getByServiceProviderId(Integer serviceProviderId);
+	
+	
+	List<ServiceProvider> findByStateIdAndCityIdAndAreaId(Integer stateId, Integer cityId, Integer areaId);
+	
+		
+	
 }

@@ -27,6 +27,34 @@ public class ServiceProviderDto {
 	 * this.areaName = areaName; }
 	 */
 	
+public ServiceProviderDto() {
+		
+	}
+	
+	
+	public ServiceProviderDto(Integer serviceProviderId, String speciality, String garageTitle, String zipCode,
+            String contactNo, Integer experienceYear, String otherInformation, Integer stateId,
+            Integer cityId, String address, Integer areaId, String stateName,
+            String cityName, String areaName, String imagePicPath) {
+this.serviceProviderId = serviceProviderId;
+this.speciality = speciality;
+this.garageTitle = garageTitle;
+this.zipCode = zipCode;
+this.contactNo = contactNo;
+this.experienceYear = experienceYear;
+this.otherInformation = otherInformation;
+this.stateId = stateId;
+this.cityId = cityId;
+this.address = address;
+this.areaId = areaId;
+this.stateName = stateName;
+this.cityName = cityName;
+this.areaName = areaName;
+this.imagePicPath = imagePicPath;
+}
+	
+	
+
 	//For list garages in admin
 	public ServiceProviderDto(Integer serviceProviderId, String speciality, String garageTitle, String contactNo,
 			String stateName, String cityName, String areaName) {

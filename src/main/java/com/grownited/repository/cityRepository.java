@@ -20,4 +20,13 @@ public interface cityRepository extends JpaRepository<City, Integer>{
 	
 	Optional<City>  findByCityName(String cityName);
 	
+	List<City> findByStateId(Integer stateId);
+
+
+	/*
+	  @Query(value =
+	  "select c.city_id, c.city_name,c.state_id,s.state_name from cities c join states s on c.state_id = s.state_id where c.state_id = :stateId"
+	 , nativeQuery = true) List<CityDto> findByStateId(Integer stateId);
+	 */
+	
 }

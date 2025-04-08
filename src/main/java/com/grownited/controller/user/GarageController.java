@@ -15,6 +15,7 @@ import com.grownited.entity.Services;
 import com.grownited.entity.Vehicles;
 import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
+import com.grownited.repository.stateRepository;
 
 @Controller
 public class GarageController {
@@ -26,6 +27,9 @@ public class GarageController {
 	@Autowired
 	serviceRepository serviceRepository;
 	
+	@Autowired
+	stateRepository stateRepository;
+	
 	
 	@GetMapping("garages")
 	public String getListGarages(Model model)
@@ -34,8 +38,12 @@ public class GarageController {
 		
 		model.addAttribute("allGarages",allGarages);
 		
+		model.addAttribute("states", stateRepository.findAll());
 		return "garages";
 	}
+	
+	
+	
 	
 	@GetMapping("viewgarage")
 	public String getViewGarage(Integer id, Model model)

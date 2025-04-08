@@ -11,6 +11,20 @@ public class CityDto {
 	
 	
 	
+	public CityDto() {
+		
+	}
+	
+	
+	
+	public CityDto(Integer cityId, String cityName) {
+		
+		this.cityId = cityId;
+		this.cityName = cityName;
+	}
+
+
+
 	public CityDto(Integer cityId, String cityName, Integer stateId, String stateName) {
 		
 		this.cityId = cityId;

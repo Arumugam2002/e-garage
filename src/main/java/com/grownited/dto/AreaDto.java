@@ -10,6 +10,20 @@ public class AreaDto {
 	
 	
 	
+	public AreaDto() {
+		
+	}
+	
+	
+	
+	public AreaDto(Integer areaId, String areaName) {
+		
+		this.areaId = areaId;
+		this.areaName = areaName;
+	}
+
+
+
 	public AreaDto(Integer areaId, String areaName, Integer cityId, String cityName) {
 		super();
 		this.areaId = areaId;
