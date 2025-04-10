@@ -52,6 +52,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index" class="nav-item nav-link active">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="viewservicegarage" class="nav-item nav-link">View Garages</a>
                 <!-- <a href="garages" class="nav-item nav-link">Garages</a> -->
                 
                  
@@ -73,6 +74,8 @@
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
 							<li><a class="dropdown-item" href="serviceproviderprofile">Profile</a></li>
+							<li><a class="dropdown-item" href="servicegarage">Add Your Garage</a></li>
+							<li><a class="dropdown-item" href="servicegarageadd">Add Services</a></li>
 							<li><a class="dropdown-item" href="serviceproviderchangepassword">Change Password</a></li>
 							<li><a class="dropdown-item" href="settings">Settings</a></li>
 							<li><hr class="dropdown-divider"></li>

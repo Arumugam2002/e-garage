@@ -76,6 +76,15 @@ public class GarageAjaxController{
 		
 	}
 	
+	@GetMapping("/getAllGarages")
+	@ResponseBody
+	public List<ServiceProviderDto> getAllGarages() {
+	    
+		List<ServiceProviderDto> allServiceProvider = serviceProviderRepository.getGarages();
+		
+		return allServiceProvider;
+	}
+	
 	
 	@GetMapping("/filterGarages")
 	@ResponseBody
@@ -106,5 +115,7 @@ public class GarageAjaxController{
 	        }
 	        return dtoList;
 	}
+	
+	
 	
 }

@@ -71,6 +71,8 @@
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
+                
+                <a href="viewuserappointment" class="nav-item nav-link">View Appointments</a>
                <a href="viewcart" class="nav-item nav-link"> <i class="fas fa-shopping-cart"></i></a>
                 <li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="userDropdown"

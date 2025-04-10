@@ -34,6 +34,6 @@ public interface serviceProviderRepository extends JpaRepository<ServiceProvider
 	
 	List<ServiceProvider> findByStateIdAndCityIdAndAreaId(Integer stateId, Integer cityId, Integer areaId);
 	
-		
+	List<ServiceProvider> findByUserId(Integer userId);	
 	
 }

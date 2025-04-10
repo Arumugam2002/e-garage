@@ -26,6 +26,15 @@ public class Appointment {
 	
 	private Integer servicesId;
 	private Integer serviceProviderId;
+	private Integer userId;
+	
+	
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	public Integer getAppointmentId() {
 		return appointmentId;
 	}

@@ -5,6 +5,59 @@
 
     $(document).ready(function () {
 
+		
+		
+		
+		function loadAllGarages() {
+		           $.ajax({
+		               url: '/getAllGarages',
+		               type: 'GET',
+		               success: function (garages) {
+		                   renderGarageCards(garages);
+		               },
+		               error: function () {
+		                   alert('Failed to load garages.');
+		               }
+		           });
+		       }
+
+		       // 🔹 Render Garage Cards
+		       function renderGarageCards(garages) {
+		           $('#garageContainer .row').empty();
+		           if (garages.length > 0) {
+		               $.each(garages, function (i, garage) {
+		                   const garageCard = `
+		                   <div class="col">
+		                       <div class="garage-card shadow">
+		                           <img src="${garage.imagePicPath}" alt="${garage.garageTitle}" class="garage-img">
+		                           <div class="card-body">
+		                               <h4 class="garage-title">${garage.garageTitle}</h4>
+		                               <div class="garage-info">
+		                                   <p><strong>Since:</strong> ${garage.experienceYear}</p>
+		                                   <p><strong>Speciality:</strong> ${garage.speciality}</p>
+		                                   <p><strong>Contact:</strong> ${garage.contactNo}</p>
+		                                   <p><strong>Address:</strong> ${garage.address}</p>
+		                                   <p><strong>State:</strong> ${garage.stateName}</p>
+		                                   <p><strong>City:</strong> ${garage.cityName}</p>
+		                                   <p><strong>Area:</strong> ${garage.areaName}</p>
+		                               </div>
+		                               <a href="viewgarage?id=${garage.serviceProviderId}" class="btn btn-book w-100">View Garage</a>
+		                           </div>
+		                       </div>
+		                   </div>`;
+		                   $('#garageContainer .row').append(garageCard);
+		               });
+		           } else {
+		               $('#garageContainer .row').append('<div class="col-12 text-center">No garages available.</div>');
+		           }
+		       }
+
+		       // 🔹 Load all garages on page load
+		       loadAllGarages();
+
+		
+		
+		
         // State change
         $('#stateDropdown').change(function () {
             const stateId = $(this).val();

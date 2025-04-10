@@ -96,6 +96,7 @@ public class BookServiceController {
 	    appointment.setPrice(totalPrice);
 	    appointment.setBasePrice(totalPrice);
 	    appointment.setStatus("Booked");
+	    appointment.setUserId(userId);
 
 	    Appointment savedAppointment = appointmentRepository.save(appointment); // get generated ID
 
@@ -110,9 +111,22 @@ public class BookServiceController {
 	    }
 
 	    // Optionally clear the cart
-	    //cartRepository.deleteAll(cartItems);
+	    cartRepository.deleteAll(cartItems);
 
 	    return "redirect:/garages";
+	}
+	
+	
+	@GetMapping("viewuserappointment")
+	public String getUserAppointment(HttpSession session, Model model)
+	{
+		Users user = (Users) session.getAttribute("user");
+		Integer userId = user.getId();
+		
+		List<Object[]> appointments = appointmentRepository.getAppointmentByUserId(userId);
+		model.addAttribute("appointments", appointments);
+		
+		return "viewuserappointment";
 	}
 	
 }
