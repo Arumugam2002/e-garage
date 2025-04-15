@@ -3,10 +3,16 @@ package com.grownited.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.grownited.entity.Appointment;
+
+
+
 
 @Repository
 public interface appointmentRepository extends JpaRepository<Appointment, Integer> {
@@ -46,11 +52,16 @@ public interface appointmentRepository extends JpaRepository<Appointment, Intege
             "a.reason AS reason, " +
             "a.price AS price, " +
             "sp.garage_title AS garageTitle, " +
-            "GROUP_CONCAT(s.service_name SEPARATOR ', ') AS services " +
+            "GROUP_CONCAT(s.service_name SEPARATOR ', ') AS services, " +
+            "v.manufacturer, " + 
+            "v.model, " + 
+            "v.license_plate, " + 
+            "a.user_id " +
             "FROM appointments a " +
             "JOIN service_providers sp ON a.service_provider_id = sp.service_provider_id " +
             "JOIN appointment_service aps ON a.appointment_id = aps.appointment_id " +
             "JOIN services s ON aps.services_id = s.services_id " +
+            "JOIN vehicles v ON a.vehicles_id = v.vehicles_id " + 
             "Where a.user_id = :userId " + 
             "GROUP BY a.appointment_id " +
             "ORDER BY a.appointment_id",
@@ -67,4 +78,8 @@ public interface appointmentRepository extends JpaRepository<Appointment, Intege
 	
 	List<Appointment> findByStatus(String status);
 	
+	@Modifying
+	@Transactional
+	@Query("UPDATE Appointment a SET a.status = :status WHERE a.appointmentId = :appointmentId AND a.userId = :userId")
+	int cancelAppointment(@Param("status") String status, @Param("appointmentId") Integer appointmentId, @Param("userId") Integer userId);
 }

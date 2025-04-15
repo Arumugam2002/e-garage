@@ -19,4 +19,5 @@ public interface serviceRepository extends JpaRepository<Services, Integer> {
 	List<Object[]> getAll();
 	
 	
+	
 }

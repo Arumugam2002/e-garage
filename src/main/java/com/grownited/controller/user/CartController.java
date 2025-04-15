@@ -14,9 +14,11 @@ import com.grownited.entity.Cart;
 import com.grownited.entity.ServiceProvider;
 import com.grownited.entity.Services;
 import com.grownited.entity.Users;
+import com.grownited.entity.Vehicles;
 import com.grownited.repository.cartRepository;
 import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
+import com.grownited.repository.vehicleRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -33,6 +35,8 @@ public class CartController {
 	@Autowired
 	cartRepository cartRepository;
 	
+	@Autowired
+	vehicleRepository vehicleRepository;
 	
 	@Autowired
 	serviceProviderRepository serviceProviderRepository;
@@ -53,6 +57,9 @@ public class CartController {
 		
 		if(userId!=null)
 		{
+			
+			List<Vehicles> vehicles = vehicleRepository.findByUserId(userId); 
+			
 			List<Cart> cartItems = cartRepository.findByUserId(userId);
 			model.addAttribute("cartItems",cartItems);
 			
@@ -61,6 +68,7 @@ public class CartController {
 	            total += item.getPrice();
 	        }
 	        model.addAttribute("totalPrice", total);
+	        model.addAttribute("vehicles", vehicles);
 	    
 		}
 		

@@ -66,7 +66,7 @@ public class ServiceController {
 	{
 		Optional<Services> optionalServices = serviceRepository.findById(servicesId);
 		
-		if(optionalServices.isEmpty())
+		if(!optionalServices.isPresent())
 		{
 			
 		}

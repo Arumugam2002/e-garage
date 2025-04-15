@@ -18,7 +18,7 @@ public class Cart {
 	private Integer userId;
 	private Integer servicesId;
 	private String serviceName;
-	private Integer price;
+	private Double price;
 	private Integer serviceProviderId;
 	
 	public Cart()
@@ -28,7 +28,7 @@ public class Cart {
 	
 	
 	
-	public Cart(Integer cartId, Integer userId, Integer servicesId, String serviceName, Integer price,
+	public Cart(Integer cartId, Integer userId, Integer servicesId, String serviceName, Double price,
 			Integer serviceProviderId) {
 		super();
 		this.cartId = cartId;
@@ -53,10 +53,10 @@ public class Cart {
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
 	}
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

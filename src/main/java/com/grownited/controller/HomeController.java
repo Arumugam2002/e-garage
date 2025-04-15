@@ -158,7 +158,7 @@ public class HomeController {
 		
 		Optional<Users> optionalUser = userRepository.findById(user.getId());
 		
-		if(optionalUser.isEmpty())
+		if(!optionalUser.isPresent())
 		{
 			model.addAttribute("error", "user not found");
 			return "userchangepassword";

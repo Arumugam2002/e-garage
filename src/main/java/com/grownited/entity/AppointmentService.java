@@ -18,7 +18,7 @@ public class AppointmentService {
 	
 	private Integer servicesId;
 
-    private Integer price;
+    private Double price;
     
     
     
@@ -27,7 +27,7 @@ public class AppointmentService {
 		
 	}
 
-	public AppointmentService(Integer appointmentServiceId, Integer appointmentId, Integer servicesId, Integer price) {
+	public AppointmentService(Integer appointmentServiceId, Integer appointmentId, Integer servicesId, Double price) {
 		super();
 		this.appointmentServiceId = appointmentServiceId;
 		this.appointmentId = appointmentId;
@@ -59,11 +59,11 @@ public class AppointmentService {
 		this.servicesId = servicesId;
 	}
 
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
     

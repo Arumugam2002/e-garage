@@ -2,19 +2,21 @@
     pageEncoding="UTF-8"%>
  <!DOCTYPE html>
 <html>
-<%--
+
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
+<%@include file="admincss.jsp" %>
+<!-- for chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<h2>Welcome to Admin Dashboard, ${user.firstName}</h2><br><br>
 
-<a href="logout">Logout</a>
-</body>
-</html> --%>
 
-<%@include file="admincss.jsp" %>
+
+
+
+
 
 <%@include file="adminheader.jsp" %>
 
@@ -248,6 +250,73 @@
             </div>
  
 
+<!-- Intern Analysis -->
+            <div class="col-12">
+              <div class="card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Customer Analysis <span>/ Year</span></h5>
+
+                  <!-- Bar Chart -->
+                   <canvas id="myChart" width="400" height="180"></canvas>
+
+                   <script>
+					      var ctx = document.getElementById('myChart').getContext('2d');
+					      var myChart = new Chart(ctx, {
+					        type: 'bar',
+					        data: {
+					          labels: ['January', 'February', 'March', 'April', 'May', 'June','July','August','September','October','November','December'],
+					          datasets: [{
+					            label: 'Customer Data',
+					            data: [${monthWiseCustomer[0]}, ${monthWiseCustomer[1]}, ${monthWiseCustomer[2]}, ${monthWiseCustomer[3]}, ${monthWiseCustomer[4]}, ${monthWiseCustomer[5]}, ${monthWiseCustomer[6]}, ${monthWiseCustomer[7]}, ${monthWiseCustomer[8]}, ${monthWiseCustomer[9]}, ${monthWiseCustomer[10]}, ${monthWiseCustomer[11]}],
+					            backgroundColor: [
+					              'rgba(255, 99, 132, 0.2)',
+					              'rgba(54, 162, 235, 0.2)',
+					              'rgba(255, 206, 86, 0.2)',
+					              'rgba(75, 192, 192, 0.2)',
+					              'rgba(153, 102, 255, 0.2)',
+					              'rgba(255, 159, 64, 0.2)'
+					            ],
+					            borderColor: [
+					              'rgba(255, 99, 132, 1)',
+					              'rgba(54, 162, 235, 1)',
+					              'rgba(255, 206, 86, 1)',
+					              'rgba(75, 192, 192, 1)',
+					              'rgba(153, 102, 255, 1)',
+					              'rgba(255, 159, 64, 1)'
+					            ],
+					            borderWidth: 1
+					          }]
+					        },
+					        options: {
+					          scales: {
+					            y: {
+					              beginAtZero: true
+					            }
+					          }
+					        }
+					      });
+					    </script>
+                  <!-- End Bar Chart -->
+
+                </div>
+
+              </div>
+            </div>
+           <!--  End Intern Analysis -->
                   <!-- Line Chart -->
                   
                   <!-- End Line Chart -->

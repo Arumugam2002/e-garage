@@ -64,11 +64,22 @@ public class AdminController {
 		
 		
 		
+		  Integer monthWiseCustomer [] = new Integer[12];
+		  
+		  for(int i = 1; i <= 12; i++) { 
+			    Integer count = userRepository.countThisUserMonth(i); 
+			    System.out.println("Month " + i + ": " + count); // Log the result for each month
+			    monthWiseCustomer[i-1] = count; 
+			}
+		 
+		
 		Integer thisMonthCustomerCount = userRepository.countThisUserMonth(month);	
 		
 		model.addAttribute("totalAdmin", totalAdmin);
 		
 		model.addAttribute("totalCustomer",totalCustomer);
+		
+		model.addAttribute("monthWiseCustomer",  monthWiseCustomer);
 		
 		model.addAttribute("thisMonthCustomerCount", thisMonthCustomerCount);
 		

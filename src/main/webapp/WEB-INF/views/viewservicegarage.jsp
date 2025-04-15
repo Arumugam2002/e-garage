@@ -67,6 +67,7 @@
                         <div class="garage-detail"><strong>Address:</strong> ${garage.address}</div>
                         
                         <a href="servicegarageadd?garageId=${garage.serviceProviderId}" class="btn-add-service">Add Service</a>
+                        <a href="viewserviceproviderservices?garageId=${garage.serviceProviderId}" class="btn btn-primary mt-3">View Services</a>
                     </div>
                 </div>
             </div>

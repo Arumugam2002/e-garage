@@ -74,45 +74,71 @@
 <body>
     <jsp:include page="userheader.jsp" />
 
-    <div class="appointments-section">
+     <div class="appointments-section">
         <div class="appointments-title">Your Appointments</div>
 
-        <div class="table-container">
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Appointment DateTime</th>
-                        <th>Price</th>
-                        <th>Reason</th>
-                        <th>Service Name</th>
-                        <th>Garage</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${appointments}" var="a">
-                        <tr>
-                            <td>${a[1]}</td>
-                            <td>₹${a[4]}</td>
-                            <td>${a[3]}</td>
-                            <td>${a[6]}</td>
-                            <td>${a[5]}</td>
-                            <td>
-                                <span class="status-badge 
-                                    ${a[2] == 'Pending' ? 'badge-pending' :
-                                      a[2] == 'Booked' ? 'badge-booked' :
-                                      a[2] == 'Rejected' ? 'badge-rejected' :
-                                      a[2] == 'Cancelled' ? 'badge-cancelled' :
-                                      a[2] == 'Rescheduled' ? 'badge-rescheduled' :
-                                      'badge-other'}">
-                                    ${a[2]}
-                                </span>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
+        <c:choose>
+            <c:when test="${not empty appointments}">
+                <div class="table-container">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Appointment DateTime</th>
+                                <th>Price</th>
+                                <th>Reason</th>
+                                <th>Service Name</th>
+                                <th>Garage</th>
+                                <th>Vehicle Manufacturer</th>
+                                <th>Vehicle Model</th>
+                                <th>Vehicle LicenseNo</th>
+                                <th>Status</th>
+                                <th>Cancel Appointment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${appointments}" var="a">
+                                <tr>
+                                    <td>${a[1]}</td>
+                                    <td>₹${a[4]}</td>
+                                    <td>${a[3]}</td>
+                                    <td>${a[6]}</td>
+                                    <td>${a[5]}</td>
+                                    <td>${a[7]}</td>
+                                    <td>${a[8]}</td>
+                                    <td>${a[9]}</td>
+                                    <td>
+                                        <span class="status-badge 
+                                            ${a[2] == 'Pending' ? 'badge-pending' :
+                                              a[2] == 'Booked' ? 'badge-booked' :
+                                              a[2] == 'Rejected' ? 'badge-rejected' :
+                                              a[2] == 'Cancelled' ? 'badge-cancelled' :
+                                              a[2] == 'Rescheduled' ? 'badge-rescheduled' :
+                                              'badge-other'}">
+                                            ${a[2]}
+                                        </span>
+                                    </td>
+                                   <td>
+    <c:if test="${a[2] != 'Cancelled'}">
+        <form action="cancel-appointment" method="post" style="margin:0;">
+            <input type="hidden" name="appointmentId" value="${a[10]}" />
+            <button type="submit" class="btn btn-sm btn-warning" onclick="return confirm('Are you sure you want to cancel this appointment?');">
+                Cancel
+            </button>
+        </form>
+    </c:if>
+</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="alert alert-info" role="alert">
+                    You do not have appointments currently.
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <jsp:include page="userfooter.jsp" />

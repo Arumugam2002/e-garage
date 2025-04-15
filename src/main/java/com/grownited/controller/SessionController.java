@@ -140,7 +140,7 @@ public class SessionController {
 		// Users user = userRepository.findByEmail(email);
 		Optional<Users> op = userRepository.findByEmail(email);
 
-		if (op.isEmpty()) {
+		if (!op.isPresent()) {
 			model.addAttribute("error", "User is not registered");
 			return "login";
 		}
@@ -317,7 +317,7 @@ public class SessionController {
 
 		Optional<Users> op = userRepository.findById(id);
 
-		if (op.isEmpty()) {
+		if (!op.isPresent()) {
 			// user not found
 		} else {
 			Users user = op.get();

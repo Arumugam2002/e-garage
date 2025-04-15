@@ -21,7 +21,7 @@ public class Payment {
 	@OneToOne
 	@JoinColumn(name="appointment_id")
 	private Appointment appointmentRefId;
-	private Integer amountPaid;
+	private Double amountPaid;
 	private LocalDateTime paymentDate;
 	private String paymentStatus;
 	
@@ -38,10 +38,10 @@ public class Payment {
 	public void setAppointmentRefId(Appointment appointmentRefId) {
 		this.appointmentRefId = appointmentRefId;
 	}
-	public Integer getAmountPaid() {
+	public Double getAmountPaid() {
 		return amountPaid;
 	}
-	public void setAmountPaid(Integer amountPaid) {
+	public void setAmountPaid(Double amountPaid) {
 		this.amountPaid = amountPaid;
 	}
 	public LocalDateTime getPaymentDate() {

@@ -148,5 +148,13 @@ System.out.println(imagePic.getOriginalFilename());
 		return "viewservicegarage";
 	}
 	
+	@GetMapping("viewserviceproviderservices")
+	public String getServicesPage(Integer garageId, Model model)
+	{
+		List<Services> services = serviceRepository.findByServiceProviderId(garageId); 
+		model.addAttribute("services",services);
+		
+		return "viewserviceproviderservices";
+	}
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grownited.entity.Appointment;
 import com.grownited.entity.AppointmentService;
@@ -17,11 +18,13 @@ import com.grownited.entity.Cart;
 import com.grownited.entity.ServiceProvider;
 import com.grownited.entity.Services;
 import com.grownited.entity.Users;
+import com.grownited.entity.Vehicles;
 import com.grownited.repository.appointmentRepository;
 import com.grownited.repository.appointmentServiceRepository;
 import com.grownited.repository.cartRepository;
 import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
+import com.grownited.repository.vehicleRepository;
 
 import jakarta.mail.FetchProfile.Item;
 import jakarta.servlet.http.HttpSession;
@@ -40,6 +43,9 @@ public class BookServiceController {
 	
 	@Autowired
 	cartRepository cartRepository;
+	
+	@Autowired
+	vehicleRepository vehicleRepository;
 	
 	
 	@Autowired
@@ -71,7 +77,7 @@ public class BookServiceController {
 	*/
 	
 	@PostMapping("bookappointment")
-	public String bookAppointment(Appointment appointment, Model model, HttpSession session, Integer id, String appointmentDateTimeStr, String reason)
+	public String bookAppointment (Model model, HttpSession session, Integer id, String appointmentDateTimeStr, String reason, Integer vehiclesId)
 	{
 		
 		Users user = (Users) session.getAttribute("user");
@@ -81,39 +87,52 @@ public class BookServiceController {
 		
 		
 		
+		
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 		LocalDateTime appointmentDateTime = LocalDateTime.parse(appointmentDateTimeStr, formatter);
 		
-		int totalPrice = 0;
+		double totalPrice = 0;
 	    for (Cart item : cartItems) {
 	        totalPrice += item.getPrice();
 	    }
 
+	    Appointment tempAppointment = new Appointment();
 	    
-	    appointment.setServiceProviderId(id);
+	    tempAppointment.setServiceProviderId(id);
+	    tempAppointment.setAppointmentDateTime(appointmentDateTime);
+	    tempAppointment.setPrice(totalPrice);
+	    tempAppointment.setBasePrice(totalPrice);
+	    tempAppointment.setStatus("Pending");
+	    tempAppointment.setUserId(userId);
+	    tempAppointment.setReason(reason);
+	    tempAppointment.setVehiclesId(vehiclesId);
 	    
-	    appointment.setAppointmentDateTime(appointmentDateTime);
-	    appointment.setPrice(totalPrice);
-	    appointment.setBasePrice(totalPrice);
-	    appointment.setStatus("Booked");
-	    appointment.setUserId(userId);
+	    session.setAttribute("tempAppointment", tempAppointment);
+	    session.setAttribute("cartItems", cartItems);
+	    
+		/*
+		 * appointment.setAppointmentDateTime(appointmentDateTime);
+		 * appointment.setPrice(totalPrice); appointment.setBasePrice(totalPrice);
+		 * appointment.setStatus("Booked"); appointment.setUserId(userId);
+		 */
 
-	    Appointment savedAppointment = appointmentRepository.save(appointment); // get generated ID
+	    //Appointment savedAppointment = appointmentRepository.save(appointment); // get generated ID
 
-	    
+	   /* 
 	    for (Cart item : cartItems) {
 	        AppointmentService appService = new AppointmentService();
-	        appService.setAppointmentId(savedAppointment.getAppointmentId());
+	        //appService.setAppointmentId(savedAppointment.getAppointmentId());
 	        appService.setServicesId(item.getServicesId());
 	        appService.setPrice(item.getPrice());
 
-	        appointmentServiceRepository.save(appService);
-	    }
+	       // appointmentServiceRepository.save(appService);
+	    } */
 
 	    // Optionally clear the cart
-	    cartRepository.deleteAll(cartItems);
+	   // cartRepository.deleteAll(cartItems);
 
-	    return "redirect:/garages";
+	    return "redirect:/checkout";
 	}
 	
 	
@@ -127,6 +146,22 @@ public class BookServiceController {
 		model.addAttribute("appointments", appointments);
 		
 		return "viewuserappointment";
+	}
+	
+	@PostMapping("/cancel-appointment")
+	public String cancelAppointment(@RequestParam("appointmentId") Integer appointmentId,Model model, HttpSession session) {
+	   
+		Users user = (Users) session.getAttribute("user");
+		Integer userId = user.getId();
+		
+	    int updated = appointmentRepository.cancelAppointment("Cancelled", appointmentId, userId);
+
+	    if (updated > 0) {
+	        model.addAttribute("success", "Appointment Cancelled Successfully");
+	    } else {
+	        model.addAttribute("error", "Could not cancel appointment");
+	    }
+	    return "redirect:/viewuserappointment"; // or wherever your user sees appointments
 	}
 	
 }

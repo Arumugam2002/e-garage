@@ -224,6 +224,19 @@
                         <input type="hidden" name="id" value="${serviceProvider.serviceProviderId}">
                         
                         <div class="form-group">
+    <label for="vehicleId" class="form-label">Select Vehicle</label>
+    <select class="form-control" name="vehiclesId" id="vehiclesId" required>
+    <option value=""  selected>Select Vehicle</option>
+        <c:forEach var="v" items="${vehicles}">
+            <option value="${v.vehiclesId}">
+                ${v.manufacturer} ${v.model} (${v.licensePlate})
+            </option>
+        </c:forEach>
+    </select>
+</div>
+                        
+                        
+                        <div class="form-group">
                             <label for="appointmentDateTime" class="form-label">Appointment Date & Time</label>
                             <input type="datetime-local" class="form-control" id="appointmentDateTime" name="appointmentDateTimeStr" required>
                         </div>

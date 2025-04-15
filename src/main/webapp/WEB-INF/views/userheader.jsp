@@ -81,6 +81,8 @@
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
 							<li><a class="dropdown-item" href="userprofile">Profile</a></li>
+							<li><a class="dropdown-item" href="useraddvehicles">Add Vehicle</a></li>
+							<li><a class="dropdown-item" href="userviewvehicles">View Vehicle</a></li>
 							<li><a class="dropdown-item" href="userchangepassword">Change Password</a></li>
 							<li><a class="dropdown-item" href="settings">Settings</a></li>
 							<li><hr class="dropdown-divider"></li>

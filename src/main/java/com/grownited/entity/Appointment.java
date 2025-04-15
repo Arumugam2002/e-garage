@@ -15,10 +15,10 @@ public class Appointment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer appointmentId;
-	private Integer basePrice;
+	private Double basePrice;
 	
 	
-	private Integer price;
+	private Double price;
 	private LocalDateTime appointmentDateTime;
 	
 	private String status;
@@ -27,8 +27,17 @@ public class Appointment {
 	private Integer servicesId;
 	private Integer serviceProviderId;
 	private Integer userId;
+	private Integer vehiclesId;
 	
 	
+	
+	
+	public Integer getVehiclesId() {
+		return vehiclesId;
+	}
+	public void setVehiclesId(Integer vehiclesId) {
+		this.vehiclesId = vehiclesId;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
@@ -41,16 +50,16 @@ public class Appointment {
 	public void setAppointmentId(Integer appointmentId) {
 		this.appointmentId = appointmentId;
 	}
-	public Integer getBasePrice() {
+	public Double getBasePrice() {
 		return basePrice;
 	}
-	public void setBasePrice(Integer basePrice) {
+	public void setBasePrice(Double basePrice) {
 		this.basePrice = basePrice;
 	}
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public LocalDateTime getAppointmentDateTime() {
