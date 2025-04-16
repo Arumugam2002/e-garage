@@ -3,6 +3,7 @@ package com.grownited.controller.serviceprovider;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
@@ -24,6 +26,7 @@ import com.grownited.repository.cityRepository;
 import com.grownited.repository.serviceProviderRepository;
 import com.grownited.repository.serviceRepository;
 import com.grownited.repository.stateRepository;
+import com.grownited.repository.userRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -47,6 +50,9 @@ public class ServiceProviderHomeController {
 	serviceRepository serviceRepository;
 	
 	@Autowired
+	userRepository userRepository;
+	
+	@Autowired
 	Cloudinary cloudinary;
 	
 	
@@ -55,6 +61,9 @@ public class ServiceProviderHomeController {
 	{
 		return "serviceproviderhome";
 	}
+	
+		
+
 	
 	@GetMapping("servicegarage")
 	public String getAddGarage(Model model)

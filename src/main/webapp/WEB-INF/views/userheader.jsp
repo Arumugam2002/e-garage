@@ -51,17 +51,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
+                <!-- <a href="about.html" class="nav-item nav-link">About</a> -->
                 <a href="garages" class="nav-item nav-link">Garages</a>
+                <a href="useraddvehicles" class="nav-item nav-link">Add Vehicle</a>
+                <a href="userviewvehicles" class="nav-item nav-link">View Vehicles</a>
                 
-                 <div class="nav-item dropdown">
+                 <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                     <div class="dropdown-menu fade-up m-0">
                         <a href="bookservice" class="dropdown-item">Book Service</a>
                        
                     </div>
-                </div>
-                <div class="nav-item dropdown">
+                </div> -->
+                <!-- <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu fade-up m-0">
                         <a href="booking.html" class="dropdown-item">Booking</a>
@@ -69,8 +71,8 @@
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div> -->
+               <!--  <a href="contact.html" class="nav-item nav-link">Contact</a> -->
                 
                 <a href="viewuserappointment" class="nav-item nav-link">View Appointments</a>
                <a href="viewcart" class="nav-item nav-link"> <i class="fas fa-shopping-cart"></i></a>
@@ -81,10 +83,10 @@
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
 							<li><a class="dropdown-item" href="userprofile">Profile</a></li>
-							<li><a class="dropdown-item" href="useraddvehicles">Add Vehicle</a></li>
-							<li><a class="dropdown-item" href="userviewvehicles">View Vehicle</a></li>
+							<!-- <li><a class="dropdown-item" href="useraddvehicles">Add Vehicle</a></li> -->
+							<!-- <li><a class="dropdown-item" href="userviewvehicles">View Vehicle</a></li> -->
 							<li><a class="dropdown-item" href="userchangepassword">Change Password</a></li>
-							<li><a class="dropdown-item" href="settings">Settings</a></li>
+							<!-- <li><a class="dropdown-item" href="settings">Settings</a></li> -->
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item text-danger" href="logout">Logout</a></li>
 						</ul></li>

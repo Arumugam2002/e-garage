@@ -18,6 +18,7 @@ import com.grownited.repository.appointmentRepository;
 import com.grownited.repository.appointmentServiceRepository;
 import com.grownited.repository.cartRepository;
 import com.grownited.repository.paymentRepository;
+import com.grownited.service.MailService;
 import com.grownited.service.PaymentService;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +40,10 @@ public class PaymentController {
 	
 	@Autowired
 	PaymentService paymentService;
+	
+	
+	@Autowired
+	MailService serviceMail;
 	
 	
 	
@@ -75,9 +80,9 @@ public class PaymentController {
 	        return "redirect:/cart";
 	    }
 		
-	boolean success = paymentService.chargeCreditCard("4f2dkE2E4VpB", "8PZUxB57wm8X84gn", appointment.getPrice(), ccNum, expDate, email);
+	String transactionId = paymentService.chargeCreditCard("4f2dkE2E4VpB", "8PZUxB57wm8X84gn", appointment.getPrice(), ccNum, expDate, email);
 	
-	if(success)
+	if(transactionId!=null && !transactionId.isEmpty())
 	{
 		 Appointment savedAppointment = appointmentRepository.save(appointment);
 		 
@@ -90,14 +95,21 @@ public class PaymentController {
 	            appointmentServiceRepository.save(appService);
 	        }
 		 
+		 String lastFourDigits = ccNum.length() >= 4 ? ccNum.substring(ccNum.length() - 4) : "XXXX";
+
+		 
 		 Payment payment = new Payment();
 		 
 		 payment.setAppointmentRefId(savedAppointment);
 		 payment.setPaymentDate(LocalDateTime.now());
 		 payment.setAmountPaid(appointment.getPrice());
 		 payment.setPaymentStatus("Success");
+		 payment.setLastFourDigit(lastFourDigits);
+		 payment.setTransactionId(transactionId);
 		 
 		 paymentRepository.save(payment);
+		 
+		 serviceMail.sendInvoiceMail(email, savedAppointment, cartItems, payment, lastFourDigits);
 		 
 		 	cartRepository.deleteAll(cartItems);
 	        session.removeAttribute("tempAppointment");

@@ -3,14 +3,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="usercss.jsp" />
+
+<jsp:include page="serviceprovidercss.jsp"></jsp:include>
 
 <body>
-    <jsp:include page="userheader.jsp" />
+    <jsp:include page="serviceproviderheader.jsp"></jsp:include>
+
 
     <div class="container mt-5 mb-5">
         <div class="card shadow p-4 rounded-4">
-            <h2 class="text-center mb-4">Update Profile</h2>
+            <h2 class="text-center mb-4">Update Service Provider Profile</h2>
 
             <!-- Success & Error Messages -->
             <c:if test="${not empty error}">
@@ -21,7 +23,7 @@
             </c:if>
 
             <!-- Profile Update Form -->
-            <form class="row g-4 needs-validation" novalidate action="updateuser" method="post" enctype="multipart/form-data">
+            <form class="row g-4 needs-validation" novalidate action="updateserviceprovider" method="post" enctype="multipart/form-data">
 
                 <!-- Hidden User ID -->
                 <input type="hidden" name="id" value="${user.id}" />
@@ -91,7 +93,7 @@
                 </div>
 
                 <!-- Location Selects -->
-                <div class="d-flex gap-2">
+               <div class="d-flex gap-2">
     <select id="state" name="stateId" class="form-select" required>
         <option value="">Select State</option>
         <c:forEach items="${allStates}" var="s">
@@ -108,8 +110,6 @@
     </select>
 </div>
 
-
-
                 <!-- Submit -->
                 <div class="col-12 text-center mt-3">
                     <button type="submit" class="btn btn-primary px-4 py-2">Update Profile</button>
@@ -117,14 +117,12 @@
             </form>
         </div>
     </div>
-
-
-    <!-- Bootstrap form validation script -->
-    
-    
-<script src="assets/js/locationfilter.js"></script>
-    <jsp:include page="userfooter.jsp" />
-    <script>
+   
+   
+ <script src="assets/js/locationfilter.js"></script>
+		<jsp:include page="serviceproviderfooter.jsp"></jsp:include>
+		
+		<script>
         (function () {
             'use strict'
             const forms = document.querySelectorAll('.needs-validation')
@@ -139,5 +137,9 @@
             })
         })()
     </script>
+
+  
 </body>
+
 </html>
+

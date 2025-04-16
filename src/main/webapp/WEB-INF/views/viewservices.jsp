@@ -31,9 +31,10 @@
     <div class="container">
         <h2 class="text-center text-primary mb-4">View Services</h2>
         <div class="user-info">
-            <p><strong>All Inclusive Price:</strong> ${services.allInclusivePrice}</p>
-            <p><strong>Service Description:</strong> ${services.serviceDescription}</p>
-            <p><strong>Service_name</strong> ${services.serviceName}</p>
+            <p><strong>All Inclusive Price: </strong> ${services[0][1]}</p>
+            <p><strong>Service Description: </strong> ${services[0][2]}</p>
+            <p><strong>Service_name: </strong> ${services[0][3]}</p>
+            <p><strong>Garage Name: </strong> ${services[0][5]}</p>
             
         </div>
         <div class="text-center mt-4">

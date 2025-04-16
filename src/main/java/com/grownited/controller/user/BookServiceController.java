@@ -103,7 +103,7 @@ public class BookServiceController {
 	    tempAppointment.setAppointmentDateTime(appointmentDateTime);
 	    tempAppointment.setPrice(totalPrice);
 	    tempAppointment.setBasePrice(totalPrice);
-	    tempAppointment.setStatus("Pending");
+	    tempAppointment.setStatus("Booked");
 	    tempAppointment.setUserId(userId);
 	    tempAppointment.setReason(reason);
 	    tempAppointment.setVehiclesId(vehiclesId);

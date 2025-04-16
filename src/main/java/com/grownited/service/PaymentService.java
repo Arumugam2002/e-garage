@@ -23,7 +23,7 @@ import net.authorize.api.controller.base.ApiOperationBase;
 @Service
 public class PaymentService {
 
-	public boolean chargeCreditCard(String apiLoginId, String transactionKey, Double amount, String ccNum, String expDate, String email) {
+	public String chargeCreditCard(String apiLoginId, String transactionKey, Double amount, String ccNum, String expDate, String email) {
 
         // Set the request to operate in either the sandbox or production environment
         ApiOperationBase.setEnvironment(Environment.SANDBOX);
@@ -76,7 +76,8 @@ public class PaymentService {
                     System.out.println("Description: " + result.getMessages().getMessage().get(0).getDescription());
                     System.out.println("Auth Code: " + result.getAuthCode());
                     
-                    return true;
+                    
+                    return result.getTransId();
                 } else {
                     System.out.println("Failed Transaction.");
                     if (response.getTransactionResponse().getErrors() != null) {
@@ -103,7 +104,7 @@ public class PaymentService {
             }
         }
         
-        return false;
+        return null;
     }
 	
 }

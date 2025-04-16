@@ -70,12 +70,9 @@
 															<td>${a.cityName}</td>
 															<td>
 																<div class="d-flex flex-row gap-2">
-																	<a href="viewcity?id=${c.cityId}"
-																		class="btn btn-sm btn-success">View</a> <a
-																		href="deletecity?id=${c.cityId}"
-																		class="btn btn-sm btn-danger">Delete</a> <a
-																		href="edit?id=${c.cityId}"
-																		class="btn btn-sm btn-primary">Edit</a>
+																	 <a
+																		href="deletearea?id=${a.areaId}"
+																		class="btn btn-sm btn-danger">Delete</a>
 																</div>
 															</td>
 														</tr>

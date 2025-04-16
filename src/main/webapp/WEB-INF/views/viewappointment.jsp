@@ -35,8 +35,10 @@
             <p><strong>Appointment Base Price:- </strong> ${appointment[0][2]}</p>
             <p><strong>Appointment Price:- </strong> ${appointment[0][3]}</p>
             <p><strong>Appointment Date and Time:- </strong> ${appointment[0][1]}</p>
-            <p><strong>Service Name:- </strong> ${appointment[0][8]}</p>
-            <p><strong>Garage Title:- </strong> ${appointment[0][9]}</p>
+            <p><strong>Service Name:- </strong> ${appointment[0][10]}</p>
+            <p><strong>Garage Title:- </strong> ${appointment[0][11]}</p>
+             <p><strong>Manufacturer:- </strong> ${appointment[0][12]}</p>
+              <p><strong>Model:- </strong> ${appointment[0][13]}</p>
            
             
         </div>

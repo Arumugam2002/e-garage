@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -35,15 +35,15 @@ public class Users {
 	private String profilePicPath;
 	
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="stateref_id")
 	private State state;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="cityref_id")
 	private City city;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="area_id")
 	private Area area;
 	

@@ -18,6 +18,10 @@ public interface serviceRepository extends JpaRepository<Services, Integer> {
 	@Query( value = "select s.*, sp.garage_title from services s, service_providers sp where s.service_provider_id = sp.service_provider_id;", nativeQuery = true)
 	List<Object[]> getAll();
 	
+	@Query( value = "select s.*, sp.garage_title from services s, service_providers sp where s.service_provider_id = sp.service_provider_id and s.services_id = :servicesId;", nativeQuery = true)
+	List<Object[]> getByServiceId(Integer servicesId);
+	
+	
 	
 	
 }

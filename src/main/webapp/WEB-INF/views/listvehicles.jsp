@@ -51,7 +51,7 @@
 					<div class="container mt-4">
         
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover datatable datatable-table" id="myTable">
                 <thead class="table-dark">
                     <tr>
                         
@@ -60,6 +60,7 @@
                         <th>Year</th>
                         <th>License Plate</th>
                         <th>Vehicle Class</th>
+                        <th>Vehicle Owner</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -67,17 +68,18 @@
                     <c:forEach items="${vehicles}" var="v">
                         <tr>
                             
-                            <td>${v.manufacturer}</td>
-                            <td>${v.model}</td>
-                            <td>${v.year}</td>
-                            <td>${v.licensePlate}</td>
-                            <td>${v.vehicleClass}</td>
+                            <td>${v[2]}</td>
+                            <td>${v[3]}</td>
+                            <td>${v[5]}</td>
+                            <td>${v[1]}</td>
+                            <td>${v[4]}</td>
+                            <td>${v[7]} ${v[8]}</td>
                             <td>
 																<div class="d-flex flex-row gap-2">
-																	<a href="viewvehicle?id=${v.vehiclesId}"
+																	<a href="viewvehicle?id=${v[0]}"
 																		class="btn btn-sm btn-success">View</a> <a
-																		href="deletevehicle?id=${v.vehiclesId}"
-																		class="btn btn-sm btn-danger">Delete</a> <a href="editvehicle?id=${v.vehiclesId}"
+																		href="deletevehicle?id=${v[0]}"
+																		class="btn btn-sm btn-danger">Delete</a> <a href="editvehicle?id=${v[0]}"
 																		class="btn btn-sm btn-primary">Edit</a>
 																</div>
 															</td>
@@ -113,6 +115,40 @@
 
   </main>
 <%@include file="adminfooter.jsp" %>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+		<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.dataTables.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.min.js"></script>
+
+	<script type="text/javascript">
+  
+  	$( document ).ready(function() {
+  		//let table = new DataTable('#myTable');
+  	
+  		new DataTable('#myTable', {
+  	 	    layout: {
+  	 	        topStart: {
+  	 	            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+  	 	        }
+  	 	    }
+  	 	});
+  	
+  	});
+  	
+  	
+  	</script>
 </body>
 </html>
 

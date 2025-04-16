@@ -53,4 +53,13 @@ public class AreaController {
 		
 		return "redirect:/listarea";
 	}
+	
+	
+	@GetMapping("deletearea")
+	public String deleteArea(Integer id)
+	{
+		areaRepository.deleteById(id);
+		
+		return "redirect:/listarea";
+	}
 }

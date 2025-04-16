@@ -30,7 +30,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Credit Card Number</label>
-                <input type="text" class="form-control" name="ccNum" required />
+                <input type="text" class="form-control" name="ccNum" maxlength="16" required />
             </div>
 
             <div class="mb-3">

@@ -64,18 +64,9 @@ public class ServiceController {
 	@GetMapping("viewservices")
 	public String getViewServices(Integer servicesId, Model model)
 	{
-		Optional<Services> optionalServices = serviceRepository.findById(servicesId);
+		List<Object[]> services = serviceRepository.getByServiceId(servicesId);
 		
-		if(!optionalServices.isPresent())
-		{
-			
-		}
-		else {
-			
-			Services services = optionalServices.get();
-			
-			model.addAttribute("services",services);
-		}
+		model.addAttribute("services",services);
 		
 		
 		return "viewservices";

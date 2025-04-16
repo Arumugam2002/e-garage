@@ -24,6 +24,7 @@
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link  href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
        <link href="https://cdn.datatables.net/buttons/3.2.2/css/buttons.dataTables.css" rel="stylesheet" />
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">

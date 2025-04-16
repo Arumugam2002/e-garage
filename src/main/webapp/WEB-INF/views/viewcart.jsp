@@ -258,7 +258,7 @@
         </c:choose>
 
         <div class="action-buttons">
-            <a href="viewgarage?id=${serviceProvider.serviceProviderId}" class="btn btn-back">Back to Garage</a>
+            <%-- <a href="viewgarage?id=${serviceProvider.serviceProviderId}" class="btn btn-back">Back to Garage</a> --%>
             <a href="/garages" class="btn btn-garages">All Garages</a>
         </div>
     </div>

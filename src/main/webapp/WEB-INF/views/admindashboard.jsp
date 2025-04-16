@@ -313,6 +313,46 @@
                   <!-- End Bar Chart -->
 
                 </div>
+                
+                 <div class="card-body">
+                  <h5 class="card-title">Appointment Analysis <span>/ Year</span></h5>
+
+                  <!-- Bar Chart -->
+                  <canvas id="myLineChart" width="400" height="200"></canvas>
+
+		<script>
+  const ctx1 = document.getElementById('myLineChart').getContext('2d');
+  const myLineChart = new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'], // X-axis
+      datasets: [{
+        label: 'Appointment Data',
+        data: [${monthWiseAppointment[0]}, ${monthWiseAppointment[1]}, ${monthWiseAppointment[2]}, ${monthWiseAppointment[3]}, ${monthWiseAppointment[4]}, ${monthWiseAppointment[5]}, ${monthWiseAppointment[6]}, ${monthWiseAppointment[7]}, ${monthWiseAppointment[8]}, ${monthWiseAppointment[9]}, ${monthWiseAppointment[10]}, ${monthWiseAppointment[11]}], // Y-axis
+        borderColor: 'rgba(75, 192, 192, 1)',
+        tension: 0.4, // Smooth curves
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Monthly Sales Line Chart'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+                  <!-- End Bar Chart -->
+
+                </div>
 
               </div>
             </div>

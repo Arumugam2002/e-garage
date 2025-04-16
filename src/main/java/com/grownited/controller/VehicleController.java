@@ -44,7 +44,7 @@ public class VehicleController {
 	@GetMapping("listvehicles")
 	public String getListVehicles(Model model)
 	{
-		List<Vehicles> vehicles = vehicleRepository.findAll();
+		List<Object[]> vehicles = vehicleRepository.getAllVehicles();
 		
 		model.addAttribute("vehicles",vehicles);
 		

@@ -57,14 +57,15 @@
             
             <input type="hidden" name="servicesId" value="${services.servicesId }">
             
-            Service Provider:-      <select name="serviceProviderId">
-                <option>Select Service Provider </option>
-                
-                <c:forEach items="${allServiceProviders }" var="s">
-                
-                <option value="${s.serviceProviderId}">${s.garageTitle}</option>
-                </c:forEach>
-                </select>
+            Service Provider:-      <select name="serviceProviderId" class="form-select" required>
+    <option disabled>Select Service Provider</option>
+    <c:forEach items="${allServiceProviders}" var="s">
+        <option value="${s.serviceProviderId}"
+            <c:if test="${s.serviceProviderId == services.serviceProviderId}">selected</c:if>>
+            ${s.garageTitle}
+        </option>
+    </c:forEach>
+</select>
             
                 <div class="mb-3">
                     <label class="form-label">Service Name</label>

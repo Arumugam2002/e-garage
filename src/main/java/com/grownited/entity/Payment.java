@@ -24,8 +24,24 @@ public class Payment {
 	private Double amountPaid;
 	private LocalDateTime paymentDate;
 	private String paymentStatus;
+	private String lastFourDigit;
+	private String transactionId;
 	
 	
+	
+	
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+	public String getLastFourDigit() {
+		return lastFourDigit;
+	}
+	public void setLastFourDigit(String lastFourDigit) {
+		this.lastFourDigit = lastFourDigit;
+	}
 	public Integer getPaymentId() {
 		return paymentId;
 	}

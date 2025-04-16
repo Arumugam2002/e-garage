@@ -97,7 +97,7 @@
                 <label for="contactNo" class="form-label">Contact No</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" name="contactNo" class="form-control" id="contactNo" value="${user.contactNo}" required>
+                    <input type="text" name="contactNo" class="form-control" id="contactNo" value="${user.contactNo}" maxlength="10" required>
                     <div class="invalid-feedback">Please enter your contact number!</div>
                 </div>
             </div>

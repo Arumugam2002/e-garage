@@ -174,7 +174,7 @@
 											<div class="input-group">
 												<span class="input-group-text"><i
 													class="fas fa-phone"></i></span> <input type="text"
-													name="contactNo" class="form-control" id="yourContact"
+													name="contactNo" class="form-control" id="yourContact" maxlength="10"
 													required>
 												<div class="invalid-feedback">Please, enter your
 													contact number!</div>

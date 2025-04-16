@@ -71,6 +71,15 @@ public class AdminController {
 			    System.out.println("Month " + i + ": " + count); // Log the result for each month
 			    monthWiseCustomer[i-1] = count; 
 			}
+		  
+		  Integer monthWiseAppointment[] = new Integer[12];
+		  
+		  for(int i=1;i<=12;i++)
+		  {
+			  Integer count = appointmentRepository.countThisMonthAppointment(i);
+			  System.out.println("Month" + i + ": " + count);
+			  monthWiseAppointment[i-1] = count;
+		  }
 		 
 		
 		Integer thisMonthCustomerCount = userRepository.countThisUserMonth(month);	
@@ -80,6 +89,8 @@ public class AdminController {
 		model.addAttribute("totalCustomer",totalCustomer);
 		
 		model.addAttribute("monthWiseCustomer",  monthWiseCustomer);
+		
+		model.addAttribute("monthWiseAppointment",  monthWiseAppointment);
 		
 		model.addAttribute("thisMonthCustomerCount", thisMonthCustomerCount);
 		

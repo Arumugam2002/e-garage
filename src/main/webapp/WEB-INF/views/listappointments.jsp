@@ -41,7 +41,7 @@
 
 
 					 <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover datatable datatable-table" id="myTable">
                 <thead class="table-dark">
                     <tr>
                         <th>Appointment DateTime</th>
@@ -51,6 +51,8 @@
                         
                         <th>Service Name</th>
                         <th>Service Provider Name</th>
+                        <th>Vehicle Name</th>
+                        <th>Booked By</th>
                          <th>Status</th>
                         <th>Action</th> 
                         <th>Update Status</th>
@@ -67,6 +69,8 @@
                             
                             <td>${a[6]}</td>
                             <td>${a[5]}</td>
+                             <td>${a[7]}  ${a[8]}</td>
+                             <td>${a[9]}  ${a[10]}</td>
                             
                             <td>
     <span class="badge" style="background-color: 
@@ -143,6 +147,40 @@
 
   </main>
 <%@include file="adminfooter.jsp" %>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+		<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+  	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.dataTables.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
+  	<script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.min.js"></script>
+
+	<script type="text/javascript">
+  
+  	$( document ).ready(function() {
+  		//let table = new DataTable('#myTable');
+  	
+  		new DataTable('#myTable', {
+  	 	    layout: {
+  	 	        topStart: {
+  	 	            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+  	 	        }
+  	 	    }
+  	 	});
+  	
+  	});
+  	
+  	
+  	</script>
 </body>
 </html>
 
