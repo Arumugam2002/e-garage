@@ -39,7 +39,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-       <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5 logo d-flex align-items-center">
+       <a href="serviceproviderhome" class="navbar-brand d-flex align-items-center px-4 px-lg-5 logo d-flex align-items-center">
     <h2 class="m-0 text-primary">
         <img src="assets/img/garage.png" alt="" style="width: 40px; height: 40px; margin-right: 10px;">
         E Garage
@@ -54,6 +54,7 @@
                <!--  <a href="about.html" class="nav-item nav-link">About</a> -->
                 <a href="viewservicegarage" class="nav-item nav-link">View Garages</a>
                 <a href="servicegarage" class="nav-item nav-link">Add Garage</a>
+                <a href="viewserviceappointments" class="nav-item nav-link">View Service Appointments</a>
                 <!-- <a href="garages" class="nav-item nav-link">Garages</a> -->
                 
                  
@@ -75,6 +76,7 @@
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="userDropdown">
 							<li><a class="dropdown-item" href="serviceproviderprofile">Profile</a></li>
+							<li><a class="dropdown-item" href="viewserviceproviderprofile">View Profile</a></li>
 						<!-- 	<li><a class="dropdown-item" href="servicegarage">Add Your Garage</a></li> -->
 							<!-- <li><a class="dropdown-item" href="servicegarageadd">Add Services</a></li> -->
 							<li><a class="dropdown-item" href="serviceproviderchangepassword">Change Password</a></li>

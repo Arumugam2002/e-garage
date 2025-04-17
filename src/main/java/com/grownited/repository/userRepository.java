@@ -18,4 +18,14 @@ public interface userRepository extends JpaRepository<Users, Integer> {
 	
 	@Query(value = "select count(*) from users where month(create_at) = :month and role='USER';",nativeQuery = true)
 	Integer countThisUserMonth(Integer month);
+	
+	boolean existsByCity_CityId(Integer cityId);
+	
+	boolean existsByArea_AreaId(Integer areaId);
+	
+	boolean existsByState_StateId(Integer stateId);
+	
+	
+	
 }
+

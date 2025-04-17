@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grownited.dto.AreaDto;
 import com.grownited.entity.Area;
 import com.grownited.entity.City;
 import com.grownited.repository.areaRepository;
 import com.grownited.repository.cityRepository;
+import com.grownited.repository.userRepository;
 
 @Controller
 public class AreaController {
@@ -22,6 +24,9 @@ public class AreaController {
 	
 	@Autowired
 	cityRepository cityRepository;
+	
+	@Autowired
+	userRepository userRepository;
 	
 	@GetMapping("area")
 	public String getArea(Model model)
@@ -56,9 +61,24 @@ public class AreaController {
 	
 	
 	@GetMapping("deletearea")
-	public String deleteArea(Integer id)
+	public String deleteArea(Integer id, RedirectAttributes redirectAttributes)
 	{
-		areaRepository.deleteById(id);
+		if(userRepository.existsByArea_AreaId(id))
+		{
+			redirectAttributes.addFlashAttribute("errorMessage", "Cannot delete area; users are linked to it.");
+		}
+		else {
+			try {
+				areaRepository.deleteById(id);
+				redirectAttributes.addFlashAttribute("successMessage", "Area deleted successfully");
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				redirectAttributes.addFlashAttribute("errorMessage", "Error deleting area. Please try again later.");
+			}
+		}
+		
+		
 		
 		return "redirect:/listarea";
 	}

@@ -1,4 +1,4 @@
-/*
+
 package com.grownited.filter;
 
 import java.io.IOException;
@@ -69,4 +69,3 @@ public class LoginCheckFilter implements Filter{
 	
 }
 
-*/

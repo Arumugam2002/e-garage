@@ -150,6 +150,25 @@ public class HomeController {
 		}
 	}
 	
+	@GetMapping("viewuserprofile")
+	public String getViewProfile(HttpSession session, Model model)
+	{
+		Users user = (Users) session.getAttribute("user");
+		Optional<Users> op = userRepository.findById(user.getId());
+		
+		if(op.isPresent())
+		{
+			Users existingUser = op.get();
+			model.addAttribute("user", existingUser);
+			return "viewuserprofile";
+		}
+		else {
+			model.addAttribute("errorMessage", "Cant Fetch User Details");
+			return "viewuserprofile";
+		}
+		
+	}
+	
 	@GetMapping("userchangepassword")
 	public String getUserChangePassword()
 	{

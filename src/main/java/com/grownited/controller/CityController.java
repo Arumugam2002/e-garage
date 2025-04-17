@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grownited.entity.City;
 import com.grownited.entity.State;
@@ -81,5 +82,26 @@ public class CityController {
 		
 		
 		return "listcity";
+	}
+	
+	@GetMapping("deletecity")
+	public String deleteArea(Integer id, RedirectAttributes redirectAttributes)
+	{
+		if(userRepository.existsByCity_CityId(id))
+		{
+			redirectAttributes.addFlashAttribute("errorMessage", "Cannot delete city; users are linked to it.");
+		}
+		else {
+			try {
+				cityRepository.deleteById(id);
+				redirectAttributes.addFlashAttribute("successMessage", "City deleted successfully");
+			}catch (Exception e) {
+				redirectAttributes.addFlashAttribute("errorMessage", "Error deleting city. Please try again later.");
+	        }
+			
+		}	
+		
+		
+		return "redirect:/listcity";
 	}
 }

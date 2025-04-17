@@ -31,11 +31,12 @@
     <div class="container">
         <h2 class="text-center text-primary mb-4">View Vehicles</h2>
         <div class="user-info">
-            <p><strong>Vehicle Name</strong> ${vehicle.manufacturer}</p>
-            <p><strong>Model:</strong> ${vehicle.model}</p>
-            <p><strong>License Plate:</strong> ${vehicle.licensePlate}</p>
-            <p><strong>Since</strong> ${vehicle.year}</p>
-            <p><strong>Vehicle Class:</strong> ${vehicle.vehicleClass}</p>
+            <p><strong>Vehicle Name</strong> ${vehicle[0][2]}</p>
+            <p><strong>Model:</strong> ${vehicle[0][3]}</p>
+            <p><strong>License Plate:</strong> ${vehicle[0][1]}</p>
+            <p><strong>Since</strong> ${vehicle[0][5]}</p>
+            <p><strong>Vehicle Class:</strong> ${vehicle[0][4]}</p>
+             <p><strong>Vehicle Owner:</strong> ${vehicle[0][7]} ${vehicle[0][8]}</p>
             
         </div>
         <div class="text-center mt-4">

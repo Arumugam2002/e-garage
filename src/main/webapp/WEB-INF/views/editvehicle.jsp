@@ -53,7 +53,7 @@
 											<!-- <h2 class="text-center mb-4">Vehicle Details</h2> -->
 											<form action="editvehicle" method="post">
 											
-											<input type="hidden" name="id" value="${vehicle.vehiclesId}">
+											<input type="hidden" name="vehiclesId" value="${vehicle.vehiclesId}">
 												<div class="mb-3">
 													<label class="form-label">Manufacturer Name</label> <input
 														type="text" class="form-control" name="manufacturer" value="${vehicle.manufacturer }"

@@ -138,6 +138,25 @@ public class ServiceProviderProfileController {
 			}
 	}
 	
+	@GetMapping("viewserviceproviderprofile")
+	public String getViewProfile(HttpSession session, Model model)
+	{
+		Users user = (Users) session.getAttribute("user");
+		Optional<Users> op = userRepository.findById(user.getId());
+		
+		if(op.isPresent())
+		{
+			Users existingServiceProvider = op.get();
+			model.addAttribute("user", existingServiceProvider);
+			return "viewserviceproviderprofile";
+		}
+		else {
+			model.addAttribute("errorMessage", "Cant Fetch ServiceProvider Details");
+			return "viewserviceproviderprofile";
+		}
+		
+	}
+	
 	@GetMapping("serviceproviderchangepassword")
 	public String getProviderChangePassword()
 	{

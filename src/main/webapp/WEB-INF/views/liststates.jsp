@@ -47,6 +47,14 @@
                 <div class="card-body">
                   <h5 class="card-title">List States <span>/States</span></h5>
                   
+                  <c:if test="${not empty errorMessage}">
+    <div class="alert alert-danger">${errorMessage}</div>
+</c:if>
+
+<c:if test="${not empty successMessage}">
+    <div class="alert alert-success">${successMessage}</div>
+</c:if>
+                  
                   <div class="container mt-4">
         
         <div class="table-responsive">
@@ -62,7 +70,7 @@
                         <tr>
                             <td>${s.stateName}</td>
                             <td> <a
-																		href="deleteserviceprovider?id=${s.stateId}"
+																		href="deletestates?id=${s.stateId}"
 																		class="btn btn-sm btn-danger">Delete</a></td>
                         </tr>
                     </c:forEach>

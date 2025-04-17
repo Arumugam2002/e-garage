@@ -1,6 +1,7 @@
 package com.grownited.controller.serviceprovider;
 
 import java.io.IOException;
+import java.security.PublicKey;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,17 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.grownited.entity.Appointment;
 import com.grownited.entity.Area;
 import com.grownited.entity.City;
 import com.grownited.entity.ServiceProvider;
 import com.grownited.entity.Services;
 import com.grownited.entity.State;
 import com.grownited.entity.Users;
+import com.grownited.repository.appointmentRepository;
 import com.grownited.repository.areaRepository;
 import com.grownited.repository.cityRepository;
 import com.grownited.repository.serviceProviderRepository;
@@ -40,6 +44,9 @@ public class ServiceProviderHomeController {
 	stateRepository stateRepository;
 	
 	@Autowired
+	appointmentRepository appointmentRepository;
+	
+	@Autowired
 	cityRepository cityRepository;
 	
 	@Autowired
@@ -57,8 +64,20 @@ public class ServiceProviderHomeController {
 	
 	
 	@GetMapping("serviceproviderhome")
-	public String getServiceHomePage()
+	public String getServiceHomePage(HttpSession session, Model model)
 	{
+		Users user = (Users) session.getAttribute("user");
+		
+		 List<ServiceProvider> serviceProvider = serviceProviderRepository.findByUserId(user.getId());
+		 
+		 if (!serviceProvider.isEmpty()) {
+			 	ServiceProvider provider = serviceProvider.get(0);
+		       
+		        session.setAttribute("serviceProviderId", provider.getServiceProviderId());
+		    } else {
+		        model.addAttribute("error", "Service Provider not found.");
+		    }
+		
 		return "serviceproviderhome";
 	}
 	
@@ -166,4 +185,46 @@ System.out.println(imagePic.getOriginalFilename());
 		return "viewserviceproviderservices";
 	}
 	
+	@GetMapping("viewserviceappointments")
+	public String getServiceAppointments(Integer serviceProviderId, Model model, HttpSession session)
+	{
+		Integer serviceProviderId1 = (Integer) session.getAttribute("serviceProviderId");
+		
+	    if (serviceProviderId1 == null) {
+	        model.addAttribute("error", "Service Provider ID not found.");
+	        return "error";
+	    }
+
+		
+		List<Object[]> appointments = appointmentRepository.getAppointmentsByServiceProviderId(serviceProviderId1);
+		
+		  model.addAttribute("appointments", appointments);
+		  
+		  return "viewserviceappointments";
+	}
+	
+	@PostMapping("/updateAppointmentStatus")
+	public String updateAppointmentStatus(@RequestParam Integer appointmentId,
+	                                      @RequestParam String newStatus,
+	                                      RedirectAttributes redirectAttributes) {
+		 Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+
+		    if (optionalAppointment.isPresent()) {
+		        Appointment appointment = optionalAppointment.get();
+
+		        String currentStatus = appointment.getStatus();
+
+		        if (!currentStatus.equalsIgnoreCase("Cancelled") && !currentStatus.equalsIgnoreCase("Completed")) {
+		            appointment.setStatus(newStatus);
+		            appointmentRepository.save(appointment);
+		            redirectAttributes.addFlashAttribute("message", "Status updated to " + newStatus + ".");
+		        } else {
+		            redirectAttributes.addFlashAttribute("error", "Cannot update status. Current status is: " + currentStatus);
+		        }
+		    } else {
+		        redirectAttributes.addFlashAttribute("error", "Appointment not found.");
+		    }
+
+	    return "redirect:/viewserviceappointments";
+	}
 }

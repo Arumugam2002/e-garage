@@ -322,7 +322,7 @@ public class SessionController {
 		} else {
 			Users user = op.get();
 
-			model.addAttribute("user", user);
+			model.addAttribute("user1", user);
 		}
 
 		return "viewuser";

@@ -106,6 +106,7 @@
                 <option value="Cancelled" ${a[2] == 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                 <option value="Rescheduled" ${a[2] == 'Rescheduled' ? 'selected' : ''}>Rescheduled</option>
                 <option value="InProgress" ${a[2] == 'InProgress' ? 'selected' : ''}>InProgress</option>
+                <option value="Completed" ${a[2] == 'Completed' ? 'selected' : ''}>Completed</option>
             </select>
         </form></td>
 															

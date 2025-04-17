@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.grownited.entity.State;
 import com.grownited.entity.Users;
@@ -73,5 +74,28 @@ public class StateController {
 		model.addAttribute("states",states);
 		
 		return "liststates";
+	}
+	
+	@GetMapping("deletestates")
+	public String deleteArea(Integer id, RedirectAttributes redirectAttributes)
+	{
+		if(userRepository.existsByState_StateId(id))
+		{
+			redirectAttributes.addFlashAttribute("errorMessage", "Cannot delete states; users are linked to it.");
+		}
+		else {
+			
+			try {
+				stateRepository.deleteById(id);
+				
+				
+				redirectAttributes.addFlashAttribute("successMessage","State deleted succesfully");
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				redirectAttributes.addFlashAttribute("errorMessage", "Error deleting states. Please try again later.");
+			}
+		}
+		return "redirect:/liststates";
 	}
 }

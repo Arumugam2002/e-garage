@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.entity.Users;
 import com.grownited.entity.Vehicles;
 import com.grownited.repository.vehicleRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class VehicleController {
@@ -26,8 +29,14 @@ public class VehicleController {
 	}
 	
 	@PostMapping("savevehicles")
-	public String saveVehicleDetails(Vehicles vehicles)
+	public String saveVehicleDetails(Vehicles vehicles, HttpSession session)
 	{
+		
+		Users user = (Users) session.getAttribute("user");
+		Integer userid = user.getId();
+		
+		
+		
 		System.out.println(vehicles.getManufacturer());
 		System.out.println(vehicles.getModel());
 		System.out.println(vehicles.getVehicleClass());
@@ -35,7 +44,7 @@ public class VehicleController {
 		
 		System.out.println(vehicles.getLicensePlate());
 		
-		
+		vehicles.setUserId(userid);
 		vehicleRepository.save(vehicles);
 		
 		return "vehicles";
@@ -56,21 +65,12 @@ public class VehicleController {
 	public String getViewVehicle(Model model, Integer id)
 	{
 		
-		Optional<Vehicles> opVehicles = vehicleRepository.findById(id);
+		List<Object[]> opVehicles = vehicleRepository.getByVehiclesId(id);
 		
-		if(opVehicles.isPresent())
-		{
-			
-			Vehicles vehicle = opVehicles.get();
-			
-			model.addAttribute("vehicle", vehicle);
-			return "viewvehicle";
-		}
-		else
-		{
-			model.addAttribute("error","Vehicle id not found");
-			return "listvehicles";
-		}
+		model.addAttribute("vehicle", opVehicles);
+		return "viewvehicle";
+		
+		
 		
 		
 		
@@ -98,9 +98,14 @@ public class VehicleController {
 	
 	
 	@PostMapping("editvehicle")
-	public String getUpdateVehicle(Vehicles vehicle, Integer id, Model model)
+	public String getUpdateVehicle(Vehicles vehicle, Integer vehiclesId, Model model)
 	{
-		Optional<Vehicles> opVehicles = vehicleRepository.findById(id);
+		
+		
+		
+		
+		
+		Optional<Vehicles> opVehicles = vehicleRepository.findById(vehiclesId);
 		
 		if(opVehicles.isPresent())
 		{
@@ -114,7 +119,10 @@ public class VehicleController {
 			
 			
 			
+			
 			vehicleRepository.save(existingVehicles);
+			
+			model.addAttribute("vehicle",existingVehicles);
 			
 			return "redirect:/listvehicles";
 	
