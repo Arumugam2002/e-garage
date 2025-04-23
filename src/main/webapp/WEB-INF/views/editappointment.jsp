@@ -74,7 +74,7 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Reason</label>
-                    <textarea class="form-control" name="reason" rows="3" value="${appointment.reason}" required></textarea>
+<textarea class="form-control" name="reason" rows="3" required">${appointment.reason}</textarea>
                 </div>
                 
                 <div class="text-center">

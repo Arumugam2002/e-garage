@@ -174,7 +174,7 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="${user.profilePicPath}" alt="Profile" class="profile-pic">
+            <img src="${not empty user.profilePicPath ? user.profilePicPath : 'assets/img/profile-img.jpg'}" alt="Profile" class="profile-pic">
             <span class="d-none d-md-block dropdown-toggle ps-2">${user.firstName }</span>
           </a><!-- End Profile Iamge Icon -->
 

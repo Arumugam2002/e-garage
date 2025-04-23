@@ -336,7 +336,7 @@ public class SessionController {
 		Optional<Users> optionalUser = userRepository.findById(id);
 	    
 	    if (optionalUser.isPresent()) {
-	        model.addAttribute("user", optionalUser.get()); // Add user to the model
+	        model.addAttribute("user1", optionalUser.get()); // Add user to the model
 	        return "edituser";
 	    } else {
 	        model.addAttribute("error", "User not found");
@@ -368,7 +368,7 @@ public class SessionController {
 			 
 			 userRepository.save(existingUser); 
 			 
-			 session.setAttribute("user", existingUser);
+			 session.setAttribute("user1", existingUser);
 			 
 			 redirectAttributes.addFlashAttribute("successMessage", "User Updated Successfully");
 			 

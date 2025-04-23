@@ -56,14 +56,14 @@
         <form class="row g-3 needs-validation" novalidate action="edituser" method="post">
             
             <!-- User ID (Hidden) -->
-            <input type="hidden" name="id" value="${user.id}">
+            <input type="hidden" name="id" value="${user1.id}">
 
             <!-- First Name -->
             <div class="col-12">
                 <label for="firstName" class="form-label">First Name</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="firstName" class="form-control" id="firstName" value="${user.firstName}" required>
+                    <input type="text" name="firstName" class="form-control" id="firstName" value="${user1.firstName}" required>
                     <div class="invalid-feedback">Please enter your first name!</div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 <label for="lastName" class="form-label">Last Name</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" name="lastName" class="form-control" id="lastName" value="${user.lastName}" required>
+                    <input type="text" name="lastName" class="form-control" id="lastName" value="${user1.lastName}" required>
                     <div class="invalid-feedback">Please enter your last name!</div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 <label for="email" class="form-label">Email</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" name="email" class="form-control" id="email" value="${user.email}" required>
+                    <input type="email" name="email" class="form-control" id="email" value="${user1.email}" required>
                     <div class="invalid-feedback">Please enter a valid email address!</div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 <label for="contactNo" class="form-label">Contact No</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" name="contactNo" class="form-control" id="contactNo" value="${user.contactNo}" maxlength="10" required>
+                    <input type="text" name="contactNo" class="form-control" id="contactNo" value="${user1.contactNo}" maxlength="10" required>
                     <div class="invalid-feedback">Please enter your contact number!</div>
                 </div>
             </div>
@@ -117,15 +117,15 @@
                 <label class="form-label">Gender</label>
                 <div class="d-flex gap-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Male" ${user.gender == 'Male' ? 'checked' : ''} required>
+                        <input class="form-check-input" type="radio" name="gender" value="Male" ${user1.gender == 'Male' ? 'checked' : ''} required>
                         <label class="form-check-label">Male</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Female" ${user.gender == 'Female' ? 'checked' : ''}>
+                        <input class="form-check-input" type="radio" name="gender" value="Female" ${user1.gender == 'Female' ? 'checked' : ''}>
                         <label class="form-check-label">Female</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" value="Other" ${user.gender == 'Other' ? 'checked' : ''}>
+                        <input class="form-check-input" type="radio" name="gender" value="Other" ${user1.gender == 'Other' ? 'checked' : ''}>
                         <label class="form-check-label">Other</label>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                 <label for="contactNo" class="form-label">Role</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                    <input type="text" name="role" class="form-control" id="contactNo" value="${user.role}" required>
+                    <input type="text" name="role" class="form-control" id="contactNo" value="${user1.role}" required>
                     <div class="invalid-feedback">Please enter your role!</div>
                 </div>
             </div>
