@@ -35,7 +35,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Expiry Date (MMYY)</label>
-                <input type="text" class="form-control" name="expDate" required />
+                <input type="text" class="form-control" name="expDate" maxlength="4" required />
             </div>
 
             <button type="submit" class="btn btn-success">Pay Now</button>

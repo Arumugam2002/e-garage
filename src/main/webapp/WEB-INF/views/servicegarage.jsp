@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">Contact No</label>
-                                        <input type="tel" class="form-control" name="contactNo" required>
+                                        <input type="tel" class="form-control" name="contactNo" maxlength = "10" required>
                                     </div>
                                 </div>
 
